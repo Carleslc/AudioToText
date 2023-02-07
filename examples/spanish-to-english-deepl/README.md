@@ -1,4 +1,4 @@
-Example Notebook
+[Example Notebook](spanish-to-english-deepl.ipynb)
 
 This example transcribes the audio of a video file (low-res so it can be uploaded fast) to its source language (Spanish) in TXT and VTT formats and then translates the generated transcripts to English using DeepL API.
 
@@ -6,7 +6,7 @@ This example transcribes the audio of a video file (low-res so it can be uploade
 
 **task**: `Transcribe`
 
-**audio_file**: `Whisper-Example.3gp` ([Original YouTube video](https://www.youtube.com/watch?v=JuMEmF-2FsA))
+**audio_file**: [`Whisper-Example.3gp`](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/Whisper-Example.3gp) ([Original YouTube video](https://www.youtube.com/watch?v=JuMEmF-2FsA))
 
 **language:** `Auto-Detect` (Spanish)
 
@@ -16,10 +16,12 @@ This example transcribes the audio of a video file (low-res so it can be uploade
 
 **output_formats**: `txt,vtt`
 
-audio_transcription/Whisper-Example.txt
-audio_transcription/Whisper-Example.vtt
+[audio_transcription/Whisper-Example.txt](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/audio_transcription/Whisper-Example.txt)
+
+[audio_transcription/Whisper-Example.vtt](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/audio_transcription/Whisper-Example.vtt)
 
 **deepl_target_language**: `English (British)`
 
-audio_transcription/Whisper-Example_English (British).txt
-audio_transcription/Whisper-Example_English (British).vtt
+[audio_transcription/Whisper-Example_English (British).txt](audio_transcription/Whisper-Example_English%20(British).txt)
+
+[audio_transcription/Whisper-Example_English (British).vtt](audio_transcription/Whisper-Example_English%20(British).vtt)

@@ -22,7 +22,7 @@ Generate _captions_ using VTT or SRT file formats.
 
 A Cloud GPU will be assigned to you to execute the notebook code to transcribe and translate your audio files.
 
-If you want to execute the notebook in your own computer check _**Local installation**_.
+If you want to execute the notebook in your own computer check [_**Local installation**_](#local-installation-for-users-with-a-powerful-gpu).
 
 ## Features
 
@@ -44,7 +44,7 @@ If you want to execute the notebook in your own computer check _**Local installa
 
 `task`: `Transcribe`
 
-`language`: `Auto-Detect` or select `English` (recommended if using _`use_model`_ `tiny`, `base`, `small`, or `medium`)
+`language`: `Auto-Detect` or select `English` (recommended when using _`use_model`_ `tiny`, `base`, `small`, or `medium`)
 
 ### Audio **transcription** from [almost any language](https://github.com/openai/whisper#available-models-and-languages) using Whisper
 
@@ -182,10 +182,6 @@ Translation to other languages than English is not supported by _Whisper_.
 
 However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) to translate the transcription to another language.
 
-The [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) has a free quota of **500,000 characters per month**.
-
-If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using the [Free Translator Files](https://www.deepl.com/translator/files) web feature uploading the generated transcripts.
-
 `task`: `Transcribe`
 
 `language`: `Auto-Detect` or select the source language of your audio file
@@ -193,7 +189,7 @@ If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using th
 <details>
   <summary><i>Supported source languages by DeepL</i></summary>
 
-  <code>source_lang</code> <a>https://www.deepl.com/docs-api/translate-text</a>
+  <a href="https://www.deepl.com/docs-api/translate-text"><code>source_lang</code></a>
 
   ```
   Bulgarian
@@ -227,9 +223,9 @@ If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using th
   Ukrainian
   ```
   
-  If the source language of your audio file is supported by Whisper but not supported by DeepL you can use the <code>Translate to English</code> task to generate an English transcription first and translate that to your desired target language using DeepL.
-
 </details>
+
+If the source language of your audio file is supported by Whisper but not supported by DeepL you can use the `Translate to English` task to generate an English transcription first and translate that to your desired target language using DeepL.
 
 `deepl_api_key`: Your [DeepL API key](https://www.deepl.com/es/account/summary) generated after registering for a [DeepL Developer Account](https://www.deepl.com/pro-api).
 
@@ -238,7 +234,7 @@ If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using th
 <details>
   <summary><i>Available target languages by DeepL</i></summary>
   
-  <code>target_lang</code> <a>https://www.deepl.com/docs-api/translate-text</a>
+  <a href="https://www.deepl.com/docs-api/translate-text"><code>target_lang</code></a>
   
   ```
   Bulgarian
@@ -274,6 +270,10 @@ If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using th
   
 </details>
 
+The [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) has a free quota of **500,000 characters per month**.
+
+If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using the [Free Translator Files](https://www.deepl.com/translator/files) web feature uploading the generated transcripts.
+
 ### **Save transcripts** to different formats
 
 `output_formats`: Select the desired transcript formats (comma-separated)
@@ -284,7 +284,7 @@ Available formats: **txt, vtt, srt, tsv, json**
 
 [`vtt`](https://en.wikipedia.org/wiki/WebVTT) or [`srt`](https://en.wikipedia.org/wiki/SubRip) are recommended to add **captions** to an audio or video.
 
-Transcript files will be located in the `audio_transcription` folder.
+Transcript files will be located in the _**`audio_transcription`**_ folder.
 
 ## Local installation (for users with a powerful GPU)
 
