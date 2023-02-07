@@ -57,7 +57,7 @@ There are several examples in the [**examples**](https://github.com/Carleslc/Aud
 `language`: `Auto-Detect` or select the source language of your audio file
 
 <details>
-  <summary><i>Supported source languages by Whisper</i></summary>
+  <summary><a><i>Supported source languages by Whisper</i></a></summary>
   
   ```
   Afrikaans
@@ -191,7 +191,7 @@ However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api
 `language`: `Auto-Detect` or select the source language of your audio file \*
 
 <details>
-  <summary><i>Supported source languages by DeepL</i></summary>
+  <summary><a><i>Supported source languages by DeepL</i></a></summary>
 
   <a href="https://www.deepl.com/docs-api/translate-text"><code>source_lang</code></a>
 
@@ -236,7 +236,7 @@ However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api
 `deepl_target_language`: Select your desired language
 
 <details>
-  <summary><i>Available target languages by DeepL</i></summary>
+  <summary><a><i>Available target languages by DeepL</i></a></summary>
   
   <a href="https://www.deepl.com/docs-api/translate-text"><code>target_lang</code></a>
   
