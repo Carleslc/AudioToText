@@ -10,9 +10,9 @@ This example transcribes the audio of a video file (low-res so it can be uploade
 
 **audio_file**: [`Whisper-Example.3gp`](Whisper-Example.3gp) ([Original YouTube video](https://www.youtube.com/watch?v=JuMEmF-2FsA))
 
-**language:** `Auto-Detect` (Spanish)
-
 **use_model**: `large-v2`
+
+**language:** `Auto-Detect` (Spanish)
 
 ## Output
 
