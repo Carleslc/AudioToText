@@ -42,6 +42,8 @@ If you want to execute the notebook in your own computer check [_**Local install
 
 3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON
 
+There are several examples in the [**examples**](examples/) folder.
+
 ### Audio **transcription** from English using Whisper
 
 `task`: `Transcribe`
@@ -275,6 +277,8 @@ However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api
 The [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) has a free quota of **500,000 characters per month**.
 
 If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using the [Free Translator Files](https://www.deepl.com/translator/files) web feature uploading the generated transcripts.
+
+See [**this example**](examples/spanish-to-english-deepl) of a transcription and translation of a video file from Spanish to English using DeepL.
 
 ### **Save transcripts** to different formats
 
