@@ -1,701 +1,932 @@
-WEBVTT
-
-00:00.001 --> 00:06.040
+1
+00:00:00,000 --> 00:00:06,040
 2022 será recordado como el año de Stable Diffusion, de Dalí 2, de increíbles modelos
 
-00:06.040 --> 00:10.160
+2
+00:00:06,040 --> 00:00:10,160
 generadores de texto como Palm o generadores de código como AlphaCode.
 
-00:10.160 --> 00:13.920
+3
+00:00:10,160 --> 00:00:13,920
 Y sin embargo, charlando el mes pasado con Andrés Torrubia, él me comentaba que lo
 
-00:13.920 --> 00:18.120
+4
+00:00:13,920 --> 00:00:18,120
 más interesante que había visto este año era una inteligencia artificial que venía
 
-00:18.120 --> 00:21.880
+5
+00:00:18,120 --> 00:00:21,880
 del laboratorio OpenAI, una IA llamada Whisper.
 
-00:21.880 --> 00:26.880
+6
+00:00:21,880 --> 00:00:26,880
 ¿Qué es para ti de lo que ha salido este año lo más impresionante?
 
-00:26.880 --> 00:31.800
+7
+00:00:26,880 --> 00:00:31,800
 Pues curiosamente, fíjate, curiosamente, hasta ahora Whisper, yo creo.
 
-00:31.800 --> 00:32.800
+8
+00:00:31,800 --> 00:00:32,800
 ¿Sabes por qué?
 
-00:32.800 --> 00:33.800
+9
+00:00:32,800 --> 00:00:33,800
 Curioso, eh.
 
-00:33.800 --> 00:39.760
+10
+00:00:33,800 --> 00:00:39,760
 Por lo que me impresiona Whisper es que Whisper funciona, es como, para mí, Whisper, si fuera
 
-00:39.760 --> 00:46.880
+11
+00:00:39,760 --> 00:00:46,880
 el coche autónomo, sería el primer self-driving del dictado, o sea, es el primero que se parece
 
-00:46.880 --> 00:47.880
+12
+00:00:46,880 --> 00:00:47,880
 a una persona.
 
-00:47.880 --> 00:51.000
+13
+00:00:47,880 --> 00:00:51,000
 Bueno, pero para que entiendas tú primero qué es esto de Whisper, te voy a pedir que
 
-00:51.000 --> 00:53.120
+14
+00:00:51,000 --> 00:00:53,120
 hagas el siguiente ejercicio.
 
-00:53.120 --> 00:57.800
+15
+00:00:53,120 --> 00:00:57,800
 Te voy a reproducir un audio en inglés y tu tarea es transcribir cada una de las palabras
 
-00:57.800 --> 00:59.600
+16
+00:00:57,800 --> 00:00:59,600
 que estés escuchando.
 
-00:59.600 --> 01:00.600
+17
+00:00:59,600 --> 00:01:00,600
 ¿Estás listo?
 
-01:00.600 --> 01:02.600
+18
+00:01:00,600 --> 00:01:02,600
 Tres, dos, uno.
 
-01:19.800 --> 01:21.280
+19
+00:01:19,800 --> 00:01:21,280
 ¿Has entendido algo?
 
-01:21.280 --> 01:22.760
+20
+00:01:21,280 --> 00:01:22,760
 Ya, yo tampoco.
 
-01:22.760 --> 01:28.160
+21
+00:01:22,760 --> 00:01:28,160
 Pues a oídos de esta inteligencia artificial, esta es la transcripción perfecta que ha conseguido.
 
-01:28.160 --> 01:29.400
+22
+00:01:28,160 --> 00:01:29,400
 ¿Y qué tal tu coreano?
 
-01:29.400 --> 01:33.680
+23
+00:01:29,400 --> 00:01:33,680
 Bueno, pues para Whisper tampoco es problema y también puede transcribir este audio en
 
-01:33.680 --> 01:35.520
+24
+00:01:33,680 --> 00:01:35,520
 perfecto inglés.
 
-01:44.440 --> 01:46.080
+25
+00:01:44,440 --> 00:01:46,080
 Y bueno, también me entiende a mí.
 
-01:46.080 --> 01:50.040
+26
+00:01:46,080 --> 00:01:50,040
 Esto que estás viendo en pantalla ahora es el speech to text que consigue Whisper cuando
 
-01:50.040 --> 01:52.680
+27
+00:01:50,040 --> 00:01:52,680
 le paso la pista de audio que estás escuchando.
 
-01:52.680 --> 01:57.440
+28
+00:01:52,680 --> 00:01:57,440
 Fíjate bien, no sólo consigue una transcripción casi perfecta, entendiendo incluso palabras
 
-01:57.440 --> 02:02.760
+29
+00:01:57,440 --> 00:02:02,760
 concretas como Whisper o speech to text, sino que también es capaz de generar puntos, comas
 
-02:02.760 --> 02:06.560
+30
+00:02:02,760 --> 00:02:06,560
 y otros signos de puntuación que a otros muchos modelos comerciales de reconocimiento
 
-02:06.560 --> 02:08.360
+31
+00:02:06,560 --> 00:02:08,360
 del habla pues se le suele atragantar.
 
-02:08.360 --> 02:10.720
+32
+00:02:08,360 --> 00:02:10,720
 Y esto es muy interesante.
 
-02:10.720 --> 02:12.960
+33
+00:02:10,720 --> 00:02:12,960
 Bueno, no esto, sino Whisper.
 
-02:12.960 --> 02:18.160
+34
+00:02:12,960 --> 00:02:18,160
 Whisper en general tiene muchas cosas interesantes y la primera cosa interesante es el contexto
 
-02:18.160 --> 02:20.120
+35
+00:02:18,160 --> 00:02:20,120
 en el que esta herramienta aparece.
 
-02:20.120 --> 02:23.640
+36
+00:02:20,120 --> 00:02:23,640
 Tras un año de increíbles logros por parte del Laboratorio de Inteligencia Artificial
 
-02:23.640 --> 02:29.680
+37
+00:02:23,640 --> 00:02:29,680
 de OpenAI, de repente de la nada surge una iniciativa colaborativa como Stability.ai
 
-02:29.680 --> 02:34.320
+38
+00:02:29,680 --> 00:02:34,320
 que en septiembre toma por bandera el hacer open source muchas de las tecnologías que
 
-02:34.320 --> 02:40.240
+39
+00:02:34,320 --> 00:02:40,240
 OpenAI por su parte pues ha decidido guardarse para sí y compartir sólo bajo servicios
 
-02:40.240 --> 02:41.240
+40
+00:02:40,240 --> 00:02:41,240
 de pago.
 
-02:41.240 --> 02:46.360
+41
+00:02:41,240 --> 00:02:46,360
 Para mí esto tampoco es un problema, puesto que al final OpenAI como empresa pues tiene
 
-02:46.360 --> 02:50.720
+42
+00:02:46,360 --> 00:02:50,720
 que pagar sus facturas y al menos nos está dando una forma de acceder a estas potentes
 
-02:50.720 --> 02:52.360
+43
+00:02:50,720 --> 00:02:52,360
 inteligencias artificiales.
 
-02:52.360 --> 02:53.920
+44
+00:02:52,360 --> 00:02:53,920
 Aprende Google.
 
-02:53.920 --> 02:57.880
+45
+00:02:53,920 --> 00:02:57,880
 Pero claro, llega un muchachito nuevo a la ciudad y empieza a regalar caramelos a los
 
-02:57.880 --> 03:01.920
+46
+00:02:57,880 --> 00:03:01,920
 niños y de repente el chico popular pues empieza a ver desplazado.
 
-03:01.920 --> 03:07.760
+47
+00:03:01,920 --> 00:03:07,760
 Y en ese preciso momento llega OpenAI de la nada y nos regala a Whisper para beneficio
 
-03:07.760 --> 03:08.760
+48
+00:03:07,760 --> 00:03:08,760
 de todos.
 
-03:08.760 --> 03:13.580
+49
+00:03:08,760 --> 00:03:13,580
 Porque sí, amigos, esto es open source, que sé que os encanta escuchar estas palabras.
 
-03:13.580 --> 03:17.160
+50
+00:03:13,580 --> 00:03:17,160
 Al final del vídeo voy a enseñar un mini tutorial para que veáis qué sencillo es utilizar
 
-03:17.160 --> 03:21.000
+51
+00:03:17,160 --> 00:03:21,000
 esta herramienta y también os voy a compartir un notebook para que sea súper sencillo para
 
-03:21.000 --> 03:22.000
+52
+00:03:21,000 --> 00:03:22,000
 vosotros.
 
-03:22.000 --> 03:25.800
+53
+00:03:22,000 --> 00:03:25,800
 Y esto es lo que hace a Whisper una herramienta súper interesante, pero no es la única cosa.
 
-03:25.800 --> 03:29.800
+54
+00:03:25,800 --> 00:03:29,800
 Y aquí es donde viene una de las cosas que más ha llamado mi atención y es que Whisper
 
-03:29.800 --> 03:34.440
+55
+00:03:29,800 --> 00:03:34,440
 no es un complejo sistema que hayan diseñado para procesar audio como nunca antes había
 
-03:34.440 --> 03:38.640
+56
+00:03:34,440 --> 00:03:38,640
 hecho o un sistema súper complejo con un montón de módulos de procesamiento.
 
-03:38.640 --> 03:45.840
+57
+00:03:38,640 --> 00:03:45,840
 No, Whisper es esto de aquí, una red neuronal de tipo transformer de las de 2017, no tiene
 
-03:45.840 --> 03:47.920
+58
+00:03:45,840 --> 00:03:47,920
 ningún cambio, ninguna novedad.
 
-03:47.920 --> 03:51.280
+59
+00:03:47,920 --> 00:03:51,280
 Es una arquitectura que ya todos nosotros conocemos.
 
-03:51.280 --> 03:55.800
+60
+00:03:51,280 --> 00:03:55,800
 Entonces, si esto es así, por qué no existía ya una tecnología como Whisper?
 
-03:55.800 --> 04:00.800
+61
+00:03:55,800 --> 00:04:00,800
 Pues la clave que hace a Whisper algo tan potente está en los datos y en cómo han
 
-04:00.800 --> 04:02.920
+62
+00:04:00,800 --> 00:04:02,920
 estructurado su entrenamiento.
 
-04:02.920 --> 04:09.040
+63
+00:04:02,920 --> 00:04:09,040
 Para entrenarlo, OpenAI ha utilizado ni más ni menos que 680.000 horas de audio con su
 
-04:09.040 --> 04:12.360
+64
+00:04:09,040 --> 00:04:12,360
 correspondiente texto, una brutalidad.
 
-04:12.360 --> 04:17.200
+65
+00:04:12,360 --> 00:04:17,200
 Y es que si hacéis el cálculo 680.000 horas y empezar a reproducirlas ahora, acabarías
 
-04:17.200 --> 04:19.880
+66
+00:04:17,200 --> 00:04:19,880
 de escucharla dentro de 77 años.
 
-04:19.880 --> 04:24.160
+67
+00:04:19,880 --> 00:04:24,160
 Te podrías asegurar que en algún momento en el cielo verías surcar al cometa Halley.
 
-04:24.160 --> 04:28.560
+68
+00:04:24,160 --> 00:04:28,560
 Pero es que además, una cosa muy interesante es que estos audios vienen en múltiples idiomas,
 
-04:28.560 --> 04:32.200
+69
+00:04:28,560 --> 00:04:32,200
 permitiéndonos poder entrenar a un modelo que es multilinguaje, que puede entendernos
 
-04:32.200 --> 04:36.560
+70
+00:04:32,200 --> 00:04:36,560
 si le hablamos en español, en inglés, en coreano, da igual.
 
-04:36.560 --> 04:38.240
+71
+00:04:36,560 --> 00:04:38,240
 Pero la cosa no se queda solo ahí.
 
-04:38.240 --> 04:43.720
+72
+00:04:38,240 --> 00:04:43,720
 Y es que Whisper, además de ser un sistema multilinguaje, también es un sistema multitarea.
 
-04:43.720 --> 04:47.520
+73
+00:04:43,720 --> 00:04:47,520
 Esta es una tendencia que, como ya vimos en el vídeo sobre Gato, en el mundo del deep
 
-04:47.520 --> 04:49.760
+74
+00:04:47,520 --> 00:04:49,760
 learning cada vez es más frecuente.
 
-04:49.760 --> 04:54.680
+75
+00:04:49,760 --> 00:04:54,680
 No entrenar a la inteligencia artificial para una única tarea, sino entrenarla para varias
 
-04:54.680 --> 04:59.560
+76
+00:04:54,680 --> 00:04:59,560
 diferentes, haciendo así que su aprendizaje sea mucho más sólido y robusto.
 
-04:59.560 --> 05:04.560
+77
+00:04:59,560 --> 00:05:04,560
 Como hemos visto, Whisper puede tomar audios en inglés y transcribirlos al inglés, o
 
-05:04.560 --> 05:06.960
+78
+00:05:04,560 --> 00:05:06,960
 audio en coreano y transcribirlo al coreano.
 
-05:06.960 --> 05:11.200
+79
+00:05:06,960 --> 00:05:11,200
 Pero el mismo modelo también puede identificar qué lenguaje se está hablando, o actuar
 
-05:11.200 --> 05:15.360
+80
+00:05:11,200 --> 00:05:15,360
 como un detector de voz para clasificar cuando en un trozo de audio se está escuchando no
 
-05:15.360 --> 05:16.360
+81
+00:05:15,360 --> 00:05:16,360
 a una persona.
 
-05:16.360 --> 05:20.960
+82
+00:05:16,360 --> 00:05:20,960
 O también, la tarea que más interesante me parece de todas, que tú le puedas hablar
 
-05:20.960 --> 05:25.720
+83
+00:05:20,960 --> 00:05:25,720
 a Whisper en cualquier idioma y que él te lo transcriba automáticamente al inglés.
 
-05:25.720 --> 05:29.800
+84
+00:05:25,720 --> 00:05:29,800
 Y en este caso no sabría deciros por qué, pero para mí esta me parece una funcionalidad
 
-05:29.800 --> 05:30.800
+85
+00:05:29,800 --> 00:05:30,800
 fascinante.
 
-05:30.800 --> 05:32.880
+86
+00:05:30,800 --> 00:05:32,880
 Parece que tampoco nos ofrece nada nuevo, ¿no?
 
-05:32.880 --> 05:37.560
+87
+00:05:32,880 --> 00:05:37,560
 Al final tú puedes coger el texto que genera cualquier transcriptor de texto en tu idioma
 
-05:37.560 --> 05:39.520
+88
+00:05:37,560 --> 00:05:39,520
 y pasarlo por un traductor.
 
-05:39.520 --> 05:43.520
+89
+00:05:39,520 --> 00:05:43,520
 Pero en este caso me parece fascinante el ver cómo algo tan sencillo como un único
 
-05:43.520 --> 05:47.880
+90
+00:05:43,520 --> 00:05:47,880
 modelo de deep learning te permite poder hablarle en cualquier idioma y que te genere el texto
 
-05:47.880 --> 05:51.520
+91
+00:05:47,880 --> 00:05:51,520
 en inglés sin tener que combinar ningún tipo de herramientas.
 
-05:51.520 --> 05:53.400
+92
+00:05:51,520 --> 00:05:53,400
 Es súper sencillo.
 
-05:53.400 --> 05:56.360
+93
+00:05:53,400 --> 00:05:56,360
 Y lo de los datos que hemos comentado antes también es súper interesante.
 
-05:56.360 --> 06:00.480
+94
+00:05:56,360 --> 00:06:00,480
 Porque mi primera intuición aquí es que OpenAI, en la búsqueda de un dataset masivo
 
-06:00.480 --> 06:05.280
+95
+00:06:00,480 --> 00:06:05,280
 de estas 680.000 horas de audio que tuviera una transcripción de texto para poder hacer
 
-06:05.280 --> 06:09.800
+96
+00:06:05,280 --> 00:06:09,800
 este aprendizaje supervisado, pues posiblemente había acudido a una de las mayores fuentes
 
-06:09.800 --> 06:12.520
+97
+00:06:09,800 --> 00:06:12,520
 que podemos encontrar en Internet, que es YouTube.
 
-06:12.520 --> 06:16.960
+98
+00:06:12,520 --> 00:06:16,960
 Al final ya sabéis que todos los vídeos de YouTube tienen generados subtítulos automáticamente.
 
-06:16.960 --> 06:17.960
+99
+00:06:16,960 --> 00:06:17,960
 Pues no.
 
-06:17.960 --> 06:22.800
+100
+00:06:17,960 --> 00:06:22,800
 Justamente en esto OpenAI hace mucho hincapié en su paper para explicarnos que han hecho
 
-06:22.800 --> 06:28.200
+101
+00:06:22,800 --> 00:06:28,200
 un proceso de filtrado para eliminar del dataset cualquier aparición de texto generado por
 
-06:28.200 --> 06:31.000
+102
+00:06:28,200 --> 00:06:31,000
 sistemas automáticos de reconocimiento del habla.
 
-06:31.000 --> 06:32.000
+103
+00:06:31,000 --> 00:06:32,000
 ¿Por qué?
 
-06:32.000 --> 06:36.480
+104
+00:06:32,000 --> 00:06:36,480
 Pues justamente para evitar que Whisper aprendiera también aquellos defectos, aquellos vicios
 
-06:36.480 --> 06:40.000
+105
+00:06:36,480 --> 00:06:40,000
 que los otros sistemas automáticos también pudieran tener.
 
-06:40.000 --> 06:44.600
+106
+00:06:40,000 --> 00:06:44,600
 Dicho esto, ahora que estamos hablando de Whisper y de YouTube, hay una teoría que
 
-06:44.600 --> 06:48.520
+107
+00:06:44,600 --> 00:06:48,520
 quiero contaros que me parece muy interesante, no es nada que esté confirmado, pero que
 
-06:48.520 --> 06:53.560
+108
+00:06:48,520 --> 00:06:53,560
 podría explicar la razón de existir de esta herramienta y que podría tener cierta relación
 
-06:53.560 --> 06:55.760
+109
+00:06:53,560 --> 00:06:55,760
 con un futuro GPT-4.
 
-06:55.760 --> 06:59.720
+110
+00:06:55,760 --> 00:06:59,720
 Esta es una idea que escuché en el canal del doctor Alan Thompson y que dice que en
 
-06:59.720 --> 07:05.600
+111
+00:06:59,720 --> 00:07:05,600
 un futuro próximo, donde GPT-4 pueda empezar a entrenar, Whisper podría ofrecer al sistema
 
-07:05.600 --> 07:09.800
+112
+00:07:05,600 --> 00:07:09,800
 una enorme fuente de datos con la que sistemas anteriores no habían contado.
 
-07:09.800 --> 07:14.640
+113
+00:07:09,800 --> 00:07:14,640
 Pensemos que un sistema como GPT-3 se ha entrenado con un montón de artículos de Wikipedia,
 
-07:14.640 --> 07:19.120
+114
+00:07:14,640 --> 00:07:19,120
 de libros, de foros, de conversaciones de Internet, pero nunca ha podido acceder a toda
 
-07:19.120 --> 07:23.640
+115
+00:07:19,120 --> 00:07:23,640
 esa fuente hablada que puede estar en bases de datos como YouTube.
 
-07:23.640 --> 07:28.240
+116
+00:07:23,640 --> 00:07:28,240
 Una herramienta como Whisper podría ser utilizada para barrer por completo a YouTube, transcribir
 
-07:28.240 --> 07:33.200
+117
+00:07:28,240 --> 00:07:33,200
 muchos de sus audios y obtener, desbloquear una nueva fuente de datos que antes no habría
 
-07:33.200 --> 07:37.400
+118
+00:07:33,200 --> 00:07:37,400
 sido posible utilizar para entrenar a un futuro modelo del lenguaje.
 
-07:37.400 --> 07:41.560
+119
+00:07:37,400 --> 00:07:41,560
 Este es el enorme valor que tiene una herramienta como Whisper y que creo que hace tan interesante
 
-07:41.560 --> 07:42.560
+120
+00:07:41,560 --> 00:07:42,560
 a esta tecnología.
 
-07:42.560 --> 07:47.680
+121
+00:07:42,560 --> 00:07:47,680
 No, no resuelve una tarea que sea espectacular, como generar imágenes o generar vídeo, pero
 
-07:47.680 --> 07:52.280
+122
+00:07:47,680 --> 00:07:52,280
 resuelve una tarea muy útil y casi la resuelve hasta la perfección.
 
-07:52.280 --> 07:57.640
+123
+00:07:52,280 --> 00:07:57,640
 Ojo, digo casi, no es perfecta, a veces algunas palabras se equivocan evidentemente y no cubre
 
-07:57.640 --> 08:02.200
+124
+00:07:57,640 --> 00:08:02,200
 todos los lenguajes que existen en el planeta Tierra y bueno, por buscar alguna limitación
 
-08:02.200 --> 08:07.320
+125
+00:08:02,200 --> 00:08:07,320
 frente a otras herramientas comerciales, pues tampoco funciona en tiempo real todavía.
 
-08:07.320 --> 08:11.280
+126
+00:08:07,320 --> 00:08:11,280
 Procesar el audio dependiendo de la longitud te puede llevar unos cuantos segundos, a veces
 
-08:11.280 --> 08:17.080
+127
+00:08:11,280 --> 00:08:17,080
 algún minuto, pero es una herramienta sólida, es madura, es útil y además open source,
 
-08:17.080 --> 08:21.040
+128
+00:08:17,080 --> 00:08:21,040
 permitiendo que ahora cualquiera pueda acceder a una herramienta profesional de transcripción
 
-08:21.040 --> 08:25.160
+129
+00:08:21,040 --> 00:08:25,160
 y traducción de texto mejor que cualquier alternativa gratis.
 
-08:25.160 --> 08:26.160
+130
+00:08:25,160 --> 00:08:26,160
 ¿Qué?
 
-08:26.160 --> 08:28.600
+131
+00:08:26,160 --> 00:08:28,600
 Ah, que también vosotros queréis acceder a esta herramienta.
 
-08:28.600 --> 08:32.720
+132
+00:08:28,600 --> 00:08:32,720
 Bueno, venga va, os preparo un tutorial facilito para que todos podáis utilizarlo.
 
-08:32.720 --> 08:37.640
+133
+00:08:32,720 --> 00:08:37,640
 Vamos a hacerlo en Google Colab, pero antes y aprovechando que estamos hablando de programación,
 
-08:37.640 --> 08:41.880
+134
+00:08:37,640 --> 00:08:41,880
 de desarrollo, de innovación, dejadme que os recuerde que quedan muy poquitos días
 
-08:41.880 --> 08:46.880
+135
+00:08:41,880 --> 00:08:46,880
 para que se celebre el Samsung Dev Day, que es el evento tecnológico que celebra cada
 
-08:46.880 --> 08:51.760
+136
+00:08:46,880 --> 00:08:51,760
 año la comunidad de Samsung Dev Spain, que es la comunidad oficial de Samsung para desarrolladores
 
-08:51.760 --> 08:52.840
+137
+00:08:51,760 --> 00:08:52,840
 españoles.
 
-08:52.840 --> 08:55.560
+138
+00:08:52,840 --> 00:08:55,560
 Este será un evento gratuito que no os podéis perder.
 
-08:55.560 --> 09:00.640
+139
+00:08:55,560 --> 00:09:00,640
 Si estáis en Madrid podéis asistir presencialmente el día 16 de noviembre en el claustro de
 
-09:00.640 --> 09:04.840
+140
+00:09:00,640 --> 00:09:04,840
 los Jerónimos del Museo del Prado y si no, pues podéis conectaros online a través de
 
-09:04.840 --> 09:05.840
+141
+00:09:04,840 --> 00:09:05,840
 su streaming.
 
-09:05.840 --> 09:09.760
+142
+00:09:05,840 --> 00:09:09,760
 Pero si, hay que registrarse, yo tuve la suerte el año pasado de poder participar con una
 
-09:09.760 --> 09:14.280
+143
+00:09:09,760 --> 00:09:14,280
 ponencia sobre generación de código con inteligencia artificial y la experiencia fue
 
-09:14.280 --> 09:15.280
+144
+00:09:14,280 --> 00:09:15,280
 genial.
 
-09:15.280 --> 09:18.800
+145
+00:09:15,280 --> 00:09:18,800
 Así que ya lo veis, será un evento cargado de charlas geniales, hablando de tecnología,
 
-09:18.800 --> 09:23.280
+146
+00:09:18,800 --> 00:09:23,280
 de innovación, de aplicaciones y además va a estar presentado por mi dudev, que seguramente
 
-09:23.280 --> 09:26.560
+147
+00:09:23,280 --> 00:09:26,560
 muchos de vosotros le conozcáis, así que no os lo podéis perder.
 
-09:26.560 --> 09:30.320
+148
+00:09:26,560 --> 00:09:30,320
 Os voy a dejar abajo en la cajita de descripción un enlace a la página web de Samsung Dev
 
-09:30.320 --> 09:35.160
+149
+00:09:30,320 --> 00:09:35,160
 Spain, donde vais a encontrar toda la información respecto a la agenda donde registraros y un
 
-09:35.160 --> 09:37.040
+150
+00:09:35,160 --> 00:09:37,040
 montón de recursos más.
 
-09:37.040 --> 09:38.720
+151
+00:09:37,040 --> 00:09:38,720
 Nos vemos el 16 de noviembre.
 
-09:38.720 --> 09:43.400
+152
+00:09:38,720 --> 00:09:43,400
 Pues vamos a ver cómo podemos utilizar Whisper nosotros en nuestro propio código.
 
-09:43.400 --> 09:47.240
+153
+00:09:43,400 --> 00:09:47,240
 Para esto vamos a utilizar Google Colab, ya sabéis que Google aquí nos está cediendo
 
-09:47.240 --> 09:52.080
+154
+00:09:47,240 --> 00:09:52,080
 una máquina virtual gratuita que podemos utilizar y vamos a verificar siempre que tengamos
 
-09:52.080 --> 09:56.560
+155
+00:09:52,080 --> 00:09:56,560
 activado el tipo de entorno con aceleración por hardware GPU, vale, vamos a darle aquí
 
-09:56.560 --> 10:01.320
+156
+00:09:56,560 --> 00:10:01,320
 GPU, vamos a darle a guardar y ahora el primer paso será instalar a Whisper.
 
-10:01.320 --> 10:05.600
+157
+00:10:01,320 --> 00:10:05,600
 Para ello vamos a usar estos dos comandos de aquí, a instalar, esto lo podéis encontrar
 
-10:05.600 --> 10:11.160
+158
+00:10:05,600 --> 00:10:11,160
 en el propio repositorio de GitHub de Whisper, os voy a dejar abajo en la cajita de descripción
 
-10:11.160 --> 10:14.160
+159
+00:10:11,160 --> 00:10:14,160
 estos comandos, le damos a ejecutar y dejamos que se instale.
 
-10:14.160 --> 10:17.880
+160
+00:10:14,160 --> 00:10:17,880
 Una vez instalado vamos a subir algún audio que queramos transcribir, yo en este caso
 
-10:17.880 --> 10:21.920
+161
+00:10:17,880 --> 00:10:21,920
 voy a probar con la canción de Rosalía de Chicken Teriyaki, vamos a colocarla para acá,
 
-10:21.920 --> 10:26.800
+162
+00:10:21,920 --> 00:10:26,800
 la arrastramos y ahora el siguiente paso pues vamos a coger aquí y vamos a poner el comando
 
-10:26.800 --> 10:31.640
+163
+00:10:26,800 --> 00:10:31,640
 necesario para poder ejecutarlo, vamos a darle aquí a song.mp3, se llama el archivo que
 
-10:31.640 --> 10:37.680
+164
+00:10:31,640 --> 00:10:37,680
 hemos subido, vale, song.mp3, la tarea va a ser pues transcribir el tamaño del modelo,
 
-10:37.680 --> 10:42.560
+165
+00:10:37,680 --> 00:10:42,560
 hay diferentes tamaños según si quieres más velocidad a la hora de hacer la inferencia
 
-10:42.560 --> 10:46.920
+166
+00:10:42,560 --> 00:10:46,920
 o si quieres más precisión en los resultados, yo por lo general trabajo con el modelo Medium
 
-10:46.920 --> 10:50.600
+167
+00:10:46,920 --> 00:10:50,600
 que es el que me da buenos resultados, hay modelos mayores, hay modelos menores, probad
 
-10:50.600 --> 10:55.360
+168
+00:10:50,600 --> 00:10:55,360
 y en este caso pues simplemente donde vamos a colocar el archivo de salida, ejecutamos
 
-10:55.360 --> 11:00.040
+169
+00:10:55,360 --> 00:11:00,040
 y ya está, ya está, no hay que hacer nada más, vale, ya estamos utilizando Whisper,
 
-11:00.040 --> 11:03.660
+170
+00:11:00,040 --> 00:11:03,660
 la primera vez tardará un poco porque tiene que descargar el modelo pero a partir de este
 
-11:03.660 --> 11:08.520
+171
+00:11:03,660 --> 00:11:08,520
 momento podéis utilizar este sistema para transcribir cualquier audio que queráis,
 
-11:08.520 --> 11:13.640
+172
+00:11:08,520 --> 00:11:13,640
 mola, vale, vemos que en este caso ha detectado que el idioma es español, ha hecho la inferencia
 
-11:13.640 --> 11:16.800
+173
+00:11:13,640 --> 00:11:16,800
 automática porque no le hemos dicho que vamos a transcribir del español, lo podéis hacer
 
-11:16.800 --> 11:20.960
+174
+00:11:16,800 --> 00:11:20,960
 si queréis y cuando ya está ejecutada esta celda pues podemos venirnos para acá, vemos
 
-11:20.960 --> 11:26.400
+175
+00:11:20,960 --> 00:11:26,400
 que se ha generado la carpeta Audio Transcription y aquí tenemos las diferentes opciones, podemos
 
-11:26.400 --> 11:32.360
+176
+00:11:26,400 --> 00:11:32,360
 abrir el sound.txt y aquí abrimos el archivo, vemos que pues tenemos toda la canción perfectamente
 
-11:32.360 --> 11:37.000
+177
+00:11:32,360 --> 00:11:37,000
 transcrita que en este caso siendo la Rosalía pues tiene más mérito y en vez de querer
 
-11:37.000 --> 11:41.680
+178
+00:11:37,000 --> 00:11:41,680
 hacer la transcripción, quisierais hacer la traducción, es decir convertir vuestra
 
-11:41.680 --> 11:45.640
+179
+00:11:41,680 --> 00:11:45,640
 voz, vuestro audio al inglés, pues lo único que tenéis que hacer es cambiar aquí la
 
-11:45.640 --> 11:51.480
+180
+00:11:45,640 --> 00:11:51,480
 tarea por Translate y en este caso Whisper trabajará para traducir aquello que ha transcrito.
 
-11:51.480 --> 11:54.880
+181
+00:11:51,480 --> 00:11:54,880
 En este caso si os dais cuenta el comando que hemos utilizado ha sido el de consola
 
-11:54.880 --> 11:58.480
+182
+00:11:54,880 --> 00:11:58,480
 pero a lo mejor queréis utilizar Whisper dentro de vuestro código, entonces también
 
-11:58.480 --> 12:02.000
+183
+00:11:58,480 --> 00:12:02,000
 tenéis la opción de trabajar con la propia librería de Whisper, es simplemente esta
 
-12:02.000 --> 12:05.960
+184
+00:12:02,000 --> 00:12:05,960
 línea de código de aquí, lo importamos, cargamos el modelo que queramos, aquí pues
 
-12:05.960 --> 12:10.960
+185
+00:12:05,960 --> 00:12:10,960
 yo cargaría el modelo Medium que es el que como digo funciona mejor para mi caso y con
 
-12:10.960 --> 12:17.520
+186
+00:12:10,960 --> 00:12:17,520
 el modelo cargado luego aquí llamamos a model.transcribe, vamos a poner aquí song.mp3, le damos a ejecutar
 
-12:17.520 --> 12:20.880
+187
+00:12:17,520 --> 00:12:20,880
 y en cuestión de unos segundos pues ya tendremos de nuevo nuestra transcripción.
 
-12:20.880 --> 12:24.520
+188
+00:12:20,880 --> 00:12:24,520
 Y aquí lo tenemos, la Rosalía, rosa sin tarjeta, se la mando a tu gata, te la tengo
 
-12:24.520 --> 12:27.600
+189
+00:12:24,520 --> 00:12:27,600
 con ruleta, no hizo falta serenata, pues ok.
 
-12:27.600 --> 12:31.480
+190
+00:12:27,600 --> 00:12:31,480
 Igualmente para haceros la vida más fácil he preparado un notebook que podéis utilizar,
 
-12:31.480 --> 12:35.000
+191
+00:12:31,480 --> 00:12:35,000
 está abajo en la cajita de descripción, donde tenéis ya todo el código listo para
 
-12:35.000 --> 12:39.200
+192
+00:12:35,000 --> 00:12:39,200
 empezar a trabajar, simplemente tenéis que entrar, comprobar que está la GPU activada,
 
-12:39.200 --> 12:43.080
+193
+00:12:39,200 --> 00:12:43,080
 le damos a este botón de aquí para instalar pues todo lo necesario, aquí elegimos la
 
-12:43.080 --> 12:47.680
+194
+00:12:43,080 --> 00:12:47,680
 tarea que queremos hacer, pues si es transcribir a cualquier idioma o traducir al inglés
 
-12:47.680 --> 12:48.800
+195
+00:12:47,680 --> 00:12:48,800
 y le damos a ejecutar.
 
-12:48.800 --> 12:53.520
+196
+00:12:48,800 --> 00:12:53,520
 En este caso la celda está preparada para que en el momento en el que empieces a ejecutarla
 
-12:53.520 --> 12:57.080
+197
+00:12:53,520 --> 00:12:57,080
 está grabando ahora mismo tu micrófono, es decir ahora mismo estaríamos generando
 
-12:57.080 --> 13:00.960
+198
+00:12:57,080 --> 00:13:00,960
 un archivo de audio que luego vamos a utilizar para transcribir con Whisper, esto es por
 
-13:00.960 --> 13:05.480
+199
+00:13:00,960 --> 00:13:05,480
 si queréis hacer una transcripción en tiempo real de cualquier clase o cualquier cosa
 
-13:05.480 --> 13:06.480
+200
+00:13:05,480 --> 00:13:06,480
 que necesitéis.
 
-13:06.480 --> 13:10.800
+201
+00:13:06,480 --> 00:13:10,800
 Vamos a darle a parar, le damos a este botón y en un momento tenemos el resultado de lo
 
-13:10.800 --> 13:12.520
+202
+00:13:10,800 --> 00:13:12,520
 que hemos dicho.
 
-13:12.520 --> 13:16.800
+203
+00:13:12,520 --> 00:13:16,800
 Igualmente luego abajo os añado los dos comandos necesarios para poder transcribir o traducir
 
-13:16.800 --> 13:19.240
+204
+00:13:16,800 --> 00:13:19,240
 el audio que vosotros subáis.
 
-13:19.240 --> 13:22.760
+205
+00:13:19,240 --> 00:13:22,760
 Por último también tenéis que saber que si queréis algo más sencillo pues hay páginas
 
-13:22.760 --> 13:27.240
+206
+00:13:22,760 --> 00:13:27,240
 web donde podéis probar este sistema pues subiendo vuestros propios audios o grabando
 
-13:27.240 --> 13:28.240
+207
+00:13:27,240 --> 00:13:28,240
 desde el micrófono.
 
-13:28.240 --> 13:32.960
+208
+00:13:28,240 --> 00:13:32,960
 Y esto sería, 2022 se está quedando la verdad que un año espectacular en cuanto al número
 
-13:32.960 --> 13:37.360
+209
+00:13:32,960 --> 00:13:37,360
 de juguetes neuronales que están llegando a nuestras manos para construir un montón
 
-13:37.360 --> 13:39.320
+210
+00:13:37,360 --> 00:13:39,320
 de herramientas y para poder toquetearlos.
 
-13:39.320 --> 13:41.640
+211
+00:13:39,320 --> 00:13:41,640
 Ahora os toca a vosotros, ¿qué podéis hacer con esto?
 
-13:41.640 --> 13:45.080
+212
+00:13:41,640 --> 00:13:45,080
 Pues podéis construir un montón de cosas súper interesantes, podéis conectar por
 
-13:45.080 --> 13:49.960
+213
+00:13:45,080 --> 00:13:49,960
 ejemplo Whisper con Stable Diffusion para que a viva voz tú le puedas pedir que te
 
-13:49.960 --> 13:54.040
+214
+00:13:49,960 --> 00:13:54,040
 genere un cuadro o podéis por ejemplo coger todas vuestras clases en la universidad o
 
-13:54.040 --> 13:58.960
+215
+00:13:54,040 --> 00:13:58,960
 todas las reuniones de trabajo, transcribirlas, crear un enorme banco de transcripciones y
 
-13:58.960 --> 14:03.680
+216
+00:13:58,960 --> 00:14:03,680
 luego con la API de GPT-3 hacer un chatbot que te permita consultar, hacer preguntas
 
-14:03.680 --> 14:06.160
+217
+00:14:03,680 --> 00:14:06,160
 y respuestas sobre toda esa fuente de información.
 
-14:06.160 --> 14:10.040
+218
+00:14:06,160 --> 00:14:10,040
 Por ejemplo algo que yo quiero hacer es coger pues todos los vídeos de mi canal de YouTube
 
-14:10.040 --> 14:14.640
+219
+00:14:10,040 --> 00:14:14,640
 y transcribirlo, generar subtítulos de buena calidad tanto en español como en inglés
 
-14:14.640 --> 14:18.920
+220
+00:14:14,640 --> 00:14:18,920
 y poder hacer estadísticas y consultas de cuántas veces he dicho por ejemplo la palabra
 
-14:18.920 --> 14:19.920
+221
+00:14:18,920 --> 00:14:19,920
 Machine Learning.
 
-14:19.920 --> 14:23.360
+222
+00:14:19,920 --> 00:14:23,360
 Hay un montón de aplicaciones que podéis empezar a construir, que podéis empezar a
 
-14:23.360 --> 14:27.160
+223
+00:14:23,360 --> 00:14:27,160
 crear combinando todas estas tecnologías.
 
-14:27.160 --> 14:29.880
+224
+00:14:27,160 --> 00:14:29,880
 Tenía un perro ladrando de fondo que me estaba molestando bastante.
 
-14:29.880 --> 14:34.080
+225
+00:14:29,880 --> 00:14:34,080
 Bueno, lo que os decía, que podéis crear un montón de cosas y hay mucho por hacer.
 
-14:34.080 --> 14:37.560
+226
+00:14:34,080 --> 00:14:37,560
 Desde aquí, desde este canal vamos a seguir haciendo experimentos con esta tecnología,
 
-14:37.560 --> 14:42.320
+227
+00:14:37,560 --> 00:14:42,320
 voy a seguir trayendo nuevas herramientas así que si no lo has hecho todavía suscríbete,
 
-14:42.320 --> 14:46.000
+228
+00:14:42,320 --> 00:14:46,000
 dale a la campanita para que te lleguen siempre las notificaciones de que hay vídeo nuevo
 
-14:46.000 --> 14:50.440
+229
+00:14:46,000 --> 00:14:50,440
 y si quieres apoyar todo este contenido ya sabéis que podéis hacerlo a través de Patreon
 
-14:50.440 --> 14:52.080
+230
+00:14:50,440 --> 00:14:52,080
 abajo en la cajita de descripción.
 
-14:52.080 --> 14:55.080
+231
+00:14:52,080 --> 00:14:55,080
 Tenéis un par de vídeos por aquí que son súper interesantes, no sé cuáles son pero
 
-14:55.080 --> 14:58.960
+232
+00:14:55,080 --> 00:14:58,960
 son súper interesantes, echadle un ojo y nos vemos con más inteligencia artificial
 
-14:58.960 --> 15:26.280
+233
+00:14:58,960 --> 00:15:26,280
 chicos, chicas, en el próximo vídeo.
 
