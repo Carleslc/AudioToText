@@ -1,4 +1,6 @@
-# Example: Translate Spanish to English using DeepL
+# AudioToText
+
+## Example: Translate Spanish to English using DeepL
 
 [Example Notebook](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/spanish-to-english-deepl.ipynb)
 
