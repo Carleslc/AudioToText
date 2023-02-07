@@ -288,6 +288,10 @@ Available formats: **txt, vtt, srt, tsv, json**
 
 Transcript files will be located in the _**`audio_transcription`**_ folder.
 
+#### Add captions to VLC media player
+
+If you use [VLC](https://www.videolan.org/) to play video or audio files, you can add your `vtt` or `srt` transcripts as captions by drag-and-drop the transcript file to the media player or go to _Subtitles -> Add Subtitle File_.
+
 ## Local installation (for users with a powerful GPU)
 
 If you have a powerful computer with GPU hardware acceleration, you can also run the [_AudioToText notebook_](AudioToText.ipynb) in your local machine.
@@ -370,8 +374,6 @@ If you do not need Cloud GPU and you do not want to translate using DeepL then y
   # Install Whisper CLI
   pip install -U openai-whisper
   ```
-
-More details of the Whisper CLI setup [here](https://github.com/openai/whisper#setup).
 
 #### [Whisper CLI usage](https://github.com/openai/whisper#command-line-usage) example
 
