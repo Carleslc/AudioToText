@@ -1,6 +1,6 @@
 ## Example: Translate Spanish to English using DeepL
 
-[Example Notebook](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/spanish-to-english-deepl.ipynb)
+[**Example Notebook**](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/spanish-to-english-deepl.ipynb)
 
 This example transcribes the audio of a video file (low-res so it can be uploaded fast) using Whisper to its source language (Spanish) in TXT, VTT and SRT formats and then translates the generated transcripts to English using DeepL API.
 
