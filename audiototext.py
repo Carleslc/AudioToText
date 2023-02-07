@@ -194,8 +194,27 @@ Available formats: `txt,vtt,srt,tsv,json`
 output_dir = "audio_transcription"
 
 # set output formats: https://github.com/openai/whisper/blob/7858aa9c08d98f75575035ecd6481f462d66ca27/whisper/utils.py#L145
-output_formats = "txt,vtt,srt,tsv,json" #@param ["txt,vtt,srt,tsv,json", "txt,vtt", "txt", "vtt", "srt", "tsv", "json"] {allow-input: true}
+output_formats = "txt,vtt,srt" #@param ["txt,vtt,srt,tsv,json", "txt,vtt,srt", "txt,vtt", "txt,srt", "txt", "vtt", "srt", "tsv", "json"] {allow-input: true}
 output_formats = output_formats.split(',')
+
+def write_result(result, output_format, output_file_name):
+  output_format = output_format.strip()
+
+  # start captions in non-zero timestamp (some media players does not detect the first caption)
+  fix_vtt = output_format == 'vtt' and result["segments"] and result["segments"][0].get('start') == 0
+  
+  if fix_vtt:
+    result["segments"][0]['start'] += 1/1000 # +1ms
+
+  # write result in the desired format
+  writer = get_writer(output_format, output_dir)
+  writer(result, output_file_name)
+
+  if fix_vtt:
+    result["segments"][0]['start'] = 0 # reset change
+
+  output_file_path = os.path.join(output_dir, f"{output_file_name}.{output_format}")
+  print(output_file_path)
 
 # save results
 
@@ -207,13 +226,7 @@ for audio_path, result in results.items():
   output_file_name = os.path.splitext(os.path.basename(audio_path))[0]
 
   for output_format in output_formats:
-    output_format = output_format.strip()
-
-    output_file_path = os.path.join(output_dir, f"{output_file_name}.{output_format}")
-    print(output_file_path)
-
-    writer = get_writer(output_format, output_dir)
-    writer(result, output_file_name)
+    write_result(result, output_format, output_file_name)
 
 """## [Step 5] 💬 Translate results with DeepL (API key needed)
 
@@ -224,7 +237,6 @@ This is an **optional** step to translate the transcription to another language 
 Set the `deepl_api_key` to translate the transcription to a supported language in `deepl_target_language`.
 """
 
-# install dependencies
 import deepl
 
 # translation service options (DeepL Developer Account)
@@ -241,7 +253,7 @@ if not use_deepl_translation:
   if not deepl_target_language:
     print("Required: deepl_target_language")
 else:
-  translated_results = { "segments": [] }
+  translated_results = {} # audio_path to translated segments results
 
   try:
     deepl_translator = deepl.Translator(deepl_api_key)
@@ -253,42 +265,48 @@ else:
 
     deepl_target_language_code = next(lang.code for lang in deepl_target_languages_dict if lang.name == deepl_target_language).upper()
 
-    deepl_usage = deepl_translator.get_usage()
-    
-    if deepl_usage.any_limit_reached:
-        print('DeepL: Translation limit reached.')
-        use_deepl_translation = False
+    source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(options['language'].lower()).upper()
+    target_language_code = deepl_target_language_code.split('-')[0]
 
-    # translate results (DeepL)
-    if use_deepl_translation:
-      source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(options['language'].lower()).upper()
-      target_language_code = deepl_target_language_code.split('-')[0]
-
-      if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
-        source_lang = source_language_code if task == 'transcribe' else None
-        translate_from = f"from {options['language']} [{source_language_code}] " if source_lang else ''
-        print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
-
-        segments = result["segments"]
-        deepl_batch_requests_size = 10
-        
-        for batch_segments in [segments[i:i + deepl_batch_requests_size] for i in range(0, len(segments), deepl_batch_requests_size)]:
-          deepl_results = deepl_translator.translate_text([segment['text'] for segment in batch_segments], source_lang=source_lang, target_lang=deepl_target_language_code, split_sentences='off')
-          
-          for j, deepl_result in enumerate(deepl_results):
-            segment = batch_segments[j]
-            translated_text = deepl_result.text
-            translated_results["segments"].append(dict(id=segment['id'], start=segment['start'], end=segment['end'], text=translated_text))
-
-            if options['verbose']:
-              print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {translated_text}")
-
+    if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
+      source_lang = source_language_code if task == 'transcribe' else None
+      translate_from = f"from {options['language']} [{source_language_code}] " if source_lang else ''
+      print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
+      
+      for audio_path, result in results.items():
         deepl_usage = deepl_translator.get_usage()
         
-        if deepl_usage.character.valid:
-          print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.1f}%)\n")
-      elif task == 'transcribe' and source_language_code not in deepl_source_languages:
-        print(f"DeepL: {options['language']} is not yet supported")
+        if deepl_usage.any_limit_reached:
+          print(audio_path)
+          print("DeepL: Translation limit reached.\n")
+          use_deepl_translation = False
+        else:
+          print(audio_path + '\n')
+        
+        # translate results (DeepL)
+        if use_deepl_translation:
+          translated_results[audio_path] = { "segments": [] }
+
+          segments = result["segments"]
+          deepl_batch_requests_size = 10
+          
+          for batch_segments in [segments[i:i + deepl_batch_requests_size] for i in range(0, len(segments), deepl_batch_requests_size)]:
+            deepl_results = deepl_translator.translate_text([segment['text'] for segment in batch_segments], source_lang=source_lang, target_lang=deepl_target_language_code, split_sentences='off')
+            
+            for j, deepl_result in enumerate(deepl_results):
+              segment = batch_segments[j]
+              translated_text = deepl_result.text
+              translated_results[audio_path]["segments"].append(dict(id=segment['id'], start=segment['start'], end=segment['end'], text=translated_text))
+
+              if options['verbose']:
+                print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {translated_text}")
+
+          deepl_usage = deepl_translator.get_usage()
+          
+          if deepl_usage.character.valid:
+            print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.1f}%)\n")
+    elif task == 'transcribe' and source_language_code not in deepl_source_languages:
+      print(f"DeepL: {options['language']} is not yet supported")
   except deepl.DeepLException as e:
     if isinstance(e, deepl.AuthorizationException) and str(e) == "Authorization failure, check auth_key":
       e = "Authorization failure, check deepl_api_key"
@@ -296,16 +314,12 @@ else:
   
   # save translated results (if any)
 
-  if translated_results["segments"]:
+  if translated_results:
     print("Writing translated results...\n")
 
-    for output_format in output_formats:
-      output_format = output_format.strip()
-
+    for audio_path, translated_result in translated_results.items():
+      output_file_name = os.path.splitext(os.path.basename(audio_path))[0]
       translated_output_file_name = f"{output_file_name}_{deepl_target_language}"
-      translated_output_file_path = os.path.join(output_dir, f"{translated_output_file_name}.{output_format}")
 
-      print(translated_output_file_path)
-
-      writer = get_writer(output_format, output_dir)
-      writer(translated_results, translated_output_file_name)
+      for output_format in output_formats:
+        write_result(translated_result, output_format, translated_output_file_name)
