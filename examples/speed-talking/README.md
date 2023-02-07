@@ -22,6 +22,6 @@ This example transcribes an audio file using Whisper to its source language (Eng
 
 [audio_transcription/micro-machines.srt](audio_transcription/micro-machines.srt)
 
-[audio_transcription/micro-machines.srt](audio_transcription/micro-machines.tsv)
+[audio_transcription/micro-machines.tsv](audio_transcription/micro-machines.tsv)
 
-[audio_transcription/micro-machines.srt](audio_transcription/micro-machines.json)
+[audio_transcription/micro-machines.json](audio_transcription/micro-machines.json)
