@@ -23,9 +23,9 @@ Then uses DeepL to translate the results to English.
 
 [audio_transcription/kpop.srt](audio_transcription/kpop.srt)
 
-[audio_transcription/kpop.srt](audio_transcription/kpop.tsv)
+[audio_transcription/kpop.tsv](audio_transcription/kpop.tsv)
 
-[audio_transcription/kpop.srt](audio_transcription/kpop.json)
+[audio_transcription/kpop.json](audio_transcription/kpop.json)
 
 **deepl_target_language**: `English (American)`
 
@@ -35,6 +35,6 @@ Then uses DeepL to translate the results to English.
 
 [audio_transcription/kpop_English (American).srt](audio_transcription/kpop_English%20(American).srt)
 
-[audio_transcription/kpop_English (American).vtt](audio_transcription/kpop_English%20(American).tsv)
+[audio_transcription/kpop_English (American).tsv](audio_transcription/kpop_English%20(American).tsv)
 
-[audio_transcription/kpop_English (American).srt](audio_transcription/kpop_English%20(American).json)
+[audio_transcription/kpop_English (American).json](audio_transcription/kpop_English%20(American).json)
