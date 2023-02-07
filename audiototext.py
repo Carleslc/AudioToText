@@ -16,7 +16,7 @@ status, ffmpeg_version = subprocess.getstatusoutput("ffmpeg -version")
 
 if status != 0:
   print("Install ffmpeg: https://ffmpeg.org/download.html")
-  exit(1)
+  exit(status)
 else:
   print(ffmpeg_version.split('\n')[0])
 
