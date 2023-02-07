@@ -42,7 +42,7 @@ If you want to execute the notebook in your own computer check [_**Local install
 
 3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON
 
-There are several examples in the [**examples**](examples/) folder.
+There are several examples in the [**examples**](https://github.com/Carleslc/AudioToText/tree/master/examples) folder.
 
 ### Audio **transcription** from English using Whisper
 
