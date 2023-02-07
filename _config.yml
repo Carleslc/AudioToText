@@ -1,0 +1,4 @@
+theme: jekyll-theme-cayman
+title: AudioToText
+description: Transcribe and translate audio to text using Whisper and DeepL.
+show_downloads: true
