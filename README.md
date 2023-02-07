@@ -30,13 +30,15 @@ If you want to execute the notebook in your own computer check [_**Local install
 
 ![Whisper Features](https://cdn.openai.com/whisper/draft-20220920a/asr-training-data-desktop.svg)
 
-- **English transcription**
-- **Non-English transcription**
-- **Any-to-English translation**
+- [**English transcription**](#audio-transcription-from-english-using-whisper)
+- [**Non-English transcription**](#audio-transcription-from-almost-any-language-using-whisper)
+- [**Any-to-English translation**](#audio-translation-to-english-using-whisper)
 
-2. **Any-to-Any translation**
+2. [**Any-to-Any\* translation**](#audio-translation-using-deepl-translator)
    
    Translate the transcriptions using [**DeepL**](https://www.deepl.com/) translator.
+
+   [_\* See supported languages by DeepL_](https://support.deepl.com/hc/en-us/articles/360019925219-Languages-included-in-DeepL-Pro)
 
 3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON
 
@@ -180,11 +182,11 @@ If you want to execute the notebook in your own computer check [_**Local install
 
 Translation to other languages than English is not supported by _Whisper_.
 
-However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) to translate the transcription to another language.
+However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) to translate the transcription to [another language](https://support.deepl.com/hc/en-us/articles/360019925219-Languages-included-in-DeepL-Pro).
 
 `task`: `Transcribe`
 
-`language`: `Auto-Detect` or select the source language of your audio file
+`language`: `Auto-Detect` or select the source language of your audio file \*
 
 <details>
   <summary><i>Supported source languages by DeepL</i></summary>
@@ -225,7 +227,7 @@ However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api
   
 </details>
 
-If the source language of your audio file is supported by Whisper but not supported by DeepL you can use the `Translate to English` task to generate an English transcription first and translate that to your desired target language using DeepL.
+\* If the source language of your audio file is supported by Whisper but not supported by DeepL you can use the `Translate to English` task to generate an English transcription first and translate that to your desired target language using DeepL.
 
 `deepl_api_key`: Your [DeepL API key](https://www.deepl.com/es/account/summary) generated after registering for a [DeepL Developer Account](https://www.deepl.com/pro-api).
 
@@ -288,7 +290,7 @@ Transcript files will be located in the _**`audio_transcription`**_ folder.
 
 ## Local installation (for users with a powerful GPU)
 
-If you have a powerful computer with GPU hardware acceleration, you can also run the _jupyter notebook_ in your local machine.
+If you have a powerful computer with GPU hardware acceleration, you can also run the [_AudioToText notebook_](AudioToText.ipynb) in your local machine.
 
 CPU execution is also available, but it is much slower and the [Cloud]((https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)) version is recommended if you do not have a decent GPU.
 
@@ -333,7 +335,7 @@ https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb
 
 ### Using [Python](https://www.python.org/downloads/) only
 
-A plain _python script_ is also available to use without Jupyter.
+A plain [_python script_](audiototext.py) is also available to use without Jupyter.
 
 ```sh
 python audiototext.py

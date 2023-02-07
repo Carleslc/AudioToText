@@ -6,7 +6,7 @@ This example transcribes the audio of a video file (low-res so it can be uploade
 
 **task**: `Transcribe`
 
-**audio_file**: [`Whisper-Example.3gp`](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/Whisper-Example.3gp) ([Original YouTube video](https://www.youtube.com/watch?v=JuMEmF-2FsA))
+**audio_file**: [`Whisper-Example.3gp`](Whisper-Example.3gp) ([Original YouTube video](https://www.youtube.com/watch?v=JuMEmF-2FsA))
 
 **language:** `Auto-Detect` (Spanish)
 
@@ -16,9 +16,9 @@ This example transcribes the audio of a video file (low-res so it can be uploade
 
 **output_formats**: `txt,vtt`
 
-[audio_transcription/Whisper-Example.txt](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/audio_transcription/Whisper-Example.txt)
+[audio_transcription/Whisper-Example.txt](audio_transcription/Whisper-Example.txt)
 
-[audio_transcription/Whisper-Example.vtt](https://github.com/Carleslc/AudioToText/blob/master/examples/spanish-to-english-deepl/audio_transcription/Whisper-Example.vtt)
+[audio_transcription/Whisper-Example.vtt](audio_transcription/Whisper-Example.vtt)
 
 **deepl_target_language**: `English (British)`
 
