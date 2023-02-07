@@ -100,11 +100,11 @@ if language == "Auto-Detect":
   language = "detect"
 
 if language and language != "detect" and language not in WHISPER_LANGUAGES:
-  print(f"Language '{language}' is invalid")
+  print(f"\nLanguage '{language}' is invalid")
   language = "detect"
 
 if language and language != "detect":
-  print(f"Language: {language}\n")
+  print(f"\nLanguage: {language}")
 
 # load model
 
