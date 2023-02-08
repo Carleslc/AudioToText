@@ -1,5 +1,7 @@
 ## Example: English and Japanese to Spanish using Whisper and DeepL
 
+[**Example Notebook**](https://github.com/Carleslc/AudioToText/blob/master/examples/multi-language/multi-language-example.ipynb)
+
 This example transcribes an audio file that mixes english and japanese using Whisper in TXT, VTT and SRT formats.
 Then uses DeepL API to translate the results to spanish.
 
