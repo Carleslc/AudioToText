@@ -40,7 +40,7 @@ If you want to execute the notebook in your own computer check [_**Local install
 
    [_\* See supported languages by DeepL_](https://support.deepl.com/hc/en-us/articles/360019925219-Languages-included-in-DeepL-Pro)
 
-3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON
+3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON.
 
 There are several examples in the [**examples**](https://github.com/Carleslc/AudioToText/tree/master/examples) folder.
 
@@ -278,7 +278,7 @@ The [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) has a free quo
 
 If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using the [Free Translator Files](https://www.deepl.com/translator/files) web feature uploading the generated transcripts.
 
-See [**this example**](examples/spanish-to-english-deepl) of a transcription and translation of a video file from Spanish to English using DeepL.
+See [**this example**](examples/spanish-to-english-deepl) of a transcription of a video file in Spanish and translation to English using DeepL.
 
 ### **Save transcripts** to different formats
 
@@ -295,6 +295,8 @@ Transcript files will be located in the _**`audio_transcription`**_ folder.
 #### Add captions to VLC media player
 
 If you use [VLC](https://www.videolan.org/) to play video or audio files, you can add your `vtt` or `srt` transcripts as captions by drag-and-drop the transcript file to the media player or go to _Subtitles -> Add Subtitle File_.
+
+With audio-only files you will need to enable a visualization in _Audio -> Visualization_.
 
 ## Local installation (for users with a powerful GPU)
 

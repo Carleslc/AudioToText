@@ -1,4 +1,4 @@
-## Example: Song
+## Example: K-pop
 
 This example transcribes a song file using Whisper to its source language (Korean) in TXT, VTT, SRT, TSV and JSON formats.
 Then uses DeepL to translate the results to English.
