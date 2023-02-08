@@ -147,20 +147,22 @@ if DEVICE == 'cpu':
 # !whisper "{audio_file}" --task {task} --model {use_model} --output_dir {output_dir} --device {DEVICE} --verbose {options['verbose']}
 
 if task == "translate":
-  print("-- TRANSLATE TO ENGLISH --\n")
+  print("-- TRANSLATE TO ENGLISH --")
 else:
-  print("-- TRANSCRIPTION --\n")
+  print("-- TRANSCRIPTION --")
 
 results = {} # audio_path to result
 
 for audio_path in audio_files:
-  print(f"Processing: {audio_path}")
+  audio_path = audio_path.strip()
+  
+  print(f"\nProcessing: {audio_path}\n")
 
   # detect language
   detect_language = not language or language == "detect"
   if detect_language:
     # load audio and pad/trim it to fit 30 seconds
-    audio = whisper.load_audio(audio_file)
+    audio = whisper.load_audio(audio_path)
     audio = whisper.pad_or_trim(audio)
 
     # make log-Mel spectrogram and move to the same device as the model
@@ -172,7 +174,7 @@ for audio_path in audio_files:
     language_code = max(probs, key=probs.get)
     options['language'] = whisper.tokenizer.LANGUAGES[language_code].title()
     
-    print(f"Detected language: {options['language']}")
+    print(f"Detected language: {options['language']}\n")
   else:
     options['language'] = language
 
@@ -218,11 +220,13 @@ def write_result(result, output_format, output_file_name):
 
 # save results
 
-print("Writing results...\n")
+print("Writing results...")
 
 os.makedirs(output_dir, exist_ok=True)
 
 for audio_path, result in results.items():
+  print(end='\n')
+  
   output_file_name = os.path.splitext(os.path.basename(audio_path))[0]
 
   for output_format in output_formats:
@@ -264,27 +268,27 @@ else:
     deepl_target_languages = [lang.name for lang in deepl_target_languages_dict]
 
     deepl_target_language_code = next(lang.code for lang in deepl_target_languages_dict if lang.name == deepl_target_language).upper()
-
-    source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(options['language'].lower()).upper()
     target_language_code = deepl_target_language_code.split('-')[0]
-
-    if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
-      source_lang = source_language_code if task == 'transcribe' else None
-      translate_from = f"from {options['language']} [{source_language_code}] " if source_lang else ''
-      print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
+    
+    for audio_path, result in results.items():
+      deepl_usage = deepl_translator.get_usage()
       
-      for audio_path, result in results.items():
-        deepl_usage = deepl_translator.get_usage()
-        
-        if deepl_usage.any_limit_reached:
-          print(audio_path)
-          print("DeepL: Translation limit reached.\n")
-          use_deepl_translation = False
-        else:
-          print(audio_path + '\n')
-        
-        # translate results (DeepL)
-        if use_deepl_translation:
+      if deepl_usage.any_limit_reached:
+        print(audio_path)
+        print("DeepL: Translation limit reached.\n")
+        use_deepl_translation = False
+      else:
+        print(audio_path + '\n')
+      
+      # translate results (DeepL)
+      if use_deepl_translation:
+        source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(result['language'].lower()).upper()
+
+        if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
+          source_lang = source_language_code if task == 'transcribe' else None
+          translate_from = f"from {result['language']} [{source_language_code}] " if source_lang else ''
+          print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
+
           translated_results[audio_path] = { "segments": [] }
 
           segments = result["segments"]
@@ -305,8 +309,8 @@ else:
           
           if deepl_usage.character.valid:
             print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.1f}%)\n")
-    elif task == 'transcribe' and source_language_code not in deepl_source_languages:
-      print(f"DeepL: {options['language']} is not yet supported")
+        elif task == 'transcribe' and source_language_code not in deepl_source_languages:
+          print(f"DeepL: {result['language']} is not yet supported")
   except deepl.DeepLException as e:
     if isinstance(e, deepl.AuthorizationException) and str(e) == "Authorization failure, check auth_key":
       e = "Authorization failure, check deepl_api_key"
@@ -315,9 +319,11 @@ else:
   # save translated results (if any)
 
   if translated_results:
-    print("Writing translated results...\n")
+    print("Writing translated results...")
 
     for audio_path, translated_result in translated_results.items():
+      print(end='\n')
+      
       output_file_name = os.path.splitext(os.path.basename(audio_path))[0]
       translated_output_file_name = f"{output_file_name}_{deepl_target_language}"
 
