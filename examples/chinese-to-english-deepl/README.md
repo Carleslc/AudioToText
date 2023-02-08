@@ -1,6 +1,7 @@
 ## Example: Chinese to English using DeepL
 
 This example transcribes a chinese audio file using Whisper to its source language in TXT, VTT and SRT formats.
+
 Then uses DeepL API to translate the generated transcripts to english.
 
 ## Input

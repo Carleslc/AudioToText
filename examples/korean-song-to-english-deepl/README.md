@@ -1,7 +1,8 @@
 ## Example: K-pop
 
 This example transcribes a korean song file using Whisper to its source language in TXT, VTT, SRT, TSV and JSON formats.
-Then uses DeepL to translate the generated transcripts to english.
+
+Then uses DeepL API to translate the generated transcripts to english.
 
 ## Input
 
