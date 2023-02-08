@@ -1,12 +1,12 @@
 ## Example: Speed Talking
 
-This example transcribes an audio file using Whisper to its source language (English) in TXT, VTT, SRT, TSV and JSON formats.
+This example transcribes an english fast-paced audio file using Whisper in TXT, VTT, SRT, TSV and JSON formats.
 
 ## Input
 
 **task**: `Transcribe`
 
-**audio_file**: [`micro-machines.wav`](micro-machines.wav)
+**audio_file**: [`micro-machines.wav`](https://carleslc.me/AudioToText/examples/speed-talking/micro-machines.wav)
 
 **use_model**: `medium`
 

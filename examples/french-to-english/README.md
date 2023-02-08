@@ -6,7 +6,7 @@ This example translates a french audio file to english using Whisper in TXT, VTT
 
 **task**: `Translate to English`
 
-**audio_file**: [`french.wav`](french.wav)
+**audio_file**: [`french.wav`](https://carleslc.me/AudioToText/examples/french-to-english/french.wav)
 
 **use_model**: `medium`
 

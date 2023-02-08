@@ -1,12 +1,12 @@
 ## Example: Scottish Accent
 
-This example transcribes an audio file with Scottish accent using Whisper in TXT, VTT and SRT formats.
+This example transcribes an audio file with scottish accent using Whisper in TXT, VTT and SRT formats.
 
 ## Input
 
 **task**: `Transcribe`
 
-**audio_file**: [`scottish-accent.wav`](scottish-accent.wav)
+**audio_file**: [`scottish-accent.wav`](https://carleslc.me/AudioToText/examples/scottish-accent/scottish-accent.wav)
 
 **use_model**: `medium`
 

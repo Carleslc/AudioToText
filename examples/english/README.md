@@ -6,7 +6,7 @@ This example transcribes an english audio file using Whisper in TXT, VTT, SRT, T
 
 **task**: `Transcribe`
 
-**audio_file**: [`english.wav`](english.wav)
+**audio_file**: [`english.wav`](https://carleslc.me/AudioToText/examples/english/english.wav)
 
 **use_model**: `large-v2`
 

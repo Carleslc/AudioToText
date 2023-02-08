@@ -1,13 +1,13 @@
 ## Example: K-pop
 
-This example transcribes a song file using Whisper to its source language (Korean) in TXT, VTT, SRT, TSV and JSON formats.
-Then uses DeepL to translate the results to English.
+This example transcribes a korean song file using Whisper to its source language in TXT, VTT, SRT, TSV and JSON formats.
+Then uses DeepL to translate the generated transcripts to english.
 
 ## Input
 
 **task**: `Transcribe`
 
-**audio_file**: [`kpop.wav`](kpop.wav)
+**audio_file**: [`kpop.wav`](https://carleslc.me/AudioToText/examples/korean-song-to-english-deepl/kpop.wav)
 
 **use_model**: `small`
 

@@ -1,13 +1,13 @@
 ## Example: Chinese to English using DeepL
 
-This example transcribes a chinese audio file using Whisper to its source language in TXT, VTT and SRT.
-Then uses DeepL API to translate the results to english.
+This example transcribes a chinese audio file using Whisper to its source language in TXT, VTT and SRT formats.
+Then uses DeepL API to translate the generated transcripts to english.
 
 ## Input
 
 **task**: `Transcribe`
 
-**audio_file**: [`chinese.wav`](chinese.wav)
+**audio_file**: [`chinese.wav`](https://carleslc.me/AudioToText/examples/chinese-to-english-deepl/chinese.wav)
 
 **use_model**: `large-v2`
 
