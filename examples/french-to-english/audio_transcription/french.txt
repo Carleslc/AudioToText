@@ -1,0 +1,9 @@
+Whisper is an automatic recognition system of speech,
+trained on 680,000 hours of multi-language and multi-tasking data collected on the Internet.
+We establish that the use of data of such number and such diversity
+is the reason why our system is able to understand many accents,
+despite background noise, to understand technical vocabulary
+and to succeed in translating from several languages ​​into English.
+We distribute, as a free software, the source code for our models and for inference,
+so that it can serve as a starting point to build useful applications
+and to help to make research progress in speech processing.

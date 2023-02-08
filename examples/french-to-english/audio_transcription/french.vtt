@@ -1,0 +1,29 @@
+WEBVTT
+
+00:00.001 --> 00:05.000
+Whisper is an automatic recognition system of speech,
+
+00:05.000 --> 00:11.000
+trained on 680,000 hours of multi-language and multi-tasking data collected on the Internet.
+
+00:11.000 --> 00:16.000
+We establish that the use of data of such number and such diversity
+
+00:16.000 --> 00:20.000
+is the reason why our system is able to understand many accents,
+
+00:20.000 --> 00:24.000
+despite background noise, to understand technical vocabulary
+
+00:24.000 --> 00:28.000
+and to succeed in translating from several languages ​​into English.
+
+00:28.000 --> 00:33.000
+We distribute, as a free software, the source code for our models and for inference,
+
+00:33.000 --> 00:38.000
+so that it can serve as a starting point to build useful applications
+
+00:38.000 --> 01:02.000
+and to help to make research progress in speech processing.
+
