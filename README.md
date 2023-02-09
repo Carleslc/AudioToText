@@ -407,7 +407,7 @@ optional arguments:
   --deepl_target_language {Bulgarian,Chinese,Chinese (simplified),Czech,Danish,Dutch,English,English (American),English (British),Estonian,Finnish,French,German,Greek,Hungarian,Indonesian,Italian,Japanese,Latvian,Lithuanian,Polish,Portuguese,Portuguese (Brazilian),Portuguese (European),Romanian,Russian,Slovak,Slovenian,Spanish,Swedish,Turkish,Ukrainian}
                         results target language if you want to translate results using DeepL (--deepl_api_key required)
   --deepl_coherence_preference {True,False}
-                        True (default): Share context between lines while translating. False: Translate each line independently
+                        True: Share context between lines while translating. False (default): Translate each line independently
   --deepl_formality {default,formal,informal}
                         whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)
 ```
