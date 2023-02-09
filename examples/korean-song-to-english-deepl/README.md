@@ -30,6 +30,8 @@ Then uses DeepL API to translate the generated transcripts to english.
 
 **deepl_target_language**: `English (American)`
 
+**deepl_coherence_preference**: `Translate each line independently`
+
 [audio_transcription/kpop_English (American).txt](audio_transcription/kpop_English%20(American).txt)
 
 [audio_transcription/kpop_English (American).vtt](audio_transcription/kpop_English%20(American).vtt)

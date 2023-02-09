@@ -8,7 +8,7 @@ This example transcribes an english audio file using Whisper in TXT, VTT, SRT, T
 
 **audio_file**: [`english.wav`](https://carleslc.me/AudioToText/examples/english/english.wav)
 
-**use_model**: `large-v2`
+**use_model**: `small`
 
 **language:** `Auto-Detect` (English)
 

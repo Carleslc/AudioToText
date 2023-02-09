@@ -32,7 +32,7 @@ Me vendría bien un poco de ayuda
 
 9
 00:00:26,000 --> 00:00:29,000
-No puedes encender un fuego
+No se puede encender un fuego
 
 10
 00:00:29,000 --> 00:00:33,000

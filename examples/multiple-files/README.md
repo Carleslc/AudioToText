@@ -20,7 +20,7 @@ Then uses DeepL API to translate the generated transcripts to spanish.
 
 ```
 Using GPU
-GPU 0: Tesla T4 (UUID: GPU-1f48ac03-e5ba-922f-30a0-6ba2496c1c1c)
+GPU 0: Tesla T4 (UUID: GPU-f1c80390-f4c1-4616-fe10-d8c7c404fb00)
 
 Loading large-v2 model...
 Model large-v2 is multilingual and has 1,541,384,960 parameters.
@@ -69,15 +69,15 @@ Processing: french.wav
 
 Detected language: French
 
-[00:00.000 --> 00:06.640]  Whisper est un système de reconnaissance automatique de la parole entraîné sur 680.000
-[00:06.640 --> 00:10.720]  heures de données multilingues et multitâches récoltées sur Internet.
+[00:00.000 --> 00:06.660]  Whisper est un système de reconnaissance automatique de la parole entraîné sur 680.000
+[00:06.660 --> 00:10.720]  heures de données multilingues et multitâches récoltées sur Internet.
 [00:10.720 --> 00:16.000]  Nous établissons que l'utilisation de données d'un tel nombre et d'une telle diversité
 [00:16.000 --> 00:20.500]  est la raison pour laquelle The System est à même de comprendre de nombreux accents
-[00:20.500 --> 00:24.880]  en dépit de bruit de fond, de comprendre un vocabulaire technique et de réussir la
-[00:24.880 --> 00:27.640]  traduction depuis diverses langues en anglais.
-[00:27.640 --> 00:33.360]  Nous distribuons en tant que logiciel libre le code source pour nos modèles et pour l'inférence
+[00:20.500 --> 00:24.880]  en dépit de bruits de fond, de comprendre un vocabulaire technique et de réussir la
+[00:24.880 --> 00:26.880]  traduction depuis diverses langues en anglais.
+[00:26.880 --> 00:33.360]  Nous distribuons en tant que logiciel libre le code source pour nos modèles et pour l'inférence,
 [00:33.360 --> 00:37.040]  afin que ceux-ci puissent servir comme un point de départ pour construire des applications
-[00:37.040 --> 00:54.560]  utiles et pour aider à faire progresser la recherche en traitement de la parole.
+[00:37.040 --> 00:55.280]  utiles et pour aider à faire progresser la recherche en traitement de la parole.
 ```
 
 **output_formats**: `txt,vtt,srt`
@@ -104,6 +104,10 @@ audio_transcription/french.srt
 
 **deepl_target_language**: `Spanish`
 
+**deepl_formality**: `default`
+
+**deepl_coherence_preference**: `Translate each line independently`
+
 ```
 chinese.wav
 
@@ -115,7 +119,7 @@ DeepL: Translate results from Chinese [ZH] to Spanish [ES]
 [00:11.520 --> 00:14.600] El espectáculo de delfines y ballenas es un gran espectáculo para ver
 [00:14.600 --> 00:19.400] Hay un buzón azul en el camino prismático frente a la oficina de correos
 
-DeepL: Character usage: 33634 / 500000 (6.7%)
+DeepL: Character usage: 51451 / 500000 (10.3%)
 
 bruce.mp3
 
@@ -129,25 +133,25 @@ DeepL: Translate results from English [EN] to Spanish [ES]
 [00:17.000 --> 00:20.000] Tío, estoy cansado y aburrido de mí mismo
 [00:20.000 --> 00:22.000] Hola, cariño.
 [00:24.000 --> 00:26.000] Me vendría bien un poco de ayuda
-[00:26.000 --> 00:29.000] No puedes encender un fuego
+[00:26.000 --> 00:29.000] No se puede encender un fuego
 [00:29.000 --> 00:33.000] No se puede encender un fuego sin una chispa
 [00:33.000 --> 00:35.000] Hay armas de alquiler
 [00:35.000 --> 00:39.000] Aunque sólo estemos bailando en la oscuridad
 
-DeepL: Character usage: 33987 / 500000 (6.8%)
+DeepL: Character usage: 51792 / 500000 (10.4%)
 
 english_japanese.mp3
 
 DeepL: Translate results from Japanese [JA] to Spanish [ES]
 
 [00:00.000 --> 00:07.000] Esta es la Unidad 1 de Japonés 1 de Pimsleur. Escucha esta conversación en japonés.
-[00:07.000 --> 00:10.000] Disculpe, ¿entiende inglés?
-[00:10.000 --> 00:15.000] No, no entiendo, ¿entiendes japonés?
+[00:07.000 --> 00:10.000] Disculpadme. ¿Entiendes inglés?
+[00:10.000 --> 00:15.000] No, no lo entiendo. ¿Entiendes japonés?
 [00:15.000 --> 00:17.000] Sí, lo entiendo un poco.
 [00:17.000 --> 00:19.000] ¿Es usted estadounidense?
 [00:19.000 --> 00:34.000] Sí, soy estadounidense.
 
-DeepL: Character usage: 34140 / 500000 (6.8%)
+DeepL: Character usage: 51945 / 500000 (10.4%)
 
 french.wav
 
@@ -163,7 +167,7 @@ DeepL: Translate results from French [FR] to Spanish [ES]
 [00:33.360 --> 00:37.040] de modo que puedan utilizarse como punto de partida para crear aplicaciones
 [00:37.040 --> 00:54.560] y contribuir al avance de la investigación en el procesamiento del habla.
 
-DeepL: Character usage: 34866 / 500000 (7.0%)
+DeepL: Character usage: 52664 / 500000 (10.5%)
 
 Writing translated results...
 

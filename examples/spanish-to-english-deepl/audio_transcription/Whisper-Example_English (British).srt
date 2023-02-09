@@ -48,7 +48,7 @@ to a person.
 
 13
 00:00:47,880 --> 00:00:51,000
-Well, but in order for you to first understand what this Whisper thing is, I'm going to ask you to
+Well, but in order for you to understand first what this Whisper thing is, I'm going to ask you to
 
 14
 00:00:51,000 --> 00:00:53,120
@@ -132,7 +132,7 @@ Well, not this, but Whisper.
 
 34
 00:02:12,960 --> 00:02:18,160
-Whisper in general has a lot of interesting things and the first interesting thing is the context.
+Whisper in general has many interesting things and the first interesting thing is the context.
 
 35
 00:02:18,160 --> 00:02:20,120
@@ -140,7 +140,7 @@ in which this tool appears.
 
 36
 00:02:20,120 --> 00:02:23,640
-After a year of amazing achievements by the Artificial Intelligence Lab
+After a year of incredible achievements by the Artificial Intelligence Lab
 
 37
 00:02:23,640 --> 00:02:29,680
@@ -148,7 +148,7 @@ OpenAI, suddenly out of the blue a collaborative initiative like Stability.ai
 
 38
 00:02:29,680 --> 00:02:34,320
-which in September takes as its banner the open sourcing of many of the technologies that
+which in September takes as its flagship the open sourcing of many of the technologies that
 
 39
 00:02:34,320 --> 00:02:40,240
@@ -164,7 +164,7 @@ This is not a problem for me either, because in the end OpenAI as a company has
 
 42
 00:02:46,360 --> 00:02:50,720
-to pay their bills and at least it is giving us a way to access these powerful
+to pay their bills and at least it's giving us a way to access these powerful
 
 43
 00:02:50,720 --> 00:02:52,360
@@ -224,7 +224,7 @@ made or a super-complex system with a lot of processing modules.
 
 57
 00:03:38,640 --> 00:03:45,840
-No, Whisper is this here, a transformer neural network of 2017, it has no
+No, Whisper is this right here, a transformer neural network from 2017, it doesn't have
 
 58
 00:03:45,840 --> 00:03:47,920
@@ -352,7 +352,7 @@ and run it through a translator.
 
 89
 00:05:39,520 --> 00:05:43,520
-But in this case, I find it fascinating to see how something as simple as a single
+But in this case I find it fascinating to see how something as simple as a single
 
 90
 00:05:43,520 --> 00:05:47,880
@@ -376,11 +376,11 @@ Because my first intuition here is that OpenAI, in the search for a massive data
 
 95
 00:06:00,480 --> 00:06:05,280
-of these 680,000 hours of audio to have a text transcription in order to be able to make
+of these 680,000 hours of audio to have a text transcript in order to be able to make
 
 96
 00:06:05,280 --> 00:06:09,800
-this supervised apprenticeship, as he had possibly gone to one of the biggest sources of
+this supervised apprenticeship, as he had possibly turned to one of the largest sources of
 
 97
 00:06:09,800 --> 00:06:12,520
@@ -420,7 +420,7 @@ that other automatic systems may also have.
 
 106
 00:06:40,000 --> 00:06:44,600
-That said, now that we're talking about Whisper and YouTube, there's a theory that
+That said, now that we're talking about Whisper and YouTube, there is a theory that
 
 107
 00:06:44,600 --> 00:06:48,520
@@ -492,7 +492,7 @@ I say almost, it's not perfect, sometimes some words are obviously wrong and it 
 
 124
 00:07:57,640 --> 00:08:02,200
-all the languages that exist on planet Earth, and well, to look for some limitation
+all the languages that exist on planet Earth and, well, to look for some limitation
 
 125
 00:08:02,200 --> 00:08:07,320
@@ -500,7 +500,7 @@ compared to other commercial tools, as it does not yet work in real time either.
 
 126
 00:08:07,320 --> 00:08:11,280
-Depending on the length of the audio, it can take a few seconds to process it, sometimes
+Depending on the length of the audio it can take a few seconds to process it, sometimes
 
 127
 00:08:11,280 --> 00:08:17,080
@@ -536,7 +536,7 @@ of development, of innovation, let me remind you that there are very few days le
 
 135
 00:08:41,880 --> 00:08:46,880
-for Samsung Dev Day, which is the technology event held every year, to be held at the
+for Samsung Dev Day, which is the technology event held every year, to be held at
 
 136
 00:08:46,880 --> 00:08:51,760
@@ -552,7 +552,7 @@ This will be a free event not to be missed.
 
 139
 00:08:55,560 --> 00:09:00,640
-If you are in Madrid you can attend in person on 16 November at the cloister of
+If you are in Madrid you can attend in person on 16th November at the cloister of
 
 140
 00:09:00,640 --> 00:09:04,840
@@ -568,7 +568,7 @@ But yes, you have to register, I was lucky enough to be able to participate last
 
 143
 00:09:09,760 --> 00:09:14,280
-presentation on code generation with artificial intelligence, and the experience was
+presentation on code generation with artificial intelligence and the experience was
 
 144
 00:09:14,280 --> 00:09:15,280
@@ -612,7 +612,7 @@ For this we are going to use Google Colab, you know that Google is giving us her
 
 154
 00:09:47,240 --> 00:09:52,080
-a free virtual machine that we can use and we will verify whenever we have
+a free virtual machine that we can use and we will check as long as we have
 
 155
 00:09:52,080 --> 00:09:56,560
@@ -692,7 +692,7 @@ automatic because we haven't told you that we are going to transcribe from Spani
 
 174
 00:11:16,800 --> 00:11:20,960
-if you want and when this cell is already executed, we can come here, we'll see
+if you want and when this cell is already executed, we can come here, we see
 
 175
 00:11:20,960 --> 00:11:26,400
@@ -704,7 +704,7 @@ open the sound.txt and here we open the file, we can see that we have the whole 
 
 177
 00:11:32,360 --> 00:11:37,000
-transcribed, which in this case, being Rosalia, has more merit and instead of wanting to
+transcribed, which in this case, being Rosalía, has more merit and instead of wanting to
 
 178
 00:11:37,000 --> 00:11:41,680
@@ -768,7 +768,7 @@ to start working, just log in, check that the GPU is activated,
 
 193
 00:12:39,200 --> 00:12:43,080
-click on this button here to install everything necessary, here we choose the
+click on this button here to install all the necessary, here we choose the
 
 194
 00:12:43,080 --> 00:12:47,680
@@ -780,7 +780,7 @@ and click on run.
 
 196
 00:12:48,800 --> 00:12:53,520
-In this case the cell is prepared so that the moment you start to run it
+In this case the cell is prepared so that the moment you start to run it, the cell is ready to be used.
 
 197
 00:12:53,520 --> 00:12:57,080
@@ -872,7 +872,7 @@ For example, something I want to do is to take all the videos from my YouTube ch
 
 219
 00:14:10,040 --> 00:14:14,640
-and transcribe it, generate good quality subtitles in both Spanish and English
+and transcribe it, generate good-quality subtitles in both English and Spanish
 
 220
 00:14:14,640 --> 00:14:18,920

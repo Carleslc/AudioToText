@@ -55,14 +55,18 @@ audio_transcription/english_japanese.srt
 
 **deepl_target_language**: `Spanish`
 
+**deepl_formality**: `formal`
+
+**deepl_coherence_preference**: `Translate each line independently`
+
 ```
 english_japanese.mp3
 
 DeepL: Translate results from Japanese [JA] to Spanish [ES]
 
-[00:00.000 --> 00:07.000] Esta es la Unidad 1 de Japonés 1 de Pimsleur. Escucha esta conversación en japonés.
-[00:07.000 --> 00:10.000] Disculpe, ¿entiende inglés?
-[00:10.000 --> 00:15.000] No, no entiendo, ¿entiendes japonés?
+[00:00.000 --> 00:07.000] Esta es la Unidad 1 de Japonés 1 de Pimsleur. Escuche esta conversación en japonés.
+[00:07.000 --> 00:10.000] Discúlpeme. ¿Entiende inglés?
+[00:10.000 --> 00:15.000] No, no lo entiendo. ¿Entiende japonés?
 [00:15.000 --> 00:17.000] Sí, lo entiendo un poco.
 [00:17.000 --> 00:19.000] ¿Es usted estadounidense?
 [00:19.000 --> 00:34.000] Sí, soy estadounidense.
