@@ -67,15 +67,15 @@ Processing: french.wav
 
 Detected language: French
 
-[00:00.000 --> 00:06.660]  Whisper est un système de reconnaissance automatique de la parole entraîné sur 680.000
-[00:06.660 --> 00:10.720]  heures de données multilingues et multitâches récoltées sur Internet.
+[00:00.000 --> 00:06.640]  Whisper est un système de reconnaissance automatique de la parole entraîné sur 680.000
+[00:06.640 --> 00:10.720]  heures de données multilingues et multitâches récoltées sur Internet.
 [00:10.720 --> 00:16.000]  Nous établissons que l'utilisation de données d'un tel nombre et d'une telle diversité
 [00:16.000 --> 00:20.500]  est la raison pour laquelle The System est à même de comprendre de nombreux accents
-[00:20.500 --> 00:24.880]  en dépit de bruits de fond, de comprendre un vocabulaire technique et de réussir la
-[00:24.880 --> 00:26.880]  traduction depuis diverses langues en anglais.
-[00:26.880 --> 00:33.360]  Nous distribuons en tant que logiciel libre le code source pour nos modèles et pour l'inférence,
+[00:20.500 --> 00:24.880]  en dépit de bruit de fond, de comprendre un vocabulaire technique et de réussir la
+[00:24.880 --> 00:27.640]  traduction depuis diverses langues en anglais.
+[00:27.640 --> 00:33.360]  Nous distribuons en tant que logiciel libre le code source pour nos modèles et pour l'inférence
 [00:33.360 --> 00:37.040]  afin que ceux-ci puissent servir comme un point de départ pour construire des applications
-[00:37.040 --> 00:55.280]  utiles et pour aider à faire progresser la recherche en traitement de la parole.
+[00:37.040 --> 00:54.560]  utiles et pour aider à faire progresser la recherche en traitement de la parole.
 ```
 
 **output_formats**: `txt,vtt,srt`
