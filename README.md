@@ -48,7 +48,7 @@ There are several examples in the [**examples**](examples) folder.
 
 `task`: `Transcribe`
 
-`language`: `Auto-Detect` or select `English` (recommended when using _`use_model`_ `tiny`, `base`, `small`, or `medium`)
+`language`: `English`
 
 ### Audio **transcription** from [almost any language](https://github.com/openai/whisper#available-models-and-languages) using Whisper
 
