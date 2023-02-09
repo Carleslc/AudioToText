@@ -345,7 +345,7 @@ if use_deepl_translation:
         source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(result['language'].lower()).upper()
 
         if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
-          source_lang = source_language_code if task == 'transcribe' and deepl_coherence_preference else None
+          source_lang = source_language_code if task == 'transcribe' else None
           translate_from = f"from {result['language']} [{source_language_code}] " if source_lang else ''
           print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
 
