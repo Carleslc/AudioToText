@@ -1,0 +1,9 @@
+Whisper es un sistema de reconocimiento automático del habla entrenado en 680.000
+horas de datos multilingües y multitarea recogidos en Internet.
+Establecemos que el uso de un número tan grande y diversidad de datos
+es la razón por la que El Sistema es capaz de entender muchos acentos
+ruido, comprender el vocabulario técnico y completar con éxito el
+traducción de varios idiomas al inglés.
+Distribuimos como código abierto el código fuente de nuestros modelos y de la inferencia
+de modo que puedan utilizarse como punto de partida para crear aplicaciones
+y contribuir al avance de la investigación en el procesamiento del habla.

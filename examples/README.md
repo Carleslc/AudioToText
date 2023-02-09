@@ -47,3 +47,9 @@ Then uses DeepL API to translate the generated transcripts to english.
 This example transcribes an audio file that mixes english and japanese using Whisper in TXT, VTT and SRT formats.
 
 Then uses DeepL API to translate the generated transcripts to spanish.
+
+### [Multiple files](multiple-files)
+
+This example transcribes different audio files in different languages from previous examples using Whisper in TXT, VTT and SRT formats.
+
+Then uses DeepL API to translate the generated transcripts to spanish.

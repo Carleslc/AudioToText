@@ -42,7 +42,7 @@ If you want to execute the notebook in your own computer check [_**Local install
 
 3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON.
 
-There are several examples in the [**examples**](https://github.com/Carleslc/AudioToText/tree/master/examples) folder.
+There are several examples in the [**examples**](examples) folder.
 
 ### Audio **transcription** from English using Whisper
 
@@ -278,7 +278,7 @@ The [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api) has a free quo
 
 If you exceed your free quota you can upgrade to _DeepL API Pro_ or try using the [Free Translator Files](https://www.deepl.com/translator/files) web feature uploading the generated transcripts.
 
-See [**this example**](examples/spanish-to-english-deepl) of a transcription of a video file in Spanish and translation to English using DeepL.
+See [**this example**](examples/multiple-files) with audio transcriptions in different languages using Whisper and translation to spanish using DeepL.
 
 ### **Save transcripts** to different formats
 

@@ -1,0 +1,29 @@
+WEBVTT
+
+00:00.001 --> 00:06.640
+Whisper es un sistema de reconocimiento automático del habla entrenado en 680.000
+
+00:06.640 --> 00:10.720
+horas de datos multilingües y multitarea recogidos en Internet.
+
+00:10.720 --> 00:16.000
+Establecemos que el uso de un número tan grande y diversidad de datos
+
+00:16.000 --> 00:20.500
+es la razón por la que El Sistema es capaz de entender muchos acentos
+
+00:20.500 --> 00:24.880
+ruido, comprender el vocabulario técnico y completar con éxito el
+
+00:24.880 --> 00:27.640
+traducción de varios idiomas al inglés.
+
+00:27.640 --> 00:33.360
+Distribuimos como código abierto el código fuente de nuestros modelos y de la inferencia
+
+00:33.360 --> 00:37.040
+de modo que puedan utilizarse como punto de partida para crear aplicaciones
+
+00:37.040 --> 00:54.560
+y contribuir al avance de la investigación en el procesamiento del habla.
+

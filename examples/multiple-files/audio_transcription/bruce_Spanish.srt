@@ -1,0 +1,48 @@
+1
+00:00:00,000 --> 00:00:03,000
+Me levanto por la tarde
+
+2
+00:00:04,000 --> 00:00:07,000
+Y no tengo nada que decir
+
+3
+00:00:07,000 --> 00:00:09,000
+Vuelvo a casa por la mañana
+
+4
+00:00:10,000 --> 00:00:13,000
+Me voy a la cama sintiendo lo mismo
+
+5
+00:00:13,000 --> 00:00:16,000
+No estoy más que cansado
+
+6
+00:00:17,000 --> 00:00:20,000
+Tío, estoy cansado y aburrido de mí mismo
+
+7
+00:00:20,000 --> 00:00:22,000
+Hola, cariño.
+
+8
+00:00:24,000 --> 00:00:26,000
+Me vendría bien un poco de ayuda
+
+9
+00:00:26,000 --> 00:00:29,000
+No puedes encender un fuego
+
+10
+00:00:29,000 --> 00:00:33,000
+No se puede encender un fuego sin una chispa
+
+11
+00:00:33,000 --> 00:00:35,000
+Hay armas de alquiler
+
+12
+00:00:35,000 --> 00:00:39,000
+Aunque sólo estemos bailando en la oscuridad
+
