@@ -22,7 +22,7 @@ Generate _captions_ using VTT or SRT file formats.
 
 A Cloud GPU will be assigned to you to execute the notebook code to transcribe and translate your audio files.
 
-If you want to execute the notebook in your own computer check [_**Local installation**_](#local-installation-for-users-with-a-powerful-gpu).
+If you want to execute the notebook in your own computer check [_**Local installation**_](#local-installation).
 
 ## Features
 
@@ -298,13 +298,14 @@ If you use [VLC](https://www.videolan.org/) to play video or audio files, you ca
 
 With audio-only files you will need to enable a visualization in _Audio -> Visualizations_.
 
-## Local installation (for users with a powerful GPU)
+## Local installation
 
 If you have a powerful computer with GPU hardware acceleration, you can also run the [_AudioToText notebook_](AudioToText.ipynb) in your local machine.
 
 CPU execution is also available, but it is much slower and the [Cloud]((https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)) version is recommended if you do not have a decent GPU.
+You might, however, try to use the smaller models (`tiny`, `base`, `small`) on your CPU.
 
-### Use Google Colab with your local environment
+### Using Google Colab with your local environment
 
 [Google Colab]((https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)) lets you connect to a local runtime using [Jupyter](http://jupyter.org/install).
 This allows you to use the notebook using your local hardware and have access to your local file system.
@@ -343,22 +344,15 @@ _File -> Open from URL..._
 https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb
 ```
 
-### Using [Python](https://www.python.org/downloads/) only
+### Using AudioToText CLI
 
-A plain [_python script_](audiototext.py) is also available to use without Jupyter.
+A plain [_python script_](audiototext.py) is available to use in your system without Jupyter.
 
-```sh
-python audiototext.py
-```
+#### Install AudioToText CLI locally
 
-### Using [Whisper CLI](https://github.com/openai/whisper#command-line-usage) only
-
-If you do not need Cloud GPU and you do not want to translate using DeepL then you can just use the Whisper CLI in your console as follows:
-
-#### Install [Whisper CLI](https://github.com/openai/whisper#setup) locally
-
-1. Install [Python](https://www.python.org/downloads/)
-2. Install [`ffmpeg`](https://ffmpeg.org/download.html)
+1. Clone this repository or download the [`audiototext.py`](https://raw.githubusercontent.com/Carleslc/AudioToText/master/audiototext.py) script (_right-click -> Save as..._).
+2. Install [Python](https://www.python.org/downloads/) (3.8 - 3.10)
+3. Install [`ffmpeg`](https://ffmpeg.org/download.html)
 
   ```sh
   # on MacOS using Homebrew (https://brew.sh/)
@@ -374,21 +368,75 @@ If you do not need Cloud GPU and you do not want to translate using DeepL then y
   sudo pacman -S ffmpeg
   ```
 
+#### AudioToText CLI usage
+
+```sh
+# Transcribe english.wav using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
+python audiototext.py english.wav --model large-v2 --output_dir audio_transcription
+
+# Translate french.wav from French to English using small model to TXT format
+python audiototext.py french.wav --task translate --language French --output_formats txt
+
+# Transcribe multiple files using Whisper large-v2 model and then translate the generated transcripts to Spanish using DeepL API to TXT, VTT and SRT formats
+python audiototext.py chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model large-v2 --output_formats txt,vtt,srt --deepl_target_language Spanish --deepl_api_key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xx
+
+# See all available options
+python audiototext.py -h
+```
+
+```
+positional arguments:
+  audio_file            source file to transcribe
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --task {transcribe,translate}
+                        transcribe (default) or translate (to English)
+  --model {tiny,base,small,medium,large-v1,large-v2}
+                        model to use (default: small)
+  --language {Auto-Detect,Afrikaans,Albanian,Amharic,Arabic,Armenian,Assamese,Azerbaijani,Bashkir,Basque,Belarusian,Bengali,Bosnian,Breton,Bulgarian,Burmese,Castilian,Catalan,Chinese,Croatian,Czech,Danish,Dutch,English,Estonian,Faroese,Finnish,Flemish,French,Galician,Georgian,German,Greek,Gujarati,Haitian,Haitian Creole,Hausa,Hawaiian,Hebrew,Hindi,Hungarian,Icelandic,Indonesian,Italian,Japanese,Javanese,Kannada,Kazakh,Khmer,Korean,Lao,Latin,Latvian,Letzeburgesch,Lingala,Lithuanian,Luxembourgish,Macedonian,Malagasy,Malay,Malayalam,Maltese,Maori,Marathi,Moldavian,Moldovan,Mongolian,Myanmar,Nepali,Norwegian,Nynorsk,Occitan,Panjabi,Pashto,Persian,Polish,Portuguese,Punjabi,Pushto,Romanian,Russian,Sanskrit,Serbian,Shona,Sindhi,Sinhala,Sinhalese,Slovak,Slovenian,Somali,Spanish,Sundanese,Swahili,Swedish,Tagalog,Tajik,Tamil,Tatar,Telugu,Thai,Tibetan,Turkish,Turkmen,Ukrainian,Urdu,Uzbek,Valencian,Vietnamese,Welsh,Yiddish,Yoruba}
+                        source file language (default: Auto-Detect)
+  --coherence_preference {True,False}
+                        True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence
+  --output_formats OUTPUT_FORMATS
+                        desired result formats (default: txt,vtt,srt,tsv,json)
+  --output_dir OUTPUT_DIR
+                        folder to save results (default: audio_transcription)
+  --deepl_api_key DEEPL_API_KEY
+                        DeepL API key, if you want to translate results using DeepL. Get a DeepL Developer Account API Key: https://www.deepl.com/pro-api
+  --deepl_target_language {Bulgarian,Chinese,Chinese (simplified),Czech,Danish,Dutch,English,English (American),English (British),Estonian,Finnish,French,German,Greek,Hungarian,Indonesian,Italian,Japanese,Latvian,Lithuanian,Polish,Portuguese,Portuguese (Brazilian),Portuguese (European),Romanian,Russian,Slovak,Slovenian,Spanish,Swedish,Turkish,Ukrainian}
+                        results target language if you want to translate results using DeepL (--deepl_api_key required)
+  --deepl_coherence_preference {True,False}
+                        True (default): Share context between lines while translating. False: Translate each line independently
+  --deepl_formality {default,formal,informal}
+                        whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)
+```
+
+### Using [Whisper CLI](https://github.com/openai/whisper#command-line-usage)
+
+If you do not need Cloud GPU and you do not want to translate using DeepL then you can just use the Whisper CLI in your console as follows:
+
+#### Install [Whisper CLI](https://github.com/openai/whisper#setup) locally
+
+1. Install [Python](https://www.python.org/downloads/) (3.8 - 3.10)
+2. Install [`ffmpeg`](https://ffmpeg.org/download.html)
 3. Install [Whisper CLI](https://github.com/openai/whisper#setup)
    
   ```sh
-  # Install Whisper CLI
   pip install -U openai-whisper
   ```
 
-#### [Whisper CLI usage](https://github.com/openai/whisper#command-line-usage) example
+#### [Whisper CLI usage](https://github.com/openai/whisper#command-line-usage)
 
 ```sh
-# Transcribe audio.mp3 and video.mp4 using large-v2 model
-whisper audio.mp3 video.mp4 --model large-v2 --output_dir audio_transcription
+# Transcribe english.wav using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
+whisper english.wav --model large-v2 --output_dir audio_transcription --output_format all
 
-# Translate japanese.wav from Japanese to English using small model
-whisper japanese.wav --language Japanese --task translate --output_dir audio_transcription
+# Translate french.wav from French to English using small model to TXT format
+whisper french.wav --task translate --language French --output_dir audio_transcription --output_format txt
+
+# Transcribe multiple files using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
+whisper chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model large-v2 --output_dir audio_transcription
 
 # See all available options
 whisper --help
