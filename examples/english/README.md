@@ -10,7 +10,7 @@ This example transcribes an english audio file using Whisper in TXT, VTT, SRT, T
 
 **use_model**: `small`
 
-**language:** `Auto-Detect` (English)
+**language:** `English`
 
 ## Output
 

@@ -1,21 +1,21 @@
 1
 00:00:00,000 --> 00:00:05,000
-The little tales they tell are false.
+The little tales, they tell, are false.
 
 2
-00:00:05,000 --> 00:00:10,000
+00:00:05,000 --> 00:00:09,000
 The door was barred, locked, and bolted as well.
 
 3
-00:00:10,000 --> 00:00:14,000
-Ripe pears are fit for a queen's table.
+00:00:09,000 --> 00:00:13,000
+Ripe pairs are fit for a queen's table.
 
 4
-00:00:14,000 --> 00:00:18,000
+00:00:13,000 --> 00:00:17,000
 A big wet stain was on the round carpet.
 
 5
-00:00:18,000 --> 00:00:22,000
+00:00:17,000 --> 00:00:22,000
 The kite dipped and swayed, but stayed aloft.
 
 6
@@ -23,22 +23,22 @@ The kite dipped and swayed, but stayed aloft.
 The pleasant hours fly by much too soon.
 
 7
-00:00:27,000 --> 00:00:32,000
-The room was crowded with a mild mob.
+00:00:27,000 --> 00:00:31,000
+The room was crowded with a mild wob.
 
 8
-00:00:32,000 --> 00:00:36,000
+00:00:31,000 --> 00:00:35,000
 The room was crowded with a wild mob.
 
 9
-00:00:36,000 --> 00:00:40,000
+00:00:35,000 --> 00:00:40,000
 This strong arm shall shield your honour.
 
 10
-00:00:40,000 --> 00:00:45,000
+00:00:40,000 --> 00:00:44,000
 She blushed when he gave her a white orchid.
 
 11
-00:00:45,000 --> 00:00:55,000
+00:00:44,000 --> 00:00:59,000
 The beetle droned in the hot June sun.
 
