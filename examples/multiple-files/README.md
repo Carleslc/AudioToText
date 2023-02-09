@@ -16,8 +16,6 @@ Then uses DeepL API to translate the generated transcripts to spanish.
 
 ## Output
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/examples/multiple-files/multiple-files-example.ipynb)
-
 ```
 Using GPU
 GPU 0: Tesla T4 (UUID: GPU-f1c80390-f4c1-4616-fe10-d8c7c404fb00)
