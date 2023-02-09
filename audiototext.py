@@ -112,7 +112,7 @@ if DEVICE == "cuda":
   os.system('nvidia-smi -L')
 else:
   if sys_platform == 'linux':
-    os.system('lscpu | grep "Model name"')
+    os.system('lscpu | grep "Model name" | awk \'{$1=$1};1\'')
 
   if use_model not in ['tiny', 'base', 'small']:
     print("Not using GPU can result in a very slow execution")
