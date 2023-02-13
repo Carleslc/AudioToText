@@ -346,7 +346,7 @@ https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb
 
 ### Using AudioToText CLI
 
-A plain [_python script_](audiototext.py) is available to use in your system without Jupyter.
+A plain [_python script_](audiototext.py) is also available to use in your system without Jupyter.
 
 #### Install AudioToText CLI locally
 
