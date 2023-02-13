@@ -25,7 +25,7 @@ parser.add_argument("--output_formats", help="desired result formats (default: t
 parser.add_argument("--output_dir", help="folder to save results (default: audio_transcription)", default="audio_transcription")
 parser.add_argument("--deepl_api_key", help="DeepL API key, if you want to translate results using DeepL. Get a DeepL Developer Account API Key: https://www.deepl.com/pro-api")
 parser.add_argument("--deepl_target_language", help="results target language if you want to translate results using DeepL (--deepl_api_key required)", choices=["Bulgarian", "Chinese", "Chinese (simplified)", "Czech", "Danish", "Dutch", "English", "English (American)", "English (British)", "Estonian", "Finnish", "French", "German", "Greek", "Hungarian", "Indonesian", "Italian", "Japanese", "Latvian", "Lithuanian", "Polish", "Portuguese", "Portuguese (Brazilian)", "Portuguese (European)", "Romanian", "Russian", "Slovak", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian"])
-parser.add_argument("--deepl_coherence_preference", help="True: Share context between lines while translating. False (default): Translate each line independently", default='False', choices=[True, False], type=lambda b: b.lower() != 'false')
+parser.add_argument("--deepl_coherence_preference", help="True (default): Share context between lines while translating. False: Translate each line independently", default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
 parser.add_argument("--deepl_formality", help="whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)", default="default", choices=["default", "formal", "informal"])
 args = parser.parse_args()
 
@@ -354,20 +354,38 @@ if use_deepl_translation:
           translated_results[audio_path] = { 'text': '', 'segments': [], 'language': deepl_target_language }
 
           # segments / request (max 128 KiB / request, so deepl_batch_requests_size is limited to around 1000)
-          deepl_batch_requests_size = 100 # 100 segments * ~100 bytes / segment = ~10 KB / request  (~15 minutes of speech)
+          deepl_batch_requests_size = 200 # 200 segments * ~100 bytes / segment = ~20 KB / request  (~15 minutes of speech)
           
           for batch_segments in [segments[i:i + deepl_batch_requests_size] for i in range(0, len(segments), deepl_batch_requests_size)]:
             batch_segments_text = [segment['text'] for segment in batch_segments]
 
             if deepl_coherence_preference:
-              batch_segments_text = '\n'.join(batch_segments_text)
+              batch_segments_text = '<br/>'.join(batch_segments_text)
 
-            deepl_results = deepl_translator.translate_text(batch_segments_text, source_lang=source_lang, target_lang=deepl_target_language_code, formality=deepl_formality, split_sentences='1')
+            # DeepL request
+            deepl_results = deepl_translator.translate_text(
+                text=batch_segments_text,
+                source_lang=source_lang,
+                target_lang=deepl_target_language_code,
+                formality=deepl_formality,
+                split_sentences='nonewlines',
+                tag_handling='xml' if deepl_coherence_preference else None,
+                ignore_tags='br' if deepl_coherence_preference else None, # used to synchronize sentences with whisper lines but without splitting sentences in DeepL
+                outline_detection=False if deepl_coherence_preference else None
+            )
             
-            deepl_results_segments = deepl_results.text.split('\n') if deepl_coherence_preference else [deepl_result_segment.text for deepl_result_segment in deepl_results]
+            deepl_results_segments = deepl_results.text.split('<br/>') if deepl_coherence_preference else [deepl_result_segment.text for deepl_result_segment in deepl_results]
 
             for j, translated_text in enumerate(deepl_results_segments):
               segment = batch_segments[j]
+
+              # fix sentence formatting
+              translated_text = translated_text.lstrip(',. ')
+
+              if translated_text and translated_text[-1] == '.' and segment['text'][-1] != '.':
+                translated_text = translated_text[:-1]
+
+              # add translated segments
               translated_results[audio_path]['segments'].append(dict(id=segment['id'], start=segment['start'], end=segment['end'], text=translated_text))
 
               if options['verbose']:
@@ -379,6 +397,8 @@ if use_deepl_translation:
           
           if deepl_usage.character.valid:
             print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.1f}%)\n")
+        elif source_language_code == target_language_code:
+          print(f"Nothing to translate. Results are already in {result['language']}.")
         elif task == 'transcribe' and source_language_code not in deepl_source_languages:
           print(f"DeepL: {result['language']} is not yet supported")
   except deepl.DeepLException as e:
