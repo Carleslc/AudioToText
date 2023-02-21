@@ -380,9 +380,9 @@ if use_deepl_translation:
               segment = batch_segments[j]
 
               # fix sentence formatting
-              translated_text = translated_text.lstrip(',. ')
+              translated_text = translated_text.lstrip(',.。 ').rstrip()
 
-              if translated_text and translated_text[-1] == '.' and segment['text'][-1] != '.':
+              if not deepl_coherence_preference and translated_text and translated_text[-1] in '.。' and segment['text'][-1] not in '.。':
                 translated_text = translated_text[:-1]
 
               # add translated segments
@@ -396,7 +396,7 @@ if use_deepl_translation:
           deepl_usage = deepl_translator.get_usage()
           
           if deepl_usage.character.valid:
-            print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.1f}%)\n")
+            print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.2f}%)\n")
         elif source_language_code == target_language_code:
           print(f"Nothing to translate. Results are already in {result['language']}.")
         elif task == 'transcribe' and source_language_code not in deepl_source_languages:
