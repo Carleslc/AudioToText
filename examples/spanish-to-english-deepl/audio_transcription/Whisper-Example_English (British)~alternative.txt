@@ -1,0 +1,233 @@
+2022 will be remembered as the year of Stable Diffusion, of Dali 2, of incredible models
+text generators such as Palm or code generators such as AlphaCode.
+And yet, chatting last month with Andrés Torrubia, he told me that the
+most interesting thing I'd seen this year was an artificial intelligence that was coming
+from the OpenAI lab, an AI called Whisper.
+What do you think is the most impressive thing that has come out this year?
+Well, oddly enough, look, oddly enough, so far Whisper, I think.
+Do you know why?
+Curious, eh.
+What impresses me about Whisper is that Whisper works, it's like, for me, Whisper, if it were
+the autonomous car, it would be the first self-driving car in the dictation, i.e. it is the first one that resembles
+to a person.
+Well, but in order for you to first understand what this Whisper thing is, I'm going to ask you to
+do the following exercise.
+I am going to play you an audio in English and your task is to transcribe each of the words
+you are listening to.
+Are you ready?
+Three, two, one.
+Have you understood anything?
+Yeah, me neither.
+Well, in the ears of this artificial intelligence, this is the perfect transcription it has achieved.
+How is your Korean?
+Well, it's no problem for Whisper either, and he can also transcribe this audio at
+perfect English.
+And well, he understands me too.
+What you're seeing on the screen now is the speech to text that Whisper gets when it
+I pass on the audio track you are listening to.
+Look closely, not only does he get a near-perfect transcription, understanding even words
+such as Whisper or speech to text, but it is also capable of generating full stops, commas
+and other punctuation marks than many other commercial recognition models
+of speech as he tends to choke on it.
+And this is very interesting.
+Well, not this, but Whisper.
+Whisper in general has many interesting things and the first interesting thing is the context
+in which this tool appears.
+After a year of amazing achievements by the Artificial Intelligence Lab
+OpenAI, suddenly out of the blue a collaborative initiative like Stability.ai
+which in September takes up the banner of making open source many of the technologies that
+OpenAI for its part has decided to keep to itself and share only under services
+payment.
+This is not a problem for me either, because in the end OpenAI as a company has
+to pay their bills and at least it's giving us a way to access these powerful
+artificial intelligences.
+Learn Google.
+But of course, a new little boy arrives in town and starts giving out sweets to the
+children and all of a sudden the popular kid starts to be displaced.
+And at that precise moment OpenAI comes out of nowhere and gives us Whisper for our benefit
+of all.
+Because yes, my friends, this is open source, and I know you love to hear these words.
+At the end of the video I'm going to show you a mini tutorial so you can see how easy it is to use
+this tool and I'm also going to share a notebook to make it super easy for you to
+you.
+And this is what makes Whisper a super interesting tool, but it is not the only thing.
+And this is where one of the things that has caught my attention is that Whisper
+is not a complex system that has been designed to process audio in a way that has never been done before
+made or a super-complex system with a lot of processing modules.
+No, Whisper is this right here, a transformer neural network from 2017, it doesn't have
+no change, nothing new.
+It is an architecture with which we are all familiar.
+So, if this is the case, why didn't a technology like Whisper already exist?
+Well, the key to what makes Whisper so powerful is in the data and how it has been used
+structured their training.
+To train him, OpenAI used no less than 680,000 hours of audio with its
+corresponding text, a brutality.
+And if you calculate 680,000 hours and start reproducing them now, you would end up with
+to listen to it 77 years from now.
+You could be sure that at some point in the sky you would see Halley's comet streaking across the sky.
+But what's more, a very interesting thing is that these audios come in multiple languages,
+allowing us to be able to train a model that is multilingual, that can understand us
+whether we speak to him in Spanish, English, Korean, it doesn't matter.
+But it doesn't stop there.
+Whisper is not only a multilingual system, but also a multitasking system.
+This is a trend that, as we saw in the video on Gato, in the world of deep
+learning is becoming more and more frequent.
+Do not train artificial intelligence for a single task, but train it for several tasks
+different, thus making their learning much more solid and robust.
+As we have seen, Whisper can take audios in English and transcribe them into English, or
+audio in Korean and transcribe it into Korean.
+But the same model can also identify which language is being spoken, or acted upon
+as a speech detector to classify when a piece of audio is not being listened to
+to a person.
+Or also, the task that I find most interesting of all, that you can talk to him or her
+to Whisper in any language and have it automatically transcribe it into English for you.
+And in this case I can't tell you why, but for me this seems to me to be one of the most important functions
+fascinating.
+It doesn't seem to offer us anything new either, does it?
+In the end you can take the text generated by any text transcriber in your language
+and run it through a translator.
+But in this case, I find it fascinating to see how something as simple as a single
+deep learning model allows you to speak to it in any language and have it generate the text for you
+in English without having to combine any tools.
+It's super simple.
+And the data we discussed earlier is also very interesting.
+Because my first intuition here is that OpenAI, in the search for a massive dataset
+of these 680,000 hours of audio to have a text transcription in order to be able to make
+this supervised apprenticeship, as he had possibly gone to one of the largest sources of
+that we can find on the Internet, which is YouTube.
+In the end you know that all YouTube videos are automatically generated with subtitles.
+Well, no.
+This is precisely what OpenAI puts a lot of emphasis on in its paper to explain what they have done
+a filtering process to remove from the dataset any text occurrences generated by
+automatic speech recognition systems.
+Why?
+It was precisely to prevent Whisper from learning those defects, those vices, too
+that other automatic systems may also have.
+That said, now that we're talking about Whisper and YouTube, there is a theory that
+I want to tell you that I think it's very interesting, it's nothing that is confirmed, but that
+could explain the reason for the existence of this tool and that it could have a certain relationship with the
+with a future GPT-4.
+This is an idea I heard on Dr. Alan Thompson's channel, which says that in
+the near future, where GPT-4 can begin training, Whisper could offer the system
+a huge source of data that previous systems had not been able to count on.
+Think of a system like GPT-3 as having been trained with a lot of Wikipedia articles,
+of books, of forums, of Internet conversations, but he has never been able to access all of the
+that spoken source that may be in databases such as YouTube.
+A tool such as Whisper could be used to sweep YouTube completely, transcribe
+many of their audios and get, unlock a new source of data that previously would not have
+It has been possible to use it to train a future language model.
+This is the enormous value of a tool like Whisper that I think makes it so interesting
+to this technology.
+No, it does not solve a task that is spectacular, such as generating images or generating video, but it does
+solves a very useful task and almost solves it to perfection.
+I say almost, it's not perfect, sometimes some words are obviously wrong and it doesn't cover it
+all the languages that exist on planet Earth, and well, to look for some limitation
+compared to other commercial tools, as it does not yet work in real time either.
+Depending on the length of the audio it can take a few seconds to process it, sometimes
+It's a solid tool, it's mature, it's useful and it's open source,
+now allowing anyone to have access to a professional transcription tool
+and text translation better than any free alternative.
+What?
+Oh, that you too would like to have access to this tool.
+Well, come on, I'll prepare an easy tutorial for all of you to use.
+We are going to do it in Google Colab, but first and taking advantage of the fact that we are talking about programming,
+of development, of innovation, let me remind you that there are very few days left
+for Samsung Dev Day, which is the technology event held every year to celebrate the Samsung
+year the Samsung Dev Spain community, which is Samsung's official community for developers
+Spanish.
+This will be a free event not to be missed.
+If you are in Madrid you can attend in person on 16th November at the cloister of
+the Hieronymites of the Museo del Prado and if not, you can connect online at
+its streaming.
+But yes, you have to register, I was lucky enough to be able to participate last year with one of my own
+presentation on code generation with artificial intelligence and the experience was
+great.
+So you see, it's going to be an event full of great talks, talking about technology,
+of innovation, of applications, and it will also be presented by my dudev, who will surely
+Many of you will know him, so you can't miss him.
+I'll leave a link to the Samsung Dev website below in the description box
+Spain, where you will find all the information regarding the agenda where you can register and a
+a lot of other resources.
+See you on 16 November.
+Let's see how we can use Whisper in our own code.
+For this we are going to use Google Colab, you know that Google is giving us here
+a free virtual machine that we can use and we will check as long as we have
+enabled the GPU hardware accelerated environment type, OK, let's hit it here
+GPU, let's hit save and now the first step will be to install Whisper.
+To do this we are going to use these two commands here, to install, you can find this here
+in Whisper's own GitHub repository, I'm going to leave you below in the description box
+these commands, hit run and let it install.
+Once installed, we are going to upload some audio that we want to transcribe, in this case
+I'm going to try Rosalía's song from Chicken Teriyaki, let's put it here,
+we drag it and now the next step we are going to take it here and we are going to put the command
+necessary to be able to run it, we're going to hit song.mp3 here, it's called the file that we
+we have uploaded, okay, song.mp3, so the task is going to be to transcribe the size of the model,
+there are different sizes depending on whether you want more speed when making the inference
+or if you want more precision in the results, I usually work with the Medium model
+which is the one that gives me good results, there are bigger models, there are smaller models, try it
+and in this case simply where we are going to place the output file, we run
+and that's it, that's it, no more to do, okay, we're already using Whisper,
+the first time it will take a little while because you have to download the model but from this
+At the moment you can use this system to transcribe any audio you want,
+mola, ok, we can see that in this case it has detected that the language is Spanish, it has made the inference
+automatic because we haven't told you that we are going to transcribe from Spanish, you can do it
+if you want and when this cell is already executed, we can come here, we see
+that the Audio Transcription folder has been generated and here we have the different options, we can
+open the sound.txt and here we open the file, we can see that we have the whole song perfectly
+transcribed, which in this case, being Rosalía, has more merit and instead of wanting to
+transcription, you would like to make the translation, i.e. to convert your
+voice, your audio to English, so all you have to do is change here the
+task by Translate and in this case Whisper will work to translate what it has transcribed.
+In this case, if you notice, the command we have used is the console command
+but you may want to use Whisper within your code, then you can also
+you have the option to work with Whisper's own library, it's simply this one
+line of code from here, import it, load the model we want, here then
+I would load the Medium model which is the one that, as I said, works best for my case, and with
+the loaded model then here we call model.transcribe, let's put here song.mp3, we hit run
+and in a matter of seconds we will have our transcript back.
+And here it is, the Rosalia, pink without a card, I send it to your cat, I have it for you
+with roulette, no need for a serenade, ok.
+However, to make your life easier, I have prepared a notebook that you can use,
+is below in the description box, where you already have all the code ready for
+to start working, just log in, check that the GPU is activated,
+click on this button here to install everything necessary, here we choose the
+task we want to do, whether it is transcribing into any language or translating into English
+and click on run.
+In this case the cell is prepared so that the moment you start to run it
+your microphone is recording right now, i.e. right now we would be generating
+an audio file that we will then use for transcribing with Whisper, this is by
+if you want to make a real-time transcript of any class or anything else
+you need.
+We're going to hit stop, we hit this button and in a moment we have the result of what we've done
+we have said.
+Below you will find the two commands needed to be able to transcribe or translate
+the audio you upload.
+Finally, you should also know that if you want something simpler, then there are pages
+website where you can try out this system by uploading your own audios or by recording
+from the microphone.
+And this would be, 2022 is shaping up to be a spectacular year in terms of numbers
+of neural toys that are coming into our hands to build a whole bunch
+and to be able to touch them.
+Now it's your turn, what can you do about it?
+Well, you can build a lot of super interesting things, you can connect by
+example Whisper with Stable Diffusion so that you can loudly ask it to
+generate a table or you can for example take all your classes at the university or
+all working meetings, transcribing them, creating a huge bank of transcripts and
+then with the GPT-3 API to make a chatbot that allows you to query, ask questions
+and answers on all these sources of information.
+For example, something I want to do is to take all the videos from my YouTube channel
+and transcribe it, generate good quality subtitles in both Spanish and English
+and to be able to make statistics and queries on how many times I have said for example the word
+Machine Learning.
+There are a lot of applications that you can start to build, that you can start to build, that you can start to
+create by combining all these technologies.
+I had a dog barking in the background that was bothering me a lot.
+Well, as I was saying, you can create a lot of things and there is a lot to do.
+From here, from this channel, we will continue to experiment with this technology,
+I will continue to bring you new tools so if you haven't done so yet, please subscribe,
+click on the little bell to always receive notifications of new videos
+and if you want to support all this content you know you can do so through Patreon
+below in the description box.
+You have a couple of videos around here that are super interesting, I don't know what they are but
+are super interesting, keep an eye on them and we'll see you with more artificial intelligence
+guys, girls, in the next video.

@@ -541,7 +541,7 @@ audio_transcription/Whisper-Example_English (British).srt
 
 [audio_transcription/Whisper-Example_English (British).srt](audio_transcription/Whisper-Example_English%20(British).srt)
 
-## About translation coherence
+### About translation coherence
 
 When translating to another language using **deepl_coherence_preference** `Share context between lines` to have a high quality translation, some words may change their order in the sentences according to the language's grammar, and then translated sentences do not match exactly the original language timestamps.
 
