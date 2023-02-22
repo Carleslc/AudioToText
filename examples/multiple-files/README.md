@@ -17,8 +17,7 @@ Then uses DeepL API to translate the generated transcripts to spanish.
 ## Output
 
 ```
-Using GPU
-GPU 0: Tesla T4 (UUID: GPU-f1c80390-f4c1-4616-fe10-d8c7c404fb00)
+GPU 0: Tesla T4 (UUID: GPU-1c00bab7-1e75-192c-33cb-637ef416d04f)
 
 Loading large-v2 model...
 Model large-v2 is multilingual and has 1,541,384,960 parameters.
@@ -104,7 +103,7 @@ audio_transcription/french.srt
 
 **deepl_formality**: `default`
 
-**deepl_coherence_preference**: `Translate each line independently`
+**deepl_coherence_preference**: `Share context between lines`
 
 ```
 chinese.wav
@@ -112,60 +111,60 @@ chinese.wav
 DeepL: Translate results from Chinese [ZH] to Spanish [ES]
 
 [00:00.600 --> 00:04.120] Hay una estación de metro no muy lejos de la entrada al patio
-[00:04.140 --> 00:06.720] Es un espectáculo hermoso y mágico
+[00:04.140 --> 00:06.720] Es una vista hermosa y mágica
 [00:07.760 --> 00:10.520] Los árboles están llenos de melocotones grandes y dulces
-[00:11.520 --> 00:14.600] El espectáculo de delfines y ballenas es un gran espectáculo para ver
-[00:14.600 --> 00:19.400] Hay un buzón azul en el camino prismático frente a la oficina de correos
+[00:11.520 --> 00:14.600] Los espectáculos de delfines y ballenas son geniales de ver
+[00:14.600 --> 00:19.400] Hay un buzón azul en el camino acanalado frente a la oficina de correos
 
-DeepL: Character usage: 51451 / 500000 (10.3%)
+DeepL: Character usage: 78 / 500000 (0.02%)
 
 bruce.mp3
 
 DeepL: Translate results from English [EN] to Spanish [ES]
 
-[00:00.000 --> 00:03.000] Me levanto por la tarde
+[00:00.000 --> 00:03.000] Me levanto por la noche
 [00:04.000 --> 00:07.000] Y no tengo nada que decir
 [00:07.000 --> 00:09.000] Vuelvo a casa por la mañana
-[00:10.000 --> 00:13.000] Me voy a la cama sintiendo lo mismo
+[00:10.000 --> 00:13.000] Me acuesto sintiéndome igual
 [00:13.000 --> 00:16.000] No estoy más que cansado
 [00:17.000 --> 00:20.000] Tío, estoy cansado y aburrido de mí mismo
-[00:20.000 --> 00:22.000] Hola, cariño.
+[00:20.000 --> 00:22.000] Hola, baby
 [00:24.000 --> 00:26.000] Me vendría bien un poco de ayuda
-[00:26.000 --> 00:29.000] No se puede encender un fuego
-[00:29.000 --> 00:33.000] No se puede encender un fuego sin una chispa
-[00:33.000 --> 00:35.000] Hay armas de alquiler
-[00:35.000 --> 00:39.000] Aunque sólo estemos bailando en la oscuridad
+[00:26.000 --> 00:29.000] No puedes encender un fuego
+[00:29.000 --> 00:33.000] No puedes encender un fuego sin una chispa
+[00:33.000 --> 00:35.000] Hay pistolas de alquiler
+[00:35.000 --> 00:39.000] Incluso si sólo estamos bailando en la oscuridad
 
-DeepL: Character usage: 51792 / 500000 (10.4%)
+DeepL: Character usage: 441 / 500000 (0.09%)
 
 english_japanese.mp3
 
 DeepL: Translate results from Japanese [JA] to Spanish [ES]
 
-[00:00.000 --> 00:07.000] Esta es la Unidad 1 de Japonés 1 de Pimsleur. Escucha esta conversación en japonés.
-[00:07.000 --> 00:10.000] Disculpadme. ¿Entiendes inglés?
-[00:10.000 --> 00:15.000] No, no lo entiendo. ¿Entiendes japonés?
-[00:15.000 --> 00:17.000] Sí, lo entiendo un poco.
-[00:17.000 --> 00:19.000] ¿Es usted estadounidense?
-[00:19.000 --> 00:34.000] Sí, soy estadounidense.
+[00:00.000 --> 00:07.000] Esta es la Unidad 1 de Japonés 1 de Pimsleur. Escuche esta conversación en japonés.
+[00:07.000 --> 00:10.000] Disculpe. ¿Entiende inglés?
+[00:10.000 --> 00:15.000] No, no entiendo. ¿Entiende japonés?
+[00:15.000 --> 00:17.000] Sí, entiendo un poco.
+[00:17.000 --> 00:19.000] ¿Es usted americano?
+[00:19.000 --> 00:34.000] Sí, soy americano.
 
-DeepL: Character usage: 51945 / 500000 (10.4%)
+DeepL: Character usage: 596 / 500000 (0.12%)
 
 french.wav
 
 DeepL: Translate results from French [FR] to Spanish [ES]
 
-[00:00.000 --> 00:06.640] Whisper es un sistema de reconocimiento automático del habla entrenado en 680.000
-[00:06.640 --> 00:10.720] horas de datos multilingües y multitarea recogidos en Internet.
-[00:10.720 --> 00:16.000] Establecemos que el uso de un número tan grande y diversidad de datos
-[00:16.000 --> 00:20.500] es la razón por la que El Sistema es capaz de entender muchos acentos
-[00:20.500 --> 00:24.880] ruido, comprender el vocabulario técnico y completar con éxito el
-[00:24.880 --> 00:27.640] traducción de varios idiomas al inglés.
-[00:27.640 --> 00:33.360] Distribuimos como código abierto el código fuente de nuestros modelos y de la inferencia
-[00:33.360 --> 00:37.040] de modo que puedan utilizarse como punto de partida para crear aplicaciones
-[00:37.040 --> 00:54.560] y contribuir al avance de la investigación en el procesamiento del habla.
+[00:00.000 --> 00:06.640] Whisper es un sistema de reconocimiento automático del habla entrenado con 680.000
+[00:06.640 --> 00:10.720] horas de datos multilingües y multitarea recogidos de Internet.
+[00:10.720 --> 00:16.000] Sostenemos que el uso de una cantidad tan grande y diversa de datos
+[00:16.000 --> 00:20.500] es la razón por la que el sistema es capaz de entender muchos acentos
+[00:20.500 --> 00:24.880] a pesar del ruido de fondo, comprender vocabulario técnico y traducir con éxito
+[00:24.880 --> 00:27.640] de varios idiomas al inglés.
+[00:27.640 --> 00:33.360] Publicamos como código abierto el código fuente de nuestros modelos y de la inferencia
+[00:33.360 --> 00:37.040] para que puedan servir como punto de partida para crear aplicaciones útiles
+[00:37.040 --> 00:54.560] y para ayudar a avanzar en la investigación del procesamiento del habla.
 
-DeepL: Character usage: 52664 / 500000 (10.5%)
+DeepL: Character usage: 1327 / 500000 (0.27%)
 
 Writing translated results...
 

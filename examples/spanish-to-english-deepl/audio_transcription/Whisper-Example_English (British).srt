@@ -48,7 +48,7 @@ a person.
 
 13
 00:00:47,880 --> 00:00:51,000
-Well, but in order for you to first understand what Whisper is, I'm going to ask you to
+Well, but in order for you to first understand what Whisper is, I am going to ask you to
 
 14
 00:00:51,000 --> 00:00:53,120
@@ -108,19 +108,19 @@ passes it the audio track you are listening to.
 
 28
 00:01:52,680 --> 00:01:57,440
-Look closely, not only does it get an almost perfect transcription, understanding even specific
+Look closely, not only does it get an almost perfect transcription, understanding even specific words
 
 29
 00:01:57,440 --> 00:02:02,760
-words like Whisper or speech to text, but it is also able to generate full stops, commas
+like Whisper or speech to text, but it is also able to generate full stops, commas
 
 30
 00:02:02,760 --> 00:02:06,560
-and other punctuation marks that many other commercial models of
+and other punctuation marks that many other commercial models of speech recognition
 
 31
 00:02:06,560 --> 00:02:08,360
-speech recognition tend to struggle with.
+usually struggle to do.
 
 32
 00:02:08,360 --> 00:02:10,720
@@ -248,7 +248,7 @@ has structured its training.
 
 63
 00:04:02,920 --> 00:04:09,040
-To train it, OpenAI has used no more and no less than 680,000 hours of audio with its corresponding text
+To train it, OpenAI has used no less than 680,000 hours of audio with its corresponding text
 
 64
 00:04:09,040 --> 00:04:12,360
@@ -288,7 +288,7 @@ And Whisper, as well as being a multilingual system, is also a multitasking syst
 
 73
 00:04:43,720 --> 00:04:47,520
-This is a trend that, as we saw in the video about Gato, is becoming more and more frequent in the world of deep
+This is a trend that, as we saw in the video on Gato, is becoming more and more frequent in the world of deep
 
 74
 00:04:47,520 --> 00:04:49,760
@@ -296,7 +296,7 @@ learning.
 
 75
 00:04:49,760 --> 00:04:54,680
-Do not train artificial intelligence for a single task, but train it for several different
+Not to train artificial intelligence for a single task, but to train it for several different
 
 76
 00:04:54,680 --> 00:04:59,560
@@ -388,7 +388,7 @@ that we can find on the Internet, which is YouTube.
 
 98
 00:06:12,520 --> 00:06:16,960
-In the end you already know that all YouTube videos have automatically generated subtitles.
+In the end you know that all YouTube videos have automatically generated subtitles.
 
 99
 00:06:16,960 --> 00:06:17,960
@@ -396,7 +396,7 @@ Well no.
 
 100
 00:06:17,960 --> 00:06:22,800
-This is precisely what OpenAI emphasises in their paper to explain that they have done
+This is precisely what OpenAI emphasises in its paper to explain that they have done
 
 101
 00:06:22,800 --> 00:06:28,200
@@ -504,7 +504,7 @@ Processing the audio depending on the length can take a few seconds, sometimes
 
 127
 00:08:11,280 --> 00:08:17,080
-a minute, but it is a solid tool, it is mature, it is useful and it is open source,
+a few minutes, but it is a solid tool, it is mature, it is useful and it is open source,
 
 128
 00:08:17,080 --> 00:08:21,040

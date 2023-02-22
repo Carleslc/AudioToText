@@ -4,7 +4,7 @@ Hay una estación de metro no muy lejos de la entrada al patio
 
 2
 00:00:04,140 --> 00:00:06,720
-Es un espectáculo hermoso y mágico
+Es una vista hermosa y mágica
 
 3
 00:00:07,760 --> 00:00:10,520
@@ -12,9 +12,9 @@ Los árboles están llenos de melocotones grandes y dulces
 
 4
 00:00:11,520 --> 00:00:14,600
-El espectáculo de delfines y ballenas es un gran espectáculo para ver
+Los espectáculos de delfines y ballenas son geniales de ver
 
 5
 00:00:14,600 --> 00:00:19,400
-Hay un buzón azul en el camino prismático frente a la oficina de correos
+Hay un buzón azul en el camino acanalado frente a la oficina de correos
 
