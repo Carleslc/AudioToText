@@ -335,76 +335,72 @@ if use_deepl_translation:
       
       if deepl_usage.any_limit_reached:
         print(audio_path)
-        print("DeepL: Translation limit reached.\n")
-        use_deepl_translation = False
+        raise deepl.DeepLException("Quota for this billing period has been exceeded, message: Quota Exceeded")
       else:
         print(audio_path + '\n')
       
       # translate results (DeepL)
-      if use_deepl_translation:
-        source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(result['language'].lower()).upper()
+      source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(result['language'].lower()).upper()
 
-        if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
-          source_lang = source_language_code if task == 'transcribe' else None
-          translate_from = f"from {result['language']} [{source_language_code}] " if source_lang else ''
-          print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
+      if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
+        source_lang = source_language_code if task == 'transcribe' else None
+        translate_from = f"from {result['language']} [{source_language_code}] " if source_lang else ''
+        print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
 
-          segments = result['segments']
+        segments = result['segments']
 
-          translated_results[audio_path] = { 'text': '', 'segments': [], 'language': deepl_target_language }
+        translated_results[audio_path] = { 'text': '', 'segments': [], 'language': deepl_target_language }
 
-          # segments / request (max 128 KiB / request, so deepl_batch_requests_size is limited to around 1000)
-          deepl_batch_requests_size = 200 # 200 segments * ~100 bytes / segment = ~20 KB / request  (~15 minutes of speech)
+        # segments / request (max 128 KiB / request, so deepl_batch_requests_size is limited to around 1000)
+        deepl_batch_requests_size = 200 # 200 segments * ~100 bytes / segment = ~20 KB / request  (~15 minutes of speech)
+        
+        for batch_segments in [segments[i:i + deepl_batch_requests_size] for i in range(0, len(segments), deepl_batch_requests_size)]:
+          batch_segments_text = [segment['text'] for segment in batch_segments]
+
+          if deepl_coherence_preference:
+            batch_segments_text = '<br/>'.join(batch_segments_text)
+
+          # DeepL request
+          deepl_results = deepl_translator.translate_text(
+              text=batch_segments_text,
+              source_lang=source_lang,
+              target_lang=deepl_target_language_code,
+              formality=deepl_formality,
+              split_sentences='nonewlines',
+              tag_handling='xml' if deepl_coherence_preference else None,
+              ignore_tags='br' if deepl_coherence_preference else None, # used to synchronize sentences with whisper lines but without splitting sentences in DeepL
+              outline_detection=False if deepl_coherence_preference else None
+          )
           
-          for batch_segments in [segments[i:i + deepl_batch_requests_size] for i in range(0, len(segments), deepl_batch_requests_size)]:
-            batch_segments_text = [segment['text'] for segment in batch_segments]
+          deepl_results_segments = deepl_results.text.split('<br/>') if deepl_coherence_preference else [deepl_result_segment.text for deepl_result_segment in deepl_results]
 
-            if deepl_coherence_preference:
-              batch_segments_text = '<br/>'.join(batch_segments_text)
+          for j, translated_text in enumerate(deepl_results_segments):
+            segment = batch_segments[j]
 
-            # DeepL request
-            deepl_results = deepl_translator.translate_text(
-                text=batch_segments_text,
-                source_lang=source_lang,
-                target_lang=deepl_target_language_code,
-                formality=deepl_formality,
-                split_sentences='nonewlines',
-                tag_handling='xml' if deepl_coherence_preference else None,
-                ignore_tags='br' if deepl_coherence_preference else None, # used to synchronize sentences with whisper lines but without splitting sentences in DeepL
-                outline_detection=False if deepl_coherence_preference else None
-            )
-            
-            deepl_results_segments = deepl_results.text.split('<br/>') if deepl_coherence_preference else [deepl_result_segment.text for deepl_result_segment in deepl_results]
+            # fix sentence formatting
+            translated_text = translated_text.lstrip(',.。 ').rstrip()
 
-            for j, translated_text in enumerate(deepl_results_segments):
-              segment = batch_segments[j]
+            if not deepl_coherence_preference and translated_text and translated_text[-1] in '.。' and segment['text'][-1] not in '.。':
+              translated_text = translated_text[:-1]
 
-              # fix sentence formatting
-              translated_text = translated_text.lstrip(',.。 ').rstrip()
+            # add translated segments
+            translated_results[audio_path]['segments'].append(dict(id=segment['id'], start=segment['start'], end=segment['end'], text=translated_text))
 
-              if not deepl_coherence_preference and translated_text and translated_text[-1] in '.。' and segment['text'][-1] not in '.。':
-                translated_text = translated_text[:-1]
-
-              # add translated segments
-              translated_results[audio_path]['segments'].append(dict(id=segment['id'], start=segment['start'], end=segment['end'], text=translated_text))
-
-              if options['verbose']:
-                print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {translated_text}")
-          
-          translated_results[audio_path]['text'] = '\n'.join(map(lambda translated_segment: translated_segment['text'], translated_results[audio_path]['segments']))
-
-          deepl_usage = deepl_translator.get_usage()
-          
-          if deepl_usage.character.valid:
-            print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.2f}%)\n")
-        elif source_language_code == target_language_code:
-          print(f"Nothing to translate. Results are already in {result['language']}.")
-        elif task == 'transcribe' and source_language_code not in deepl_source_languages:
-          print(f"DeepL: {result['language']} is not yet supported")
+            if options['verbose']:
+              print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {translated_text}")
+        
+        deepl_usage = deepl_translator.get_usage()
+        
+        if deepl_usage.character.valid:
+          print(f"\nDeepL: Character usage: {deepl_usage.character.count} / {deepl_usage.character.limit} ({100*(deepl_usage.character.count/deepl_usage.character.limit):.2f}%)\n")
+      elif source_language_code == target_language_code:
+        print(f"Nothing to translate. Results are already in {result['language']}.")
+      elif task == 'transcribe' and source_language_code not in deepl_source_languages:
+        print(f"DeepL: {result['language']} is not yet supported")
   except deepl.DeepLException as e:
     if isinstance(e, deepl.AuthorizationException) and str(e) == "Authorization failure, check auth_key":
       e = "Authorization failure, check deepl_api_key"
-    print(f"DeepL: [Error] {e}")
+    print(f"\nDeepL: [Error] {e}\n")
   
   # save translated results (if any)
 
@@ -413,6 +409,8 @@ if use_deepl_translation:
 
     for audio_path, translated_result in translated_results.items():
       print(end='\n')
+
+      translated_result['text'] = '\n'.join(map(lambda translated_segment: translated_segment['text'], translated_result['segments']))
       
       output_file_name = os.path.splitext(os.path.basename(audio_path))[0]
       translated_output_file_name = f"{output_file_name}_{deepl_target_language}"
