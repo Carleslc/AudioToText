@@ -406,7 +406,7 @@ optional arguments:
                         folder to save results (default: audio_transcription)
   --deepl_api_key DEEPL_API_KEY
                         DeepL API key, if you want to translate results using DeepL. Get a DeepL Developer Account API Key: https://www.deepl.com/pro-api
-  --deepl_target_language {Bulgarian,Chinese (simplified),Czech,Danish,Dutch,English (American),English (British),Estonian,Finnish,French,German,Greek,Hungarian,Indonesian,Italian,Japanese,Korean,Latvian,Lithuanian,Norwegian,Polish,Portuguese (Brazilian),Portuguese (European),Romanian,Russian,Slovak,Slovenian,Spanish,Swedish,Turkish,Ukrainian}
+  --deepl_target_language {Bulgarian,Chinese,Chinese (simplified),Czech,Danish,Dutch,English,English (American),English (British),Estonian,Finnish,French,German,Greek,Hungarian,Indonesian,Italian,Japanese,Korean,Latvian,Lithuanian,Norwegian,Polish,Portuguese,Portuguese (Brazilian),Portuguese (European),Romanian,Russian,Slovak,Slovenian,Spanish,Swedish,Turkish,Ukrainian}
                         results target language if you want to translate results using DeepL (--deepl_api_key required)
   --deepl_coherence_preference {True,False}
                         True (default): Share context between lines while translating. False: Translate each line independently
