@@ -17,16 +17,26 @@ parser = argparse.ArgumentParser(
   epilog=f'web: https://carleslc.me/AudioToText/'
 )
 parser.add_argument("audio_file", nargs='+', help="source file to transcribe")
-parser.add_argument("--task", help="transcribe (default) or translate (to English)", default="transcribe", choices=["transcribe", "translate"])
-parser.add_argument("--model", help="model to use (default: small)", default="small", choices=["tiny", "base", "small", "medium", "large-v1", "large-v2"])
-parser.add_argument("--language", help="source file language (default: Auto-Detect)", default="Auto-Detect", choices=["Auto-Detect", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani", "Bashkir", "Basque", "Belarusian", "Bengali", "Bosnian", "Breton", "Bulgarian", "Burmese", "Castilian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Faroese", "Finnish", "Flemish", "French", "Galician", "Georgian", "German", "Greek", "Gujarati", "Haitian", "Haitian Creole", "Hausa", "Hawaiian", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Italian", "Japanese", "Javanese", "Kannada", "Kazakh", "Khmer", "Korean", "Lao", "Latin", "Latvian", "Letzeburgesch", "Lingala", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Maori", "Marathi", "Moldavian", "Moldovan", "Mongolian", "Myanmar", "Nepali", "Norwegian", "Nynorsk", "Occitan", "Panjabi", "Pashto", "Persian", "Polish", "Portuguese", "Punjabi", "Pushto", "Romanian", "Russian", "Sanskrit", "Serbian", "Shona", "Sindhi", "Sinhala", "Sinhalese", "Slovak", "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tajik", "Tamil", "Tatar", "Telugu", "Thai", "Tibetan", "Turkish", "Turkmen", "Ukrainian", "Urdu", "Uzbek", "Valencian", "Vietnamese", "Welsh", "Yiddish", "Yoruba"])
-parser.add_argument("--coherence_preference", help="True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence", default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
-parser.add_argument("--output_formats", help="desired result formats (default: txt,vtt,srt,tsv,json)", default="txt,vtt,srt,tsv,json")
-parser.add_argument("--output_dir", help="folder to save results (default: audio_transcription)", default="audio_transcription")
+parser.add_argument("--task", help="transcribe (default) or translate (to English)",
+                    default="transcribe", choices=["transcribe", "translate"])
+parser.add_argument("--model", help="model to use (default: small)",
+                    default="small", choices=["tiny", "base", "small", "medium", "large-v1", "large-v2"])
+parser.add_argument("--language", help="source file language (default: Auto-Detect)",
+                    default="Auto-Detect", choices=["Auto-Detect", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani", "Bashkir", "Basque", "Belarusian", "Bengali", "Bosnian", "Breton", "Bulgarian", "Burmese", "Castilian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Faroese", "Finnish", "Flemish", "French", "Galician", "Georgian", "German", "Greek", "Gujarati", "Haitian", "Haitian Creole", "Hausa", "Hawaiian", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Italian", "Japanese", "Javanese", "Kannada", "Kazakh", "Khmer", "Korean", "Lao", "Latin", "Latvian", "Letzeburgesch", "Lingala", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Maori", "Marathi", "Moldavian", "Moldovan", "Mongolian", "Myanmar", "Nepali", "Norwegian", "Nynorsk", "Occitan", "Panjabi", "Pashto", "Persian", "Polish", "Portuguese", "Punjabi", "Pushto", "Romanian", "Russian", "Sanskrit", "Serbian", "Shona", "Sindhi", "Sinhala", "Sinhalese", "Slovak", "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tajik", "Tamil", "Tatar", "Telugu", "Thai", "Tibetan", "Turkish", "Turkmen", "Ukrainian", "Urdu", "Uzbek", "Valencian", "Vietnamese", "Welsh", "Yiddish", "Yoruba"])
+parser.add_argument("--coherence_preference", help="True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence",
+                    default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
+parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting")
+parser.add_argument("--output_formats", help="desired result formats (default: txt,vtt,srt,tsv,json)",
+                    default="txt,vtt,srt,tsv,json")
+parser.add_argument("--output_dir", help="folder to save results (default: audio_transcription)",
+                    default="audio_transcription")
 parser.add_argument("--deepl_api_key", help="DeepL API key, if you want to translate results using DeepL. Get a DeepL Developer Account API Key: https://www.deepl.com/pro-api")
-parser.add_argument("--deepl_target_language", help="results target language if you want to translate results using DeepL (--deepl_api_key required)", choices=["Bulgarian", "Chinese", "Chinese (simplified)", "Czech", "Danish", "Dutch", "English", "English (American)", "English (British)", "Estonian", "Finnish", "French", "German", "Greek", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Portuguese (Brazilian)", "Portuguese (European)", "Romanian", "Russian", "Slovak", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian"])
-parser.add_argument("--deepl_coherence_preference", help="True (default): Share context between lines while translating. False: Translate each line independently", default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
-parser.add_argument("--deepl_formality", help="whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)", default="default", choices=["default", "formal", "informal"])
+parser.add_argument("--deepl_target_language", help="results target language if you want to translate results using DeepL (--deepl_api_key required)",
+                    choices=["Bulgarian", "Chinese", "Chinese (simplified)", "Czech", "Danish", "Dutch", "English", "English (American)", "English (British)", "Estonian", "Finnish", "French", "German", "Greek", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Portuguese (Brazilian)", "Portuguese (European)", "Romanian", "Russian", "Slovak", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian"])
+parser.add_argument("--deepl_coherence_preference", help="True (default): Share context between lines while translating. False: Translate each line independently",
+                    default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
+parser.add_argument("--deepl_formality", help="whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)",
+                    default="default", choices=["default", "formal", "informal"])
 args = parser.parse_args()
 
 """
@@ -77,7 +87,9 @@ You may try to choose the _Transcribe_ task and set your desired `language`, but
 
   [Available models and languages](https://github.com/openai/whisper#available-models-and-languages)
 
-  If the source audio file is entirely in English setting the `language` to English may provide better results when using a non-large model.
+  Setting the `language` to the language of source audio file may provide better results than Auto-Detect.
+
+  You can use an optional initial `prompt` to provide context about the audio or encourage a specific writing style, see the [prompting guide](https://platform.openai.com/docs/guides/speech-to-text/prompting).
   
   More parameters are available in the code `options` object.
 """
@@ -153,6 +165,7 @@ print(
 # set options
 
 # coherence_preference = "More coherence, but may repeat text" #@param ["More coherence, but may repeat text", "Less repetitions, but may have less coherence"]
+# prompt = "" #@param {type:"string"}
 
 ## Info: https://github.com/openai/whisper/blob/main/whisper/transcribe.py#L19
 options = {
@@ -166,6 +179,7 @@ options = {
     'suppress_tokens': '-1',
     'temperature': (0.0, 0.2, 0.4, 0.6, 0.8, 1.0),
     'condition_on_previous_text': args.coherence_preference,
+    'initial_prompt': args.prompt,
 }
 
 if DEVICE == 'cpu':
@@ -188,6 +202,7 @@ for audio_path in audio_files:
 
   # detect language
   detect_language = not language or language == "detect"
+  
   if detect_language:
     # load audio and pad/trim it to fit 30 seconds
     audio = whisper.load_audio(audio_path)

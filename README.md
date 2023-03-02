@@ -35,7 +35,7 @@ If you want to execute the notebook in your own computer check [_**Local install
 - [**Any-to-English translation**](#audio-translation-to-english-using-whisper)
 
 2. [**Any-to-Any\* translation**](#audio-translation-using-deepl-translator)
-   
+
    Translate the transcriptions using [**DeepL**](https://www.deepl.com/) translator.
 
    [_\* See supported languages by DeepL_](https://support.deepl.com/hc/en-us/articles/360019925219-Languages-included-in-DeepL-Pro)
@@ -193,40 +193,40 @@ However, as an alternative you can use [DeepL API](https://www.deepl.com/pro-api
 <details>
   <summary><a><i>Supported source languages by DeepL</i></a></summary>
 
-  <a href="https://www.deepl.com/docs-api/translate-text"><code>source_lang</code></a>
+<a href="https://www.deepl.com/docs-api/translate-text"><code>source_lang</code></a>
 
-  ```
-  Bulgarian
-  Chinese
-  Czech
-  Danish
-  Dutch
-  English
-  Estonian
-  Finnish
-  French
-  German
-  Greek
-  Hungarian
-  Indonesian
-  Italian
-  Japanese
-  Korean
-  Latvian
-  Lithuanian
-  Norwegian
-  Polish
-  Portuguese
-  Romanian
-  Russian
-  Slovak
-  Slovenian
-  Spanish
-  Swedish
-  Turkish
-  Ukrainian
-  ```
-  
+```
+Bulgarian
+Chinese
+Czech
+Danish
+Dutch
+English
+Estonian
+Finnish
+French
+German
+Greek
+Hungarian
+Indonesian
+Italian
+Japanese
+Korean
+Latvian
+Lithuanian
+Norwegian
+Polish
+Portuguese
+Romanian
+Russian
+Slovak
+Slovenian
+Spanish
+Swedish
+Turkish
+Ukrainian
+```
+
 </details>
 
 \* If the source language of your audio file is supported by Whisper but not supported by DeepL you can use the `Translate to English` task to generate an English transcription first and translate that to your desired target language using DeepL.
@@ -304,12 +304,12 @@ With audio-only files you will need to enable a visualization in _Audio -> Visua
 
 If you have a powerful computer with GPU hardware acceleration, you can also run the [_AudioToText notebook_](AudioToText.ipynb) in your local machine.
 
-CPU execution is also available, but it is much slower and the [Cloud]((https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)) version is recommended if you do not have a decent GPU.
+CPU execution is also available, but it is much slower and the [Cloud](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) version is recommended if you do not have a decent GPU.
 You might, however, try to use the smaller models (`tiny`, `base`, `small`) on your CPU.
 
 ### Using Google Colab with your local environment
 
-[Google Colab]((https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)) lets you connect to a local runtime using [Jupyter](http://jupyter.org/install).
+[Google Colab](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) lets you connect to a local runtime using [Jupyter](http://jupyter.org/install).
 This allows you to use the notebook using your local hardware and have access to your local file system.
 
 [_How to set up and connect to a local runtime in Google Colab_](https://research.google.com/colaboratory/local-runtimes.html)
@@ -356,19 +356,19 @@ A plain [_python script_](audiototext.py) is also available to use in your syste
 2. Install [Python](https://www.python.org/downloads/) (3.8 - 3.10)
 3. Install [`ffmpeg`](https://ffmpeg.org/download.html)
 
-  ```sh
-  # on MacOS using Homebrew (https://brew.sh/)
-  brew install ffmpeg
+```sh
+# on MacOS using Homebrew (https://brew.sh/)
+brew install ffmpeg
 
-  # on Windows using Chocolatey (https://chocolatey.org/)
-  choco install ffmpeg
+# on Windows using Chocolatey (https://chocolatey.org/)
+choco install ffmpeg
 
-  # on Ubuntu or Debian
-  sudo apt update && sudo apt install ffmpeg
+# on Ubuntu or Debian
+sudo apt update && sudo apt install ffmpeg
 
-  # on Arch Linux
-  sudo pacman -S ffmpeg
-  ```
+# on Arch Linux
+sudo pacman -S ffmpeg
+```
 
 #### AudioToText CLI usage
 
@@ -400,6 +400,7 @@ optional arguments:
                         source file language (default: Auto-Detect)
   --coherence_preference {True,False}
                         True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence
+  --prompt PROMPT       provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting
   --output_formats OUTPUT_FORMATS
                         desired result formats (default: txt,vtt,srt,tsv,json)
   --output_dir OUTPUT_DIR
@@ -423,10 +424,10 @@ If you do not need Cloud GPU and you do not want to translate using DeepL then y
 1. Install [Python](https://www.python.org/downloads/) (3.8 - 3.10)
 2. Install [`ffmpeg`](https://ffmpeg.org/download.html)
 3. Install [Whisper CLI](https://github.com/openai/whisper#setup)
-   
-  ```sh
-  pip install -U openai-whisper
-  ```
+
+```sh
+pip install -U openai-whisper
+```
 
 #### [Whisper CLI usage](https://github.com/openai/whisper#command-line-usage)
 
