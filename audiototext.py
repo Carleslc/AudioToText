@@ -23,9 +23,10 @@ parser.add_argument("--model", help="model to use (default: small)",
                     default="small", choices=["tiny", "base", "small", "medium", "large-v1", "large-v2"])
 parser.add_argument("--language", help="source file language (default: Auto-Detect)",
                     default="Auto-Detect", choices=["Auto-Detect", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani", "Bashkir", "Basque", "Belarusian", "Bengali", "Bosnian", "Breton", "Bulgarian", "Burmese", "Castilian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Faroese", "Finnish", "Flemish", "French", "Galician", "Georgian", "German", "Greek", "Gujarati", "Haitian", "Haitian Creole", "Hausa", "Hawaiian", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Italian", "Japanese", "Javanese", "Kannada", "Kazakh", "Khmer", "Korean", "Lao", "Latin", "Latvian", "Letzeburgesch", "Lingala", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Maori", "Marathi", "Moldavian", "Moldovan", "Mongolian", "Myanmar", "Nepali", "Norwegian", "Nynorsk", "Occitan", "Panjabi", "Pashto", "Persian", "Polish", "Portuguese", "Punjabi", "Pushto", "Romanian", "Russian", "Sanskrit", "Serbian", "Shona", "Sindhi", "Sinhala", "Sinhalese", "Slovak", "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tajik", "Tamil", "Tatar", "Telugu", "Thai", "Tibetan", "Turkish", "Turkmen", "Ukrainian", "Urdu", "Uzbek", "Valencian", "Vietnamese", "Welsh", "Yiddish", "Yoruba"])
+parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting")
 parser.add_argument("--coherence_preference", help="True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence",
                     default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
-parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting")
+parser.add_argument("--api_key", help="if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://openai.com/pricing#audio-models. API model is large-v2 (ignores --model)")
 parser.add_argument("--output_formats", help="desired result formats (default: txt,vtt,srt,tsv,json)",
                     default="txt,vtt,srt,tsv,json")
 parser.add_argument("--output_dir", help="folder to save results (default: audio_transcription)",
@@ -60,7 +61,7 @@ if status != 0:
 else:
   print(ffmpeg_version.split('\n')[0])
 
-os.system("pip install git+https://github.com/openai/whisper.git@7858aa9c08d98f75575035ecd6481f462d66ca27 numpy torch deepl")
+os.system("pip install git+https://github.com/openai/whisper.git@7858aa9c08d98f75575035ecd6481f462d66ca27 numpy torch deepl pydub openai")
 
 """## [Step 2] 📁 Upload your audio files to this folder
 
@@ -68,28 +69,32 @@ Almost any audio or video file format is [supported](https://gist.github.com/Car
 
 ## [Step 3] 👂 Transcribe or Translate
 
-3.1. Choose a `task`:
-  - `Transcribe` speech to text in the same language of the source audio file.
-  - `Translate to English` speech to text in English.
+3.1. Choose a --task:
+  - `transcribe` speech to text in the same language of the source audio file.
+  - `translate` speech to text in English.
   
 Translation to other languages is not supported with _Whisper_ by default.
-You may try to choose the _Transcribe_ task and set your desired `language`, but translation is not guaranteed. However, you can use **_DeepL_** later in the Step 5 to translate the transcription to another language.
+You may try to choose the _Transcribe_ task and set your desired --language, but translation is not guaranteed. However, you can use **_DeepL_** later in the Step 5 to translate the transcription to another language.
 
-3.2. Edit the `audio_file` to match your uploaded file name to transcribe.
+3.2. Set the audio_file to match your uploaded file name to transcribe.
 
 - If you want to transcribe multiple files with the same parameters you must separate their file names with commas `,`
 
-3.3. Run this script and wait for the transcription to complete.
+3.3. Run this cell and wait for the transcription to complete.
 
-  - You can try other parameters if the result with default parameters does not suit your needs.
-
-  If the execution takes too long to complete you can choose a smaller model in `use_model`, with an accuracy tradeoff.
+  You can try other parameters if the result with default parameters does not suit your needs.
 
   [Available models and languages](https://github.com/openai/whisper#available-models-and-languages)
 
-  Setting the `language` to the language of source audio file may provide better results than Auto-Detect.
+  Setting the --language to the language of source audio file may provide better results than Auto-Detect.
 
-  You can use an optional initial `prompt` to provide context about the audio or encourage a specific writing style, see the [prompting guide](https://platform.openai.com/docs/guides/speech-to-text/prompting).
+  You can add an optional initial --prompt to provide context about the audio or encourage a specific writing style, see the [prompting guide](https://platform.openai.com/docs/guides/speech-to-text/prompting).
+
+  If the execution takes too long to complete you can choose a smaller model in --model, with an accuracy tradeoff, or use the OpenAI API.
+
+  By default the open-source models are used, but you can also use the OpenAI API if the --api_key parameter is set with your [OpenAI API Key](https://platform.openai.com/account/api-keys), which can improve the inference speed substantially, but it has an associated cost, see [API pricing](https://openai.com/pricing#audio-models).
+  
+  When using API some options are fixed: --model is ignored (uses large-v2) and --coherence_preference is ignored (uses More coherence).
   
   More parameters are available in the code `options` object.
 """
@@ -100,6 +105,10 @@ from whisper.utils import format_timestamp, get_writer, WriteTXT
 import numpy as np
 
 import torch
+
+import openai
+
+import math
 
 # select task
 
@@ -115,22 +124,28 @@ use_model = args.model
 
 # detect device
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+if args.api_key:
+  print("\nUsing API")
 
-print(f"\nUsing {'GPU' if DEVICE == 'cuda' else 'CPU ⚠️'}")
-
-# https://medium.com/analytics-vidhya/the-google-colab-system-specification-check-69d159597417
-if DEVICE == "cuda":
-  os.system('nvidia-smi -L')
+  from pydub import AudioSegment
+  from pydub.silence import split_on_silence
 else:
-  if sys_platform == 'linux':
-    os.system('lscpu | grep "Model name" | awk \'{$1=$1};1\'')
+  DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-  if use_model not in ['tiny', 'base', 'small']:
-    print("Not using GPU can result in a very slow execution")
-    print("You may want to try a smaller model (tiny, base, small)")
+  print(f"\nUsing {'GPU' if DEVICE == 'cuda' else 'CPU ⚠️'}")
 
-# select language
+  # https://medium.com/analytics-vidhya/the-google-colab-system-specification-check-69d159597417
+  if DEVICE == "cuda":
+    os.system('nvidia-smi -L')
+  else:
+    if sys_platform == 'linux':
+      os.system('lscpu | grep "Model name" | awk \'{$1=$1};1\'')
+
+    if use_model not in ['tiny', 'base', 'small']:
+      print("Not using GPU can result in a very slow execution")
+      print("You may want to try a smaller model (tiny, base, small)")
+
+# display language
 
 WHISPER_LANGUAGES = [k.title() for k in whisper.tokenizer.TO_LANGUAGE_CODE.keys()]
 
@@ -148,41 +163,66 @@ if language and language != "detect":
 
 # load model
 
-MODELS_WITH_ENGLISH_VERSION = ["tiny", "base", "small", "medium"]
+if args.api_key:
+  print()
+else:
+  MODELS_WITH_ENGLISH_VERSION = ["tiny", "base", "small", "medium"]
 
-if language == "English" and use_model in MODELS_WITH_ENGLISH_VERSION:
-  use_model += ".en"
+  if language == "English" and use_model in MODELS_WITH_ENGLISH_VERSION:
+    use_model += ".en"
 
-print(f"\nLoading {use_model} model...")
+  print(f"\nLoading {use_model} model...")
 
-model = whisper.load_model(use_model, device=DEVICE)
+  model = whisper.load_model(use_model, device=DEVICE)
 
-print(
-    f"Model {use_model} is {'multilingual' if model.is_multilingual else 'English-only'} "
-    f"and has {sum(np.prod(p.shape) for p in model.parameters()):,d} parameters.\n"
-)
+  print(
+      f"Model {use_model} is {'multilingual' if model.is_multilingual else 'English-only'} "
+      f"and has {sum(np.prod(p.shape) for p in model.parameters()):,d} parameters.\n"
+  )
 
 # set options
 
-# coherence_preference = "More coherence, but may repeat text" #@param ["More coherence, but may repeat text", "Less repetitions, but may have less coherence"]
-# prompt = "" #@param {type:"string"}
-
-## Info: https://github.com/openai/whisper/blob/main/whisper/transcribe.py#L19
+## https://github.com/openai/whisper/blob/7858aa9c08d98f75575035ecd6481f462d66ca27/whisper/transcribe.py#L19
+## https://github.com/openai/whisper/blob/7858aa9c08d98f75575035ecd6481f462d66ca27/whisper/decoding.py#L72
 options = {
     'task': task,
     'verbose': True,
-    'fp16': DEVICE == 'cuda',
+    'fp16': True,
     'best_of': 5,
     'beam_size': 5,
     'patience': None,
     'length_penalty': None,
     'suppress_tokens': '-1',
-    'temperature': (0.0, 0.2, 0.4, 0.6, 0.8, 1.0),
+    'temperature': (0.0, 0.2, 0.4, 0.6, 0.8, 1.0), # float or tuple
     'condition_on_previous_text': args.coherence_preference,
     'initial_prompt': args.prompt,
 }
 
-if DEVICE == 'cpu':
+if args.api_key:
+  openai.api_key = args.api_key
+
+  api_supported_formats = ['mp3', 'mp4', 'mpeg', 'mpga', 'm4a', 'wav', 'webm']
+  api_max_bytes = 25 * 1024 * 1024 # 25 MB
+
+  api_transcribe = getattr(openai.Audio, task)
+  api_model = 'whisper-1' # large-v2
+
+  # https://platform.openai.com/docs/api-reference/audio?lang=python
+  api_options = {
+    'response_format': 'verbose_json',
+  }
+
+  if args.prompt:
+    api_options['prompt'] = args.prompt
+  
+  api_temperature = options['temperature'][0] if isinstance(options['temperature'], (tuple, list)) else options['temperature']
+  
+  if isinstance(api_temperature, (float, int)):
+    api_options['temperature'] = api_temperature
+  else:
+    raise ValueError("Invalid temperature type, it must be a float or a tuple of floats")
+elif DEVICE == 'cpu':
+  options['fp16'] = False
   torch.set_num_threads(os.cpu_count())
 
 # execute task
@@ -203,7 +243,10 @@ for audio_path in audio_files:
   # detect language
   detect_language = not language or language == "detect"
   
-  if detect_language:
+  if not detect_language:
+    options['language'] = language
+    source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(language.lower())
+  elif not args.api_key:
     # load audio and pad/trim it to fit 30 seconds
     audio = whisper.load_audio(audio_path)
     audio = whisper.pad_or_trim(audio)
@@ -214,21 +257,145 @@ for audio_path in audio_files:
     # detect the spoken language
     _, probs = model.detect_language(mel)
 
-    language_code = max(probs, key=probs.get)
-    options['language'] = whisper.tokenizer.LANGUAGES[language_code].title()
+    source_language_code = max(probs, key=probs.get)
+    options['language'] = whisper.tokenizer.LANGUAGES[source_language_code].title()
     
     print(f"Detected language: {options['language']}\n")
-  else:
-    options['language'] = language
 
   # transcribe
-  result = whisper.transcribe(model, audio_path, **options)
+  if args.api_key:
+    # API
+    if task == "transcribe" and not detect_language:
+      api_options['language'] = source_language_code
+    
+    source_audio_name_path, source_audio_ext = os.path.splitext(audio_path)
+    source_audio_ext = source_audio_ext[1:]
 
+    if source_audio_ext in api_supported_formats:
+      api_audio_path = audio_path
+      api_audio_ext = source_audio_ext
+    else:
+      ## convert audio file to a supported format
+      if options['verbose']:
+        print(f"API supported formats: {','.join(api_supported_formats)}")
+        print(f"Converting {source_audio_ext} audio to a supported format...")
+
+      api_audio_ext = 'mp3'
+
+      api_audio_path = f'{source_audio_name_path}.{api_audio_ext}'
+
+      os.system(f"ffmpeg -i {audio_path} {api_audio_path}")
+
+      if options['verbose']:
+        print(api_audio_path, end='\n\n')
+
+    ## split audio file in chunks
+    api_audio_chunks = []
+
+    audio_bytes = os.path.getsize(api_audio_path)
+
+    if audio_bytes >= api_max_bytes:
+      if options['verbose']:
+        print(f"Audio exceeds API maximum allowed file size.\nSplitting audio in chunks...")
+      
+      audio_segment_file = AudioSegment.from_file(api_audio_path, api_audio_ext)
+
+      min_chunks = math.ceil(audio_bytes / (api_max_bytes / 2))
+
+      # print(f"Min chunks: {min_chunks}")
+
+      max_chunk_milliseconds = int(len(audio_segment_file) // min_chunks)
+
+      # print(f"Max chunk milliseconds: {max_chunk_milliseconds}")
+
+      def add_chunk(api_audio_chunk):
+        api_audio_chunk_path = f"{source_audio_name_path}_{len(api_audio_chunks) + 1}.{api_audio_ext}"
+        api_audio_chunk.export(api_audio_chunk_path, format=api_audio_ext)
+        api_audio_chunks.append(api_audio_chunk_path)
+      
+      def raw_split(big_chunk):
+        subchunks = math.ceil(len(big_chunk) / max_chunk_milliseconds)
+
+        for subchunk_i in range(subchunks):
+          chunk_start = max_chunk_milliseconds * subchunk_i
+          chunk_end = min(max_chunk_milliseconds * (subchunk_i + 1), len(big_chunk))
+          add_chunk(big_chunk[chunk_start:chunk_end])
+      
+      non_silent_chunks = split_on_silence(audio_segment_file,
+                                           seek_step=5, # ms
+                                           min_silence_len=1250, # ms
+                                           silence_thresh=-25, # dB
+                                           keep_silence=True) # needed to aggregate timestamps
+
+      # print(f"Non silent chunks: {len(non_silent_chunks)}")
+      
+      current_chunk = non_silent_chunks[0] if non_silent_chunks else audio_segment_file
+
+      for next_chunk in non_silent_chunks[1:]:
+        if len(current_chunk) > max_chunk_milliseconds:
+          raw_split(current_chunk)
+          current_chunk = next_chunk
+        elif len(current_chunk) + len(next_chunk) <= max_chunk_milliseconds:
+          current_chunk += next_chunk
+        else:
+          add_chunk(current_chunk)
+          current_chunk = next_chunk
+      
+      if len(current_chunk) > max_chunk_milliseconds:
+        raw_split(current_chunk)
+      else:
+        add_chunk(current_chunk)
+      
+      if options['verbose']:
+        print(f'Total chunks: {len(api_audio_chunks)}\n')
+    else:
+      api_audio_chunks.append(api_audio_path)
+    
+    ## process chunks
+    result = None
+
+    for api_audio_chunk_path in api_audio_chunks:
+      ## API request
+      with open(api_audio_chunk_path, 'rb') as api_audio_file:
+        api_result = api_transcribe(api_model, api_audio_file, **api_options)
+      
+      api_segments = api_result['segments']
+      
+      if result:
+        ## update timestamps
+        last_segment_timestamp = result['segments'][-1]['end'] if result['segments'] else 0
+
+        for segment in api_segments:
+          segment['start'] += last_segment_timestamp
+          segment['end'] += last_segment_timestamp
+
+        ## append new segments
+        result['segments'].extend(api_segments)
+        
+        if 'duration' in result:
+          result['duration'] += api_result.get('duration', 0)
+      else:
+        ## first request
+        result = api_result
+        
+        if detect_language:
+          print(f"Detected language: {result['language'].title()}\n")
+    
+      ## display segments
+      if options['verbose']:
+        for segment in api_segments:
+          print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {segment['text']}")
+  else:
+    # Open-Source
+    result = whisper.transcribe(model, audio_path, **options)
+
+  # fix results formatting
   for segment in result['segments']:
     segment['text'] = segment['text'].strip()
   
   result['text'] = '\n'.join(map(lambda segment: segment['text'], result['segments']))
 
+  # set results for this audio file
   results[audio_path] = result
 
 """## [Step 4] 💾 **Save results**
@@ -359,7 +526,7 @@ if use_deepl_translation:
 
       if (task == 'translate' and target_language_code != 'EN') or (task == 'transcribe' and source_language_code in deepl_source_languages and source_language_code != target_language_code):
         source_lang = source_language_code if task == 'transcribe' else None
-        translate_from = f"from {result['language']} [{source_language_code}] " if source_lang else ''
+        translate_from = f"from {result['language'].title()} [{source_language_code}] " if source_lang else ''
         print(f"DeepL: Translate results {translate_from}to {deepl_target_language} [{deepl_target_language_code}]\n")
 
         segments = result['segments']

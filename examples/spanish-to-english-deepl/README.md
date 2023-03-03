@@ -535,11 +535,11 @@ audio_transcription/Whisper-Example_English (British).vtt
 audio_transcription/Whisper-Example_English (British).srt
 ```
 
-[audio_transcription/Whisper-Example_English (British).txt](audio_transcription/Whisper-Example_English%20(British).txt)
+[audio_transcription/Whisper-Example_English (British).txt](<audio_transcription/Whisper-Example_English%20(British).txt>)
 
-[audio_transcription/Whisper-Example_English (British).vtt](audio_transcription/Whisper-Example_English%20(British).vtt)
+[audio_transcription/Whisper-Example_English (British).vtt](<audio_transcription/Whisper-Example_English%20(British).vtt>)
 
-[audio_transcription/Whisper-Example_English (British).srt](audio_transcription/Whisper-Example_English%20(British).srt)
+[audio_transcription/Whisper-Example_English (British).srt](<audio_transcription/Whisper-Example_English%20(British).srt>)
 
 ### About translation coherence
 
@@ -788,8 +788,301 @@ This is the output with this preference change:
 [14:58.960 --> 15:26.280] guys, girls, in the next video.
 ```
 
-[audio_transcription/Whisper-Example_English (British)~alternative.txt](audio_transcription/Whisper-Example_English%20(British)~alternative.txt)
+[audio_transcription/Whisper-Example_English (British)~alternative.txt](<audio_transcription/Whisper-Example_English%20(British)~alternative.txt>)
 
-[audio_transcription/Whisper-Example_English (British)~alternative.vtt](audio_transcription/Whisper-Example_English%20(British)~alternative.vtt)
+[audio_transcription/Whisper-Example_English (British)~alternative.vtt](<audio_transcription/Whisper-Example_English%20(British)~alternative.vtt>)
 
-[audio_transcription/Whisper-Example_English (British)~alternative.srt](audio_transcription/Whisper-Example_English%20(British)~alternative.srt)
+[audio_transcription/Whisper-Example_English (British)~alternative.srt](<audio_transcription/Whisper-Example_English%20(British)~alternative.srt>)
+
+As a comparison, because in this case the target language is English, it can also be translated using Whisper directly.
+
+**task**: `Translate to English`
+
+```
+[00:00.000 --> 00:06.400]  2022 will be remembered as the year of stable diffusion, of Dali 2, of incredible text
+[00:06.400 --> 00:11.840]  generators models like Palm or code generators like AlphaCode. And yet, talking last month
+[00:11.840 --> 00:16.880]  with Andres Torrubia, he told me that the most interesting thing he had seen this year was an
+[00:16.880 --> 00:22.400]  artificial intelligence that came from the OpenAI laboratory, an AI called Whisper.
+[00:22.400 --> 00:26.560]  What is the most impressive thing that has come out this year for you?
+[00:26.560 --> 00:32.560]  Well, curiously, until now, Whisper, I think. Do you know why?
+[00:32.560 --> 00:33.280]  Curious, huh?
+[00:33.280 --> 00:39.840]  What impresses me about Whisper is that Whisper works, it's like, for me, Whisper, if it were the
+[00:39.840 --> 00:47.680]  autonomous car, would be the first self-driving of the dictatorship. It is the first that looks like a person.
+[00:47.680 --> 00:53.040]  Well, but for you to understand first what this Whisper is, I'm going to ask you to do the following exercise.
+[00:53.040 --> 00:59.520]  I'm going to play an audio in English and your task is to transcribe each of the words you're listening to.
+[00:59.520 --> 01:02.320]  Are you ready? 3, 2, 1.
+[01:19.680 --> 01:21.200]  Have you understood anything?
+[01:21.200 --> 01:22.560]  Yeah, me neither.
+[01:22.560 --> 01:28.080]  Well, hearing this artificial intelligence, this is the perfect transcription you've got.
+[01:28.080 --> 01:29.280]  And how about your Korean?
+[01:29.280 --> 01:35.520]  Well, for Whisper it's not a problem either and you can also transcribe this audio in perfect English.
+[01:44.320 --> 01:45.760]  And well, you understand me too.
+[01:45.760 --> 01:52.480]  What you are seeing on the screen now is the speech to text that Whisper gets when he passes the audio track you are listening to.
+[01:52.480 --> 02:00.080]  Look closely, not only does it get an almost perfect transcription, even understanding concrete words like Whisper or speech to text,
+[02:00.080 --> 02:08.320]  but it is also able to generate points, commas and other punctuation marks that many other speech recognition commercial models are usually fed.
+[02:08.320 --> 02:10.640]  And this is very interesting.
+[02:10.640 --> 02:12.560]  Well, not this, but Whisper.
+[02:12.560 --> 02:15.680]  Whisper in general has many interesting things.
+[02:15.680 --> 02:19.840]  And the first interesting thing is the context in which this tool appears.
+[02:19.840 --> 02:24.800]  After a year of incredible achievements by the OpenAI artificial intelligence laboratory,
+[02:24.800 --> 02:32.800]  suddenly a collaborative initiative like Stability.ai emerges, which in September takes the lead in making Open Source
+[02:32.800 --> 02:40.800]  many of the technologies that OpenAI, for its part, has decided to keep to itself and share only under paid services.
+[02:40.800 --> 02:47.440]  For me this is not a problem either, since in the end OpenAI as a company has to pay its bills
+[02:47.440 --> 02:52.080]  and at least it is giving us a way to access these powerful artificial intelligences.
+[02:52.080 --> 02:53.520]  Learn Google.
+[02:53.520 --> 03:01.840]  But of course, a new boy arrives in the city and begins to give candy to the children and suddenly the popular boy begins to look displaced.
+[03:01.840 --> 03:06.880]  And at that precise moment, OpenAI arrives out of nowhere and gives us Whisper.
+[03:06.880 --> 03:08.320]  For everyone's benefit.
+[03:08.320 --> 03:11.280]  Because yes, friends, this is Open Source.
+[03:11.280 --> 03:13.280]  I know you love to hear these words.
+[03:13.280 --> 03:17.680]  At the end of the video I will show you a mini tutorial so you can see how easy it is to use this tool
+[03:17.680 --> 03:21.440]  and I will also share a notebook so that it is super simple for you.
+[03:21.440 --> 03:24.320]  And this is what makes Whisper a super interesting tool.
+[03:24.320 --> 03:25.680]  But it's not the only thing.
+[03:25.680 --> 03:28.720]  And this is where one of the things that has caught my attention the most comes from.
+[03:28.720 --> 03:34.960]  And it is that Whisper is not a complex system that they have designed to process audio as it had never been done before,
+[03:34.960 --> 03:38.720]  or a super complex system with a lot of processing modules.
+[03:38.720 --> 03:39.360]  No.
+[03:39.360 --> 03:45.520]  Whisper is this here, a transformer-type neural network from 2017.
+[03:45.520 --> 03:47.520]  It has no change, no novelty.
+[03:47.520 --> 03:51.040]  It is an architecture that we all know.
+[03:51.040 --> 03:55.440]  So if this is so, why didn't a technology like Whisper already exist?
+[03:55.440 --> 04:02.640]  Well, the key to making Whisper something so powerful is in the data and how they have structured their training.
+[04:02.640 --> 04:10.640]  To train it, OpenAI has used no more or less than 680,000 hours of audio with its corresponding text.
+[04:10.640 --> 04:12.240]  A brutality.
+[04:12.240 --> 04:19.760]  And if you do the calculation, 680,000 hours, if you started playing them now, you would end up listening to it in 77 years.
+[04:19.760 --> 04:23.920]  You could be sure that at some point in time you would see the comet Halley.
+[04:23.920 --> 04:28.240]  But it is also a very interesting thing, is that these audios come in multiple languages,
+[04:28.240 --> 04:35.280]  allowing us to train a model that is multilingual, that can understand us if we speak it in Spanish, English, Korean...
+[04:35.280 --> 04:36.320]  It doesn't matter.
+[04:36.320 --> 04:38.320]  But the thing is not just there.
+[04:38.320 --> 04:43.440]  And it is that Whisper, in addition to being a multilingual system, is also a multitasking system.
+[04:43.440 --> 04:49.600]  This is a trend that, as we saw in the video about Gato, is increasingly frequent in the world of deep learning.
+[04:49.600 --> 04:55.520]  Not train AI for a single task, but train it for several different ones.
+[04:55.520 --> 04:59.360]  Thus making its learning much more solid and robust.
+[04:59.360 --> 05:03.920]  As we have seen, Whisper can take English audios and transcribe them to English.
+[05:03.920 --> 05:06.560]  Or Korean audios and transcribe them to Korean.
+[05:06.560 --> 05:10.560]  But the same model can also identify which language is being spoken.
+[05:10.560 --> 05:16.320]  Or act as a voice detector to classify when a piece of audio is being heard, not a person.
+[05:16.320 --> 05:19.760]  Or also the most interesting task, I think, of all.
+[05:19.760 --> 05:25.520]  That you can speak to Whisper in any language and that he automatically transcribes it to English.
+[05:25.520 --> 05:30.640]  And in this case I would not know why, but for me this seems to me a fascinating functionality.
+[05:30.640 --> 05:32.800]  It seems that it does not offer us anything new, right?
+[05:32.800 --> 05:39.200]  In the end you can take the text that any text transcriber generates in your language and pass it through a translator.
+[05:39.200 --> 05:44.480]  But in this case it seems fascinating to me to see how something as simple as a single deep learning model
+[05:44.480 --> 05:51.200]  allows you to speak in any language and that it generates the text in English without having to combine any type of tools.
+[05:51.200 --> 05:53.200]  It's super simple.
+[05:53.200 --> 05:56.160]  And the data we have commented on before is also super interesting.
+[05:56.160 --> 06:03.120]  Because my first intuition here is that OpenAI, in the search for a massive data set of these 680,000 hours of audio
+[06:03.120 --> 06:06.960]  that had a text transcription to be able to do this supervised learning,
+[06:06.960 --> 06:12.400]  possibly had gone to one of the largest sources we can find on the internet, which is YouTube.
+[06:12.400 --> 06:16.960]  In the end, you already know that all YouTube videos have automatically generated subtitles.
+[06:16.960 --> 06:17.760]  Well, no.
+[06:17.760 --> 06:24.080]  In this OpenAI emphasizes a lot in its paper to explain to us that they have made a filtering process
+[06:24.080 --> 06:30.880]  to remove any text from the data set generated by automatic speech recognition systems.
+[06:30.880 --> 06:31.520]  Why?
+[06:31.520 --> 06:39.840]  Well, precisely to prevent Whisper from learning those defects, those vices that other automatic systems could also have.
+[06:39.840 --> 06:43.360]  That said, now that we are talking about Whisper and YouTube,
+[06:43.360 --> 06:48.000]  there is a theory that I want to tell you that I find very interesting, it is nothing that is confirmed,
+[06:48.000 --> 06:55.440]  but that could explain the reason for the existence of this tool and that could have a certain relationship with a future GPT-4.
+[06:55.440 --> 07:00.640]  This is an idea that I heard on the channel of Dr. Alan Thompson and that says that in the near future,
+[07:00.640 --> 07:07.040]  where GPT-4 can start training, Whisper could offer the system a huge source of data
+[07:07.040 --> 07:09.840]  that previous systems had not counted on.
+[07:09.840 --> 07:14.560]  Let's think that a system like GPT-3 has been trained with a lot of Wikipedia articles,
+[07:14.560 --> 07:17.440]  books, forums, internet conversations,
+[07:17.440 --> 07:23.440]  but it has never been able to access all that spoken source that can be on databases such as YouTube.
+[07:23.440 --> 07:27.600]  A tool like Whisper could be used to completely erase YouTube,
+[07:27.600 --> 07:32.400]  transcribe many of its audios and unlock a new source of data
+[07:32.400 --> 07:37.040]  that would not have been possible to use before to train a future language model.
+[07:37.040 --> 07:39.760]  This is the enormous value that a tool like Whisper has,
+[07:39.760 --> 07:42.560]  and that I think makes this technology so interesting.
+[07:42.560 --> 07:47.520]  No, it does not solve a task that is spectacular, such as generating images or generating videos,
+[07:47.520 --> 07:52.400]  but it solves a very useful task and almost solves it to perfection.
+[07:52.400 --> 07:56.720]  Be careful, I say almost, it is not perfect, sometimes some words are obviously wrong
+[07:56.720 --> 08:00.640]  and it does not cover all the languages ​​that exist on planet Earth,
+[08:00.640 --> 08:03.840]  and well, for looking for some limitation compared to other commercial tools,
+[08:03.840 --> 08:06.080]  it does not work in real time either.
+[08:06.080 --> 08:08.960]  Still, processing audio, depending on the length,
+[08:08.960 --> 08:12.240]  can take a few seconds, sometimes a minute,
+[08:12.240 --> 08:15.040]  but it is a solid tool, it is mature, it is useful.
+[08:15.040 --> 08:18.400]  And also open source, allowing anyone now
+[08:18.400 --> 08:22.400]  can access a professional transcription and translation tool
+[08:22.400 --> 08:25.520]  better than any free alternative.
+[08:25.520 --> 08:28.480]  What? Oh, you also want to access this tool?
+[08:28.480 --> 08:32.480]  Well, come on, I'll prepare an easy tutorial for you so you can all use it,
+[08:32.480 --> 08:34.000]  we will do it in Google Colab.
+[08:34.000 --> 08:37.520]  But before, and taking advantage of the fact that we are talking about programming,
+[08:37.520 --> 08:41.920]  development, innovation, let me remind you that there are very few days left
+[08:41.920 --> 08:44.800]  for the Samsung Dev Day to be celebrated,
+[08:44.800 --> 08:49.280]  which is the technological event that the Samsung Dev Spain community celebrates every year,
+[08:49.280 --> 08:52.800]  which is the official Samsung community for Spanish developers.
+[08:52.800 --> 08:55.520]  This will be a free event that you cannot miss.
+[08:55.520 --> 08:59.760]  If you are in Madrid, you can attend in person on November 16
+[08:59.760 --> 09:02.480]  at the Clostro de los Jerónimos of the Museo del Prado.
+[09:02.480 --> 09:05.520]  And if not, you can connect online through its streaming.
+[09:05.520 --> 09:07.440]  But yes, you have to register.
+[09:07.440 --> 09:09.520]  I was lucky last year to be able to participate
+[09:09.520 --> 09:13.120]  with a paper on the generation of code with artificial intelligence
+[09:13.120 --> 09:14.800]  and the experience was great.
+[09:14.800 --> 09:17.520]  So you see, it will be an event full of great talks,
+[09:17.520 --> 09:20.480]  talking about technology, innovation, applications,
+[09:20.480 --> 09:22.720]  and it will also be presented by my Dudef,
+[09:22.720 --> 09:25.280]  which surely many of you know him,
+[09:25.280 --> 09:26.560]  so you can't miss it.
+[09:26.560 --> 09:28.800]  I'll leave you a link in the description box
+[09:28.800 --> 09:30.720]  to the Samsung Dev Spain website,
+[09:30.720 --> 09:33.600]  where you will find all the information regarding the agenda,
+[09:33.600 --> 09:36.880]  where to register and a lot of other resources.
+[09:36.880 --> 09:38.800]  See you on November 16.
+[09:38.800 --> 09:43.200]  Well, let's see how we can use Whisper in our own code.
+[09:43.200 --> 09:45.360]  For this, we are going to use Google Call App.
+[09:45.360 --> 09:48.800]  You already know that Google is giving us a free virtual machine
+[09:48.800 --> 09:50.880]  that we can use and we are going to verify
+[09:50.880 --> 09:53.520]  whenever we have activated the type of environment
+[09:53.520 --> 09:55.520]  with hardware acceleration GPU.
+[09:55.520 --> 09:56.800]  Okay, let's give it here.
+[09:56.800 --> 09:58.240]  GPU, let's save it.
+[09:58.240 --> 10:01.040]  And now the first step will be to install Whisper.
+[10:01.040 --> 10:04.160]  For this, we are going to use these two commands here.
+[10:04.160 --> 10:08.560]  Install, you can find this in the GitHub Whisper repository itself.
+[10:08.560 --> 10:10.800]  I'll leave you down in the description box.
+[10:10.800 --> 10:14.000]  These commands, we give it to run and let it install.
+[10:14.000 --> 10:16.160]  Once installed, we are going to upload some audio
+[10:16.160 --> 10:17.200]  that we want to transcribe.
+[10:17.200 --> 10:19.600]  In this case, I'm going to try with the song of Rosalia
+[10:19.600 --> 10:20.640]  by Chicken Teriyaki.
+[10:20.640 --> 10:22.560]  Let's put it here, we drag it.
+[10:22.560 --> 10:25.040]  And now the next step, we're going to take it here
+[10:25.040 --> 10:28.320]  and we're going to put the command we need to run it.
+[10:28.320 --> 10:30.720]  We're going to give it here to song.mp3.
+[10:30.720 --> 10:32.560]  It's called the file we've uploaded.
+[10:32.560 --> 10:34.640]  Okay, song.mp3.
+[10:34.640 --> 10:37.520]  The task is going to be to transcribe the size of the model.
+[10:37.520 --> 10:38.560]  There are different sizes,
+[10:38.560 --> 10:42.400]  depending on whether you want more speed when doing the inference
+[10:42.400 --> 10:44.960]  or if you want more precision in the results.
+[10:44.960 --> 10:46.800]  I usually work with the medium model,
+[10:46.800 --> 10:48.320]  which is the one that gives me good results.
+[10:48.320 --> 10:50.000]  There are larger models, there are smaller models.
+[10:50.000 --> 10:50.480]  Try it.
+[10:50.480 --> 10:54.320]  And in this case, we're just going to put the output file.
+[10:54.320 --> 10:56.000]  We run it and that's it.
+[10:56.000 --> 10:56.480]  That's it.
+[10:56.480 --> 10:57.840]  There's nothing else to do.
+[10:57.840 --> 10:59.840]  Okay, we're using Whisper.
+[10:59.840 --> 11:01.520]  The first time it will take a while
+[11:01.520 --> 11:02.800]  because it has to download the model,
+[11:02.800 --> 11:04.080]  but from this moment on,
+[11:04.080 --> 11:06.480]  you can use this system to transcribe
+[11:06.480 --> 11:08.560]  any audio you want.
+[11:08.560 --> 11:09.200]  Cool.
+[11:09.200 --> 11:11.040]  Okay, we see that in this case it has detected
+[11:11.040 --> 11:12.400]  that the language is Spanish.
+[11:12.400 --> 11:14.080]  It has made the automatic inference
+[11:14.080 --> 11:16.160]  because we have not told it that we are going to transcribe in Spanish.
+[11:16.160 --> 11:17.440]  You can do it if you want.
+[11:17.440 --> 11:19.040]  And when this cell is already executed,
+[11:19.040 --> 11:20.480]  we can come over here.
+[11:20.480 --> 11:23.040]  We see that the audio transcription folder has been generated
+[11:23.040 --> 11:25.840]  and here we have the different options.
+[11:25.840 --> 11:28.000]  We can open the sound.txt
+[11:28.000 --> 11:29.120]  and here we open the file.
+[11:29.120 --> 11:32.800]  We see that we have the whole song perfectly transcribed,
+[11:32.800 --> 11:35.600]  which in this case, being Rosalía, has more merit.
+[11:35.600 --> 11:38.000]  If instead of wanting to do the transcription,
+[11:38.000 --> 11:40.000]  you would like to do the translation,
+[11:40.000 --> 11:43.840]  that is, convert your voice, your audio to English,
+[11:43.840 --> 11:46.800]  then all you have to do is change the task here for translate.
+[11:46.800 --> 11:49.840]  And in this case, Whisper will work to translate
+[11:49.840 --> 11:51.360]  what it has transcribed.
+[11:51.360 --> 11:52.480]  In this case, if you notice,
+[11:52.480 --> 11:54.880]  the command we have used has been the console one,
+[11:54.880 --> 11:57.920]  but maybe you want to use Whisper within your code.
+[11:57.920 --> 11:59.440]  Then you also have the option of working
+[11:59.440 --> 12:01.040]  with the Whisper library itself.
+[12:01.040 --> 12:03.120]  It's just this line of code here.
+[12:03.120 --> 12:05.360]  We import it, we load the model we want.
+[12:05.360 --> 12:07.520]  Here, I would load the medium model,
+[12:07.520 --> 12:10.480]  which is the one that, as I say, works best for my case.
+[12:10.480 --> 12:11.600]  And with the loaded model,
+[12:11.600 --> 12:14.160]  then here we call model.transcribe.
+[12:14.160 --> 12:16.400]  We are going to put here song.mp3.
+[12:16.400 --> 12:18.560]  We hit run and in a matter of seconds,
+[12:18.560 --> 12:20.720]  we will have our transcription again.
+[12:20.720 --> 12:21.440]  And here we have it.
+[12:21.440 --> 12:23.920]  The pink rose without a card, I send it to your cat,
+[12:23.920 --> 12:26.080]  I have it with a roulette, no need to serenade.
+[12:26.080 --> 12:26.580]  Well, shock.
+[12:27.120 --> 12:28.800]  Also to make your life easier,
+[12:28.800 --> 12:31.120]  I have prepared a notebook that you can use.
+[12:31.120 --> 12:32.960]  It's down in the description box,
+[12:32.960 --> 12:35.920]  where you already have all the code ready to start working.
+[12:35.920 --> 12:37.040]  You just have to enter,
+[12:37.040 --> 12:38.960]  check that the GPU is activated,
+[12:38.960 --> 12:42.160]  we hit this button here to install everything necessary.
+[12:42.160 --> 12:44.000]  Here we choose the task we want to do,
+[12:44.000 --> 12:47.520]  because if it is to transcribe to any language or translate to English,
+[12:47.520 --> 12:48.640]  and we hit run.
+[12:48.640 --> 12:50.240]  In this case, the cell is prepared
+[12:50.240 --> 12:53.440]  so that the moment you start to run it,
+[12:53.440 --> 12:55.120]  it is recording your microphone right now.
+[12:55.120 --> 12:57.920]  That is, right now we would be generating an audio file
+[12:57.920 --> 13:00.400]  that we will later use to transcribe with Whisper.
+[13:00.400 --> 13:03.520]  This is in case you want to make a transcription in real time
+[13:03.520 --> 13:06.160]  of any class or anything you need.
+[13:06.160 --> 13:07.920]  We're going to stop it, we hit this button,
+[13:08.560 --> 13:12.000]  and in a moment we have the result of what we have said.
+[13:12.000 --> 13:14.800]  Likewise, then below I add the two commands necessary
+[13:14.800 --> 13:18.960]  to be able to transcribe or translate the audio that you upload.
+[13:18.960 --> 13:21.840]  Finally, you also have to know that if you want something simpler,
+[13:21.840 --> 13:24.960]  there is a website where you can try this system
+[13:24.960 --> 13:28.160]  by uploading your own audios or recording from the microphone.
+[13:28.160 --> 13:28.880]  And this would be.
+[13:28.880 --> 13:31.920]  2022 is really looking like a spectacular year
+[13:31.920 --> 13:34.240]  in terms of the number of neural toys
+[13:34.240 --> 13:35.440]  that are coming to our hands
+[13:35.440 --> 13:39.200]  to build a lot of tools and to be able to touch them.
+[13:39.200 --> 13:40.160]  Now it's your turn.
+[13:40.160 --> 13:41.360]  What can you do with this?
+[13:41.360 --> 13:44.240]  Well, you can build a lot of super interesting things.
+[13:44.240 --> 13:47.040]  You can connect, for example, Whisper with Stable Diffusion
+[13:47.040 --> 13:50.720]  so that you can ask it to generate a picture.
+[13:50.720 --> 13:53.840]  Or you can, for example, take all your classes at the university
+[13:53.840 --> 13:56.640]  or all the work meetings, transcribe them,
+[13:56.640 --> 13:58.720]  create a huge bank of transcriptions
+[13:58.720 --> 14:01.600]  and then with the GPT-3 API make a chatbot
+[14:01.600 --> 14:04.160]  that allows you to consult, ask questions and answers
+[14:04.160 --> 14:05.920]  about all that source of information.
+[14:05.920 --> 14:07.360]  For example, something I want to do
+[14:07.360 --> 14:09.920]  is take all the videos from my YouTube channel
+[14:09.920 --> 14:12.880]  and transcribe them, generate good quality subtitles
+[14:12.880 --> 14:14.480]  both in Spanish and in English
+[14:14.480 --> 14:16.560]  and be able to do statistics and consultations
+[14:16.560 --> 14:19.760]  of how many times I have said, for example, the word machine learning.
+[14:19.760 --> 14:22.560]  There are a lot of applications that you can start building,
+[14:22.560 --> 14:26.800]  that you can start creating by combining all these technologies.
+[14:26.800 --> 14:28.080]  There is also a barking dog in the background
+[14:28.080 --> 14:29.520]  that was bothering me a lot.
+[14:29.520 --> 14:30.800]  Well, what I was saying,
+[14:30.800 --> 14:33.920]  that you can create a lot of things and there is a lot to do.
+[14:33.920 --> 14:36.400]  From here, from this channel, we will continue to do experiments
+[14:36.400 --> 14:37.360]  with this technology.
+[14:37.360 --> 14:39.600]  I will continue to bring new tools
+[14:39.600 --> 14:42.000]  so if you haven't done it yet, subscribe,
+[14:42.000 --> 14:44.720]  hit the bell so you always get notifications
+[14:44.720 --> 14:45.840]  that there is a new video
+[14:45.840 --> 14:47.600]  and if you want to support all this content,
+[14:47.600 --> 14:50.320]  you already know that you can do it through Patreon
+[14:50.320 --> 14:51.840]  below in the description box.
+[14:51.840 --> 14:54.000]  You have a couple of videos around here that are super interesting,
+[14:54.000 --> 14:55.840]  I don't know which ones they are, but they are super interesting,
+[14:55.840 --> 14:56.880]  take a look at them
+[14:56.880 --> 14:58.880]  and see you with more artificial intelligence,
+[14:58.880 --> 15:10.880]  guys, girls, in the next video.
+```
+
+[audio_transcription/Whisper-Example_English.txt](audio_transcription/Whisper-Example_English.txt)
+
+[audio_transcription/Whisper-Example_English.vtt](audio_transcription/Whisper-Example_English.vtt)
+
+[audio_transcription/Whisper-Example_English.srt](audio_transcription/Whisper-Example_English.srt)

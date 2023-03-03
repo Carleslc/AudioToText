@@ -1,3 +1,6 @@
 .DS_Store
+
 .ipynb_checkpoints/
-audio_transcription/
+
+/audio_transcription/
+!*/audio_transcription/
