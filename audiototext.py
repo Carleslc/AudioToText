@@ -117,7 +117,11 @@ task = args.task
 
 # set audio file path
 
-audio_files = args.audio_file
+audio_files = map(lambda audio_path: audio_path.strip(), args.audio_file)
+
+for audio_path in audio_files:
+  if not os.path.isfile(audio_path):
+    raise FileNotFoundError(audio_path)
 
 # set model
 
@@ -238,8 +242,6 @@ else:
 results = {} # audio_path to result
 
 for audio_path in audio_files:
-  audio_path = audio_path.strip()
-  
   print(f"\nProcessing: {audio_path}\n")
 
   # detect language
@@ -286,7 +288,7 @@ for audio_path in audio_files:
 
       api_audio_path = f'{source_audio_name_path}.{api_audio_ext}'
 
-      os.system(f"ffmpeg -i {audio_path} {api_audio_path}")
+      subprocess.run(['ffmpeg', '-i', audio_path, api_audio_path], check=True, capture_output=True)
 
       if options['verbose']:
         print(api_audio_path, end='\n\n')
