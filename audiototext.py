@@ -61,7 +61,8 @@ if status != 0:
 else:
   print(ffmpeg_version.split('\n')[0])
 
-os.system("pip install git+https://github.com/openai/whisper.git@7858aa9c08d98f75575035ecd6481f462d66ca27 numpy torch deepl pydub openai")
+os.system("pip install --upgrade pip")
+os.system("pip install git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
 
 """## [Step 2] 📁 Upload your audio files to this folder
 
@@ -136,10 +137,10 @@ else:
 
   # https://medium.com/analytics-vidhya/the-google-colab-system-specification-check-69d159597417
   if DEVICE == "cuda":
-    os.system('nvidia-smi -L')
+    os.system("nvidia-smi -L")
   else:
     if sys_platform == 'linux':
-      os.system('lscpu | grep "Model name" | awk \'{$1=$1};1\'')
+      os.system("lscpu | grep \"Model name\" | awk '{$1=$1};1'")
 
     if use_model not in ['tiny', 'base', 'small']:
       print("Not using GPU can result in a very slow execution")
@@ -182,8 +183,8 @@ else:
 
 # set options
 
-## https://github.com/openai/whisper/blob/7858aa9c08d98f75575035ecd6481f462d66ca27/whisper/transcribe.py#L19
-## https://github.com/openai/whisper/blob/7858aa9c08d98f75575035ecd6481f462d66ca27/whisper/decoding.py#L72
+## https://github.com/openai/whisper/blob/v20230308/whisper/transcribe.py#L36
+## https://github.com/openai/whisper/blob/v20230308/whisper/decoding.py#L79
 options = {
     'task': task,
     'verbose': True,
@@ -196,6 +197,7 @@ options = {
     'temperature': (0.0, 0.2, 0.4, 0.6, 0.8, 1.0), # float or tuple
     'condition_on_previous_text': args.coherence_preference,
     'initial_prompt': args.prompt,
+    'word_timestamps': False,
 }
 
 if args.api_key:
@@ -412,7 +414,7 @@ Available formats: `txt,vtt,srt,tsv,json`
 # set output folder
 output_dir = args.output_dir
 
-# set output formats: https://github.com/openai/whisper/blob/7858aa9c08d98f75575035ecd6481f462d66ca27/whisper/utils.py#L145
+# set output formats: https://github.com/openai/whisper/blob/v20230308/whisper/utils.py#L188
 output_formats = args.output_formats
 output_formats = output_formats.split(',')
 
