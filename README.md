@@ -20,29 +20,31 @@ Generate _captions_ using VTT or SRT file formats.
 
 **Open [AudioToText in Google Colab](https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb) and follow the step-by-step instructions.**
 
-A Cloud GPU will be assigned to you to execute the notebook code to transcribe and translate your audio files.
+A Cloud GPU will be assigned to you to run the notebook code to transcribe and translate your audio files.
 
-If you want to execute the notebook in your own computer check [_**Local installation**_](#local-installation).
+If you want to run the code in your own computer check [_**local installation**_](#local-installation).
 
 ## Features
 
-1. All the [Whisper](https://github.com/openai/whisper) features:
+  - [**English transcription**](#audio-transcription-from-english-using-whisper)
+  - [**Non-English transcription**](#audio-transcription-from-almost-any-language-using-whisper)
+  - [**Any-to-English translation**](#audio-translation-to-english-using-whisper)
 
-![Whisper Features](https://cdn.openai.com/whisper/draft-20220920a/asr-training-data-desktop.svg)
-
-- [**English transcription**](#audio-transcription-from-english-using-whisper)
-- [**Non-English transcription**](#audio-transcription-from-almost-any-language-using-whisper)
-- [**Any-to-English translation**](#audio-translation-to-english-using-whisper)
-
-2. [**Any-to-Any\* translation**](#audio-translation-using-deepl-translator)
+- [**Any-to-Any\* translation**](#audio-translation-using-deepl-translator)
 
    Translate the transcriptions using [**DeepL**](https://www.deepl.com/) translator.
 
    [_\* See supported languages by DeepL_](https://support.deepl.com/hc/en-us/articles/360019925219-Languages-included-in-DeepL-Pro)
 
-3. Save transcriptions and captions in TXT, VTT, SRT, TSV and JSON.
+- [Save transcriptions and captions in different formats](#save-transcripts-to-different-formats): TXT, VTT, SRT, TSV and JSON.
+
+- Choose between [open-source](https://github.com/openai/whisper) models or [API](https://openai.com/blog/introducing-chatgpt-and-whisper-apis#whisper-api).
+
+- [AudioToText CLI](#using-audiototext-cli) for [local usage](#local-installation).
 
 There are several examples in the [**examples**](examples) folder.
+
+![Whisper Features](https://cdn.openai.com/whisper/draft-20220920a/asr-training-data-desktop.svg)
 
 ### Audio **transcription** from English using Whisper
 
@@ -302,55 +304,18 @@ With audio-only files you will need to enable a visualization in _Audio -> Visua
 
 ## Local installation
 
-If you have a powerful computer with GPU hardware acceleration, you can also run the [_AudioToText notebook_](AudioToText.ipynb) in your local machine.
+If you have a powerful computer with GPU hardware acceleration, you can run the [_notebook_](AudioToText.ipynb) or [_CLI_](#using-audiototext-cli) in your local machine.
 
-CPU execution is also available, but it is much slower and the [Cloud](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) version is recommended if you do not have a decent GPU.
+You can also use them locally without a powerful GPU using [API](https://platform.openai.com/account/api-keys), as it always runs in the cloud.
+
+CPU execution is also available, but it is much slower and the [Colab](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) version or API is recommended if you do not have a decent GPU.
 You might, however, try to use the smaller models (`tiny`, `base`, `small`) on your CPU.
-
-### Using Google Colab with your local environment
-
-[Google Colab](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) lets you connect to a local runtime using [Jupyter](http://jupyter.org/install).
-This allows you to use the notebook using your local hardware and have access to your local file system.
-
-[_How to set up and connect to a local runtime in Google Colab_](https://research.google.com/colaboratory/local-runtimes.html)
-
-### Using [Jupyter Notebook](https://github.com/jupyter/notebook)
-
-If you do not want to rely on Google Colab, you can just use the [Jupyter Notebook](https://docs.jupyter.org/) interface.
-
-[_How to install Jupyter Notebook_](https://docs.jupyter.org/en/latest/install/notebook-classic.html)
-
-Clone or download this repository and run inside the repository folder:
-
-```sh
-jupyter notebook AudioToText.ipynb
-```
-
-Or just run `jupyter notebook` without cloning this repository and _Upload_ the [`AudioToText.ipynb`](https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb) file (_right-click -> Save as..._).
-
-### Using [Jupyter Lab](https://github.com/jupyterlab/jupyterlab)
-
-An alternative to the Jupyter Notebook interface is the [Jupyter Lab](https://jupyterlab.readthedocs.io/) interface.
-
-[_How to install Jupyter Lab_](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
-
-```sh
-jupyter lab
-```
-
-Open the notebook using a URL:
-
-_File -> Open from URL..._
-
-```
-https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb
-```
 
 ### Using AudioToText CLI
 
-A plain [_python script_](audiototext.py) is also available to use in your system without Jupyter.
+A plain [_python script_](audiototext.py) is available to use in your system without Jupyter.
 
-#### Install AudioToText CLI locally
+#### Install AudioToText CLI
 
 1. Clone this repository or download the [`audiototext.py`](https://raw.githubusercontent.com/Carleslc/AudioToText/master/audiototext.py) script (_right-click -> Save as..._).
 2. Install [Python](https://www.python.org/downloads/) (3.8 - 3.10)
@@ -378,6 +343,9 @@ python audiototext.py english.wav --model large-v2 --output_dir audio_transcript
 
 # Translate french.wav from French to English using small model to TXT format
 python audiototext.py french.wav --task translate --language French --output_formats txt
+
+# Transcribe english_japanese.mp3 using API to TXT, VTT and SRT formats
+python audiototext.py english_japanese.mp3 --output_formats txt,vtt,srt --api_key sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # Transcribe multiple files using Whisper large-v2 model and then translate the generated transcripts to Spanish using DeepL API to TXT, VTT and SRT formats
 python audiototext.py chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model large-v2 --output_formats txt,vtt,srt --deepl_target_language Spanish --deepl_api_key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xx
@@ -415,6 +383,45 @@ optional arguments:
                         True (default): Share context between lines while translating. False: Translate each line independently
   --deepl_formality {default,formal,informal}
                         whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)
+```
+
+### Using Google Colab with your local environment
+
+[Google Colab](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) lets you connect to a local runtime using [Jupyter](http://jupyter.org/install).
+This allows you to use the notebook using your local hardware and have access to your local file system.
+
+[_How to set up and connect to a local runtime in Google Colab_](https://research.google.com/colaboratory/local-runtimes.html)
+
+### Using [Jupyter Notebook](https://github.com/jupyter/notebook)
+
+If you do not want to rely on [Google Colab](#using-google-colab-with-your-local-environment) or use the [AudioToText CLI](#using-audiototext-cli), you can use the [Jupyter Notebook](https://docs.jupyter.org/) interface.
+
+[_How to install Jupyter Notebook_](https://docs.jupyter.org/en/latest/install/notebook-classic.html)
+
+Clone or download this repository and run inside this repository folder:
+
+```sh
+jupyter notebook AudioToText.ipynb
+```
+
+Or just run `jupyter notebook` without cloning this repository and _Upload_ the [`AudioToText.ipynb`](https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb) file (_right-click -> Save as..._).
+
+### Using [Jupyter Lab](https://github.com/jupyterlab/jupyterlab)
+
+An alternative to the Jupyter Notebook interface is the [Jupyter Lab](https://jupyterlab.readthedocs.io/) interface.
+
+[_How to install Jupyter Lab_](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
+
+```sh
+jupyter lab
+```
+
+Open the notebook using a URL:
+
+_File -> Open from URL..._
+
+```
+https://raw.githubusercontent.com/Carleslc/AudioToText/master/AudioToText.ipynb
 ```
 
 ### Using [Whisper CLI](https://github.com/openai/whisper#command-line-usage)
