@@ -62,7 +62,7 @@ else:
   print(ffmpeg_version.split('\n')[0])
 
 os.system("pip install --user --upgrade pip")
-os.system("pip install --user git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
+os.system("pip install git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
 
 """## [Step 2] 📁 Upload your audio files to this folder
 
@@ -117,7 +117,7 @@ task = args.task
 
 # set audio file path
 
-audio_files = map(lambda audio_path: audio_path.strip(), args.audio_file)
+audio_files = list(map(lambda audio_path: audio_path.strip(), args.audio_file))
 
 for audio_path in audio_files:
   if not os.path.isfile(audio_path):
@@ -176,7 +176,7 @@ else:
   if language == "English" and use_model in MODELS_WITH_ENGLISH_VERSION:
     use_model += ".en"
 
-  print(f"\nLoading {use_model} model...")
+  print(f"\nLoading {use_model} model... {os.path.expanduser(f'~/.cache/whisper/{use_model}.pt')}")
 
   model = whisper.load_model(use_model, device=DEVICE)
 
