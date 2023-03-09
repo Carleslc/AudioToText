@@ -61,8 +61,8 @@ if status != 0:
 else:
   print(ffmpeg_version.split('\n')[0])
 
-os.system("pip install --upgrade pip")
-os.system("pip install git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
+os.system("pip install --user --upgrade pip")
+os.system("pip install --user git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
 
 """## [Step 2] 📁 Upload your audio files to this folder
 
