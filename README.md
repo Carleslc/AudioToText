@@ -339,13 +339,13 @@ sudo pacman -S ffmpeg
 
 ```sh
 # Transcribe english.wav using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
-python audiototext.py english.wav --model large-v2 --output_dir audio_transcription
+python audiototext.py examples/english/english.wav --model large-v2 --output_dir audio_transcription
 
 # Translate french.wav from French to English using small model to TXT format
-python audiototext.py french.wav --task translate --language French --output_formats txt
+python audiototext.py examples/french-to-english/french.wav --task translate --language French --output_format txt
 
 # Transcribe english_japanese.mp3 using API to TXT, VTT and SRT formats
-python audiototext.py english_japanese.mp3 --output_formats txt,vtt,srt --api_key sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+python audiototext.py examples/multi-language/english_japanese.mp3 --output_formats txt,vtt,srt --api_key sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # Transcribe multiple files using Whisper large-v2 model and then translate the generated transcripts to Spanish using DeepL API to TXT, VTT and SRT formats
 python audiototext.py chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model large-v2 --output_formats txt,vtt,srt --deepl_target_language Spanish --deepl_api_key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xx
@@ -371,7 +371,7 @@ optional arguments:
                         True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence
   --api_key API_KEY     if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://openai.com/pricing#audio-models.
                         API model is large-v2 (ignores --model)
-  --output_formats OUTPUT_FORMATS
+  --output_formats OUTPUT_FORMATS, --output_format OUTPUT_FORMATS
                         desired result formats (default: txt,vtt,srt,tsv,json)
   --output_dir OUTPUT_DIR
                         folder to save results (default: audio_transcription)
@@ -383,6 +383,7 @@ optional arguments:
                         True (default): Share context between lines while translating. False: Translate each line independently
   --deepl_formality {default,formal,informal}
                         whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)
+  --skip-install        skip pip dependencies installation
 ```
 
 ### Using Google Colab with your local environment

@@ -27,7 +27,7 @@ parser.add_argument("--prompt", help="provide context about the audio or encoura
 parser.add_argument("--coherence_preference", help="True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence",
                     default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
 parser.add_argument("--api_key", help="if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://openai.com/pricing#audio-models. API model is large-v2 (ignores --model)")
-parser.add_argument("--output_formats", help="desired result formats (default: txt,vtt,srt,tsv,json)",
+parser.add_argument("--output_formats", "--output_format", help="desired result formats (default: txt,vtt,srt,tsv,json)",
                     default="txt,vtt,srt,tsv,json")
 parser.add_argument("--output_dir", help="folder to save results (default: audio_transcription)",
                     default="audio_transcription")
@@ -38,6 +38,7 @@ parser.add_argument("--deepl_coherence_preference", help="True (default): Share 
                     default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
 parser.add_argument("--deepl_formality", help="whether the translated text should lean towards formal or informal language (languages with formality supported: German,French,Italian,Spanish,Dutch,Polish,Portuguese,Russian)",
                     default="default", choices=["default", "formal", "informal"])
+parser.add_argument("--skip-install", help="skip pip dependencies installation", action="store_true", default=False)
 args = parser.parse_args()
 
 """
@@ -58,11 +59,13 @@ if status != 0:
   else:
     print("Install ffmpeg: https://ffmpeg.org/download.html")
     exit(status)
-else:
+elif not args.skip_install:
   print(ffmpeg_version.split('\n')[0])
 
-os.system("pip install --user --upgrade pip")
-os.system("pip install git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
+if not args.skip_install:
+  os.system("pip install --user --upgrade pip")
+  os.system("pip install git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
+  print()
 
 """## [Step 2] 📁 Upload your audio files to this folder
 
@@ -130,14 +133,14 @@ use_model = args.model
 # detect device
 
 if args.api_key:
-  print("\nUsing API")
+  print("Using API")
 
   from pydub import AudioSegment
   from pydub.silence import split_on_silence
 else:
   DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-  print(f"\nUsing {'GPU' if DEVICE == 'cuda' else 'CPU ⚠️'}")
+  print(f"Using {'GPU' if DEVICE == 'cuda' else 'CPU ⚠️'}")
 
   # https://medium.com/analytics-vidhya/the-google-colab-system-specification-check-69d159597417
   if DEVICE == "cuda":
