@@ -64,7 +64,7 @@ elif not args.skip_install:
 
 if not args.skip_install:
   os.system("pip install --user --upgrade pip")
-  os.system("pip install git+https://github.com/openai/whisper.git@v20230308 numpy torch deepl pydub openai==0.27.1")
+  os.system("pip install git+https://github.com/openai/whisper.git@v20230314 numpy torch deepl pydub openai==0.27.6")
   print()
 
 """## [Step 2] 📁 Upload your audio files to this folder

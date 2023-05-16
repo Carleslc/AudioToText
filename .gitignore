@@ -1,5 +1,7 @@
 .DS_Store
 
+.vscode/
+
 .ipynb_checkpoints/
 
 /audio_transcription/
