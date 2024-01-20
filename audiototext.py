@@ -64,7 +64,7 @@ elif not args.skip_install:
 
 if not args.skip_install:
   os.system("pip install --user --upgrade pip")
-  os.system("pip install git+https://github.com/openai/whisper.git@v20230314 numpy torch deepl pydub openai==0.27.6")
+  os.system("pip install git+https://github.com/openai/whisper.git@v20231117 openai==0.28 numpy scipy deepl pydub cohere ffmpeg-python torch==2.1.0 tensorflow-probability==0.23.0 typing-extensions==4.9.0")
   print()
 
 """## [Step 2] 📁 Upload your audio files to this folder
@@ -190,8 +190,8 @@ else:
 
 # set options
 
-## https://github.com/openai/whisper/blob/v20230308/whisper/transcribe.py#L36
-## https://github.com/openai/whisper/blob/v20230308/whisper/decoding.py#L79
+## https://github.com/openai/whisper/blob/v20231117/whisper/transcribe.py#L37
+## https://github.com/openai/whisper/blob/v20231117/whisper/decoding.py#L81
 options = {
     'task': task,
     'verbose': True,
@@ -419,7 +419,7 @@ Available formats: `txt,vtt,srt,tsv,json`
 # set output folder
 output_dir = args.output_dir
 
-# set output formats: https://github.com/openai/whisper/blob/v20230308/whisper/utils.py#L188
+# set output formats: https://github.com/openai/whisper/blob/v20231117/whisper/utils.py#L283
 output_formats = args.output_formats
 output_formats = output_formats.split(',')
 
@@ -427,7 +427,7 @@ from typing import TextIO
 
 class WriteText(WriteTXT):
 
-  def write_result(self, result: dict, file: TextIO):
+  def write_result(self, result: dict, file: TextIO, **kwargs):
     print(result['text'], file=file, flush=True)
 
 def write_result(result, output_format, output_file_name):
