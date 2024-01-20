@@ -64,7 +64,7 @@ elif not args.skip_install:
 
 if not args.skip_install:
   os.system("pip install --user --upgrade pip")
-  os.system("pip install git+https://github.com/openai/whisper.git@v20231117 openai==0.28 numpy scipy deepl pydub cohere ffmpeg-python torch==2.1.0 tensorflow-probability==0.23.0 typing-extensions==4.9.0")
+  os.system("pip install git+https://github.com/openai/whisper.git@v20231117 openai==1.8.0 numpy scipy deepl pydub cohere ffmpeg-python torch==2.1.0 tensorflow-probability==0.23.0 typing-extensions==4.9.0")
   print()
 
 """## [Step 2] 📁 Upload your audio files to this folder
@@ -110,9 +110,9 @@ import numpy as np
 
 import torch
 
-import openai
-
 import math
+
+from openai import OpenAI
 
 # select task
 
@@ -208,12 +208,14 @@ options = {
 }
 
 if args.api_key:
-  openai.api_key = args.api_key
+  api_client = OpenAI(api_key=args.api_key)
 
   api_supported_formats = ['mp3', 'mp4', 'mpeg', 'mpga', 'm4a', 'wav', 'webm']
   api_max_bytes = 25 * 1024 * 1024 # 25 MB
 
-  api_transcribe = getattr(openai.Audio, task)
+  api_transcribe = api_client.audio.transcriptions if task == 'transcribe' else api_client.audio.translations
+  api_transcribe = api_transcribe.create
+
   api_model = 'whisper-1' # large-v2
 
   # https://platform.openai.com/docs/api-reference/audio?lang=python
@@ -364,7 +366,8 @@ for audio_path in audio_files:
     for api_audio_chunk_path in api_audio_chunks:
       ## API request
       with open(api_audio_chunk_path, 'rb') as api_audio_file:
-        api_result = api_transcribe(api_model, api_audio_file, **api_options)
+        api_result = api_transcribe(model=api_model, file=api_audio_file, **api_options)
+        api_result = api_result.model_dump() # to dict
       
       api_segments = api_result['segments']
       
