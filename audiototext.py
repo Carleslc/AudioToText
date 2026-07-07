@@ -26,6 +26,8 @@ parser.add_argument("--language", help="source file language (default: Auto-Dete
 parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting")
 parser.add_argument("--coherence_preference", help="True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence",
                     default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
+parser.add_argument("--split_audio", help="split audio in chunks of at most this duration in minutes when using an open-source model, cutting on silences, to reduce memory usage with long audios (default: 30, set 0 to disable audio splitting)",
+                    default=30, type=int)
 parser.add_argument("--api_key", help="if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://openai.com/pricing#audio-models. API model is large-v2 (ignores --model)")
 parser.add_argument("--output_formats", "--output_format", help="desired result formats (default: txt,vtt,srt,tsv,json)",
                     default="txt,vtt,srt,tsv,json")
@@ -114,6 +116,9 @@ import math
 
 from openai import OpenAI
 
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
+
 # select task
 
 task = args.task
@@ -130,13 +135,13 @@ for audio_path in audio_files:
 
 use_model = args.model
 
+# split audio in chunks of at most this duration in minutes (open-source models), 0 to disable
+split_audio = args.split_audio
+
 # detect device
 
 if args.api_key:
   print("Using API")
-
-  from pydub import AudioSegment
-  from pydub.silence import split_on_silence
 else:
   DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -240,6 +245,78 @@ elif DEVICE == 'cpu':
   options['fp16'] = False
   torch.set_num_threads(os.cpu_count())
 
+# audio splitting
+# split audio in chunks, cutting on silences, to overcome the API file size limit
+# and to reduce memory usage with long audios in open-source models (https://github.com/Carleslc/AudioToText/issues/3)
+
+def get_audio_duration_milliseconds(audio_path):
+  try:
+    ffprobe_output = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', audio_path],
+                                    check=True, capture_output=True, text=True)
+    return int(float(ffprobe_output.stdout.strip()) * 1000)
+  except (subprocess.CalledProcessError, ValueError):
+    return 0 # unknown duration
+
+def split_audio_in_chunks(audio_path, audio_ext=None, max_chunk_milliseconds=None, min_chunks=None, verbose=True):
+  # returns a list of (chunk_path, chunk_duration_milliseconds)
+  audio_name_path, source_audio_ext = os.path.splitext(audio_path)
+
+  if not audio_ext:
+    source_audio_ext = source_audio_ext[1:].lower()
+    audio_ext = source_audio_ext if source_audio_ext in ['wav', 'mp3', 'ogg', 'flac'] else 'mp3' # formats supported to export chunks
+
+  audio_segment_file = AudioSegment.from_file(audio_path)
+
+  if min_chunks:
+    max_chunk_milliseconds = int(len(audio_segment_file) // min_chunks)
+
+  # print(f"Max chunk milliseconds: {max_chunk_milliseconds}")
+
+  audio_chunks = []
+
+  def add_chunk(audio_chunk):
+    audio_chunk_path = f"{audio_name_path}_{len(audio_chunks) + 1}.{audio_ext}"
+    audio_chunk.export(audio_chunk_path, format=audio_ext)
+    audio_chunks.append((audio_chunk_path, len(audio_chunk)))
+
+  def raw_split(big_chunk):
+    subchunks = math.ceil(len(big_chunk) / max_chunk_milliseconds)
+
+    for subchunk_i in range(subchunks):
+      chunk_start = max_chunk_milliseconds * subchunk_i
+      chunk_end = min(max_chunk_milliseconds * (subchunk_i + 1), len(big_chunk))
+      add_chunk(big_chunk[chunk_start:chunk_end])
+
+  non_silent_chunks = split_on_silence(audio_segment_file,
+                                       seek_step=5, # ms
+                                       min_silence_len=1250, # ms
+                                       silence_thresh=-25, # dB
+                                       keep_silence=True) # needed to aggregate timestamps
+
+  # print(f"Non silent chunks: {len(non_silent_chunks)}")
+
+  current_chunk = non_silent_chunks[0] if non_silent_chunks else audio_segment_file
+
+  for next_chunk in non_silent_chunks[1:]:
+    if len(current_chunk) > max_chunk_milliseconds:
+      raw_split(current_chunk)
+      current_chunk = next_chunk
+    elif len(current_chunk) + len(next_chunk) <= max_chunk_milliseconds:
+      current_chunk += next_chunk
+    else:
+      add_chunk(current_chunk)
+      current_chunk = next_chunk
+
+  if len(current_chunk) > max_chunk_milliseconds:
+    raw_split(current_chunk)
+  else:
+    add_chunk(current_chunk)
+
+  if verbose:
+    print(f'Total chunks: {len(audio_chunks)}\n')
+
+  return audio_chunks
+
 # execute task
 # !whisper "{audio_file}" --task {task} --model {use_model} --output_dir {output_dir} --device {DEVICE} --verbose {options['verbose']}
 
@@ -303,71 +380,24 @@ for audio_path in audio_files:
         print(api_audio_path, end='\n\n')
 
     ## split audio file in chunks
-    api_audio_chunks = []
-
     audio_bytes = os.path.getsize(api_audio_path)
 
     if audio_bytes >= api_max_bytes:
       if options['verbose']:
         print(f"Audio exceeds API maximum allowed file size.\nSplitting audio in chunks...")
-      
-      audio_segment_file = AudioSegment.from_file(api_audio_path, api_audio_ext)
 
       min_chunks = math.ceil(audio_bytes / (api_max_bytes / 2))
 
       # print(f"Min chunks: {min_chunks}")
 
-      max_chunk_milliseconds = int(len(audio_segment_file) // min_chunks)
-
-      # print(f"Max chunk milliseconds: {max_chunk_milliseconds}")
-
-      def add_chunk(api_audio_chunk):
-        api_audio_chunk_path = f"{source_audio_name_path}_{len(api_audio_chunks) + 1}.{api_audio_ext}"
-        api_audio_chunk.export(api_audio_chunk_path, format=api_audio_ext)
-        api_audio_chunks.append(api_audio_chunk_path)
-      
-      def raw_split(big_chunk):
-        subchunks = math.ceil(len(big_chunk) / max_chunk_milliseconds)
-
-        for subchunk_i in range(subchunks):
-          chunk_start = max_chunk_milliseconds * subchunk_i
-          chunk_end = min(max_chunk_milliseconds * (subchunk_i + 1), len(big_chunk))
-          add_chunk(big_chunk[chunk_start:chunk_end])
-      
-      non_silent_chunks = split_on_silence(audio_segment_file,
-                                           seek_step=5, # ms
-                                           min_silence_len=1250, # ms
-                                           silence_thresh=-25, # dB
-                                           keep_silence=True) # needed to aggregate timestamps
-
-      # print(f"Non silent chunks: {len(non_silent_chunks)}")
-      
-      current_chunk = non_silent_chunks[0] if non_silent_chunks else audio_segment_file
-
-      for next_chunk in non_silent_chunks[1:]:
-        if len(current_chunk) > max_chunk_milliseconds:
-          raw_split(current_chunk)
-          current_chunk = next_chunk
-        elif len(current_chunk) + len(next_chunk) <= max_chunk_milliseconds:
-          current_chunk += next_chunk
-        else:
-          add_chunk(current_chunk)
-          current_chunk = next_chunk
-      
-      if len(current_chunk) > max_chunk_milliseconds:
-        raw_split(current_chunk)
-      else:
-        add_chunk(current_chunk)
-      
-      if options['verbose']:
-        print(f'Total chunks: {len(api_audio_chunks)}\n')
+      api_audio_chunks = split_audio_in_chunks(api_audio_path, audio_ext=api_audio_ext, min_chunks=min_chunks, verbose=options['verbose'])
     else:
-      api_audio_chunks.append(api_audio_path)
-    
+      api_audio_chunks = [(api_audio_path, None)]
+
     ## process chunks
     result = None
 
-    for api_audio_chunk_path in api_audio_chunks:
+    for api_audio_chunk_path, _ in api_audio_chunks:
       ## API request
       with open(api_audio_chunk_path, 'rb') as api_audio_file:
         api_result = api_transcribe(model=api_model, file=api_audio_file, **api_options)
@@ -401,7 +431,47 @@ for audio_path in audio_files:
           print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {segment['text']}")
   else:
     # Open-Source
-    result = whisper.transcribe(model, audio_path, **options)
+    max_chunk_milliseconds = split_audio * 60 * 1000
+
+    if max_chunk_milliseconds > 0 and get_audio_duration_milliseconds(audio_path) > max_chunk_milliseconds:
+      ## split long audio in chunks
+      if options['verbose']:
+        print(f"Audio is longer than {split_audio} minutes.\nSplitting audio in chunks...")
+
+      audio_chunks = split_audio_in_chunks(audio_path, max_chunk_milliseconds=max_chunk_milliseconds, verbose=options['verbose'])
+
+      ## process chunks
+      result = None
+
+      chunk_offset_seconds = 0
+
+      chunk_options = dict(options, verbose=None) # display segments with aggregated timestamps instead of the whisper output
+
+      for audio_chunk_path, chunk_duration_milliseconds in audio_chunks:
+        chunk_result = whisper.transcribe(model, audio_chunk_path, **chunk_options)
+
+        ## update timestamps
+        for segment in chunk_result['segments']:
+          segment['start'] += chunk_offset_seconds
+          segment['end'] += chunk_offset_seconds
+
+          if options['verbose']:
+            print(f"[{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}] {segment['text']}")
+
+        if result:
+          ## append new segments
+          result['segments'].extend(chunk_result['segments'])
+        else:
+          ## first chunk
+          result = chunk_result
+
+        chunk_offset_seconds += chunk_duration_milliseconds / 1000
+
+      ## fix segment ids
+      for segment_id, segment in enumerate(result['segments']):
+        segment['id'] = segment_id
+    else:
+      result = whisper.transcribe(model, audio_path, **options)
 
   # fix results formatting
   for segment in result['segments']:

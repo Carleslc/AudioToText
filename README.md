@@ -369,6 +369,8 @@ optional arguments:
   --prompt PROMPT       provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting
   --coherence_preference {True,False}
                         True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence
+  --split_audio SPLIT_AUDIO
+                        split audio in chunks of at most this duration in minutes when using an open-source model, cutting on silences, to reduce memory usage with long audios (default: 30, set 0 to disable audio splitting)
   --api_key API_KEY     if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://openai.com/pricing#audio-models.
                         API model is large-v2 (ignores --model)
   --output_formats OUTPUT_FORMATS, --output_format OUTPUT_FORMATS
