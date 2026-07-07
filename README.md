@@ -338,8 +338,8 @@ sudo pacman -S ffmpeg
 #### AudioToText CLI usage
 
 ```sh
-# Transcribe english.wav using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
-python audiototext.py examples/english/english.wav --model large-v2 --output_dir audio_transcription
+# Transcribe english.wav using turbo model to TXT, VTT, SRT, TSV and JSON formats
+python audiototext.py examples/english/english.wav --model turbo --output_dir audio_transcription
 
 # Translate french.wav from French to English using small model to TXT format
 python audiototext.py examples/french-to-english/french.wav --task translate --language French --output_format txt
@@ -347,8 +347,8 @@ python audiototext.py examples/french-to-english/french.wav --task translate --l
 # Transcribe english_japanese.mp3 using API to TXT, VTT and SRT formats
 python audiototext.py examples/multi-language/english_japanese.mp3 --output_formats txt,vtt,srt --api_key sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-# Transcribe multiple files using Whisper large-v2 model and then translate the generated transcripts to Spanish using DeepL API to TXT, VTT and SRT formats
-python audiototext.py chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model large-v2 --output_formats txt,vtt,srt --deepl_target_language Spanish --deepl_api_key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xx
+# Transcribe multiple files using Whisper turbo model and then translate the generated transcripts to Spanish using DeepL API to TXT, VTT and SRT formats
+python audiototext.py chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model turbo --output_formats txt,vtt,srt --deepl_target_language Spanish --deepl_api_key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xx
 
 # See all available options
 python audiototext.py -h
@@ -362,7 +362,7 @@ optional arguments:
   -h, --help            show this help message and exit
   --task {transcribe,translate}
                         transcribe (default) or translate (to English)
-  --model {tiny,base,small,medium,large-v1,large-v2}
+  --model {tiny,base,small,medium,large,turbo}
                         model to use (default: small)
   --language {Auto-Detect,Afrikaans,Albanian,Amharic,Arabic,Armenian,Assamese,Azerbaijani,Bashkir,Basque,Belarusian,Bengali,Bosnian,Breton,Bulgarian,Burmese,Castilian,Catalan,Chinese,Croatian,Czech,Danish,Dutch,English,Estonian,Faroese,Finnish,Flemish,French,Galician,Georgian,German,Greek,Gujarati,Haitian,Haitian Creole,Hausa,Hawaiian,Hebrew,Hindi,Hungarian,Icelandic,Indonesian,Italian,Japanese,Javanese,Kannada,Kazakh,Khmer,Korean,Lao,Latin,Latvian,Letzeburgesch,Lingala,Lithuanian,Luxembourgish,Macedonian,Malagasy,Malay,Malayalam,Maltese,Maori,Marathi,Moldavian,Moldovan,Mongolian,Myanmar,Nepali,Norwegian,Nynorsk,Occitan,Panjabi,Pashto,Persian,Polish,Portuguese,Punjabi,Pushto,Romanian,Russian,Sanskrit,Serbian,Shona,Sindhi,Sinhala,Sinhalese,Slovak,Slovenian,Somali,Spanish,Sundanese,Swahili,Swedish,Tagalog,Tajik,Tamil,Tatar,Telugu,Thai,Tibetan,Turkish,Turkmen,Ukrainian,Urdu,Uzbek,Valencian,Vietnamese,Welsh,Yiddish,Yoruba}
                         source file language (default: Auto-Detect)
@@ -442,14 +442,14 @@ pip install -U openai-whisper
 #### [Whisper CLI usage](https://github.com/openai/whisper#command-line-usage)
 
 ```sh
-# Transcribe english.wav using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
-whisper english.wav --model large-v2 --output_dir audio_transcription --output_format all
+# Transcribe english.wav using large model to TXT, VTT, SRT, TSV and JSON formats
+whisper english.wav --model large --output_dir audio_transcription --output_format all
 
 # Translate french.wav from French to English using small model to TXT format
 whisper french.wav --task translate --language French --output_dir audio_transcription --output_format txt
 
-# Transcribe multiple files using large-v2 model to TXT, VTT, SRT, TSV and JSON formats
-whisper chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model large-v2 --output_dir audio_transcription
+# Transcribe multiple files using turbo model to TXT, VTT, SRT, TSV and JSON formats
+whisper chinese.wav bruce.mp3 english_japanese.mp3 french.wav --model turbo --output_dir audio_transcription
 
 # See all available options
 whisper --help

@@ -20,7 +20,7 @@ parser.add_argument("audio_file", nargs='+', help="source file to transcribe")
 parser.add_argument("--task", help="transcribe (default) or translate (to English)",
                     default="transcribe", choices=["transcribe", "translate"])
 parser.add_argument("--model", help="model to use (default: small)",
-                    default="small", choices=["tiny", "base", "small", "medium", "large-v2", "turbo"])
+                    default="small", choices=["tiny", "base", "small", "medium", "large", "turbo"])
 parser.add_argument("--language", help="source file language (default: Auto-Detect)",
                     default="Auto-Detect", choices=["Auto-Detect", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani", "Bashkir", "Basque", "Belarusian", "Bengali", "Bosnian", "Breton", "Bulgarian", "Burmese", "Castilian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Faroese", "Finnish", "Flemish", "French", "Galician", "Georgian", "German", "Greek", "Gujarati", "Haitian", "Haitian Creole", "Hausa", "Hawaiian", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Italian", "Japanese", "Javanese", "Kannada", "Kazakh", "Khmer", "Korean", "Lao", "Latin", "Latvian", "Letzeburgesch", "Lingala", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Maori", "Marathi", "Moldavian", "Moldovan", "Mongolian", "Myanmar", "Nepali", "Norwegian", "Nynorsk", "Occitan", "Panjabi", "Pashto", "Persian", "Polish", "Portuguese", "Punjabi", "Pushto", "Romanian", "Russian", "Sanskrit", "Serbian", "Shona", "Sindhi", "Sinhala", "Sinhalese", "Slovak", "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tajik", "Tamil", "Tatar", "Telugu", "Thai", "Tibetan", "Turkish", "Turkmen", "Ukrainian", "Urdu", "Uzbek", "Valencian", "Vietnamese", "Welsh", "Yiddish", "Yoruba"])
 parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting")
@@ -179,6 +179,10 @@ else:
   if language == "English" and use_model in MODELS_WITH_ENGLISH_VERSION:
     use_model += ".en"
 
+  if task == "translate" and use_model == "turbo":
+    print("\nWarning: turbo model is not trained for the translate task, using the large model instead")
+    use_model = "large"
+
   print(f"\nLoading {use_model} model... {os.path.expanduser(f'~/.cache/whisper/{use_model}.pt')}")
 
   model = whisper.load_model(use_model, device=DEVICE)
@@ -261,7 +265,7 @@ for audio_path in audio_files:
     audio = whisper.pad_or_trim(audio)
 
     # make log-Mel spectrogram and move to the same device as the model
-    mel = whisper.log_mel_spectrogram(audio).to(model.device)
+    mel = whisper.log_mel_spectrogram(audio, n_mels=model.dims.n_mels).to(model.device)
 
     # detect the spoken language
     _, probs = model.detect_language(mel)
