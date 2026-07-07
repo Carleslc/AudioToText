@@ -2,7 +2,7 @@
 
 [![Google Colab Badge](https://img.shields.io/badge/Google%20Colab-F9AB00?logo=googlecolab&logoColor=fff&style=for-the-badge)](https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/carleslc)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/carleslc)
 
 **Transcribe** audio using [**Whisper**](https://github.com/openai/whisper) from [OpenAI](https://openai.com/).
 
@@ -318,7 +318,7 @@ A plain [_python script_](audiototext.py) is available to use in your system wit
 #### Install AudioToText CLI
 
 1. Clone this repository or download the [`audiototext.py`](https://raw.githubusercontent.com/Carleslc/AudioToText/master/audiototext.py) script (_right-click -> Save as..._).
-2. Install [Python](https://www.python.org/downloads/) (3.8 - 3.10)
+2. Install [Python](https://www.python.org/downloads/)
 3. Install [`ffmpeg`](https://ffmpeg.org/download.html)
 
 ```sh
