@@ -23,12 +23,12 @@ parser.add_argument("--model", help="model to use (default: small)",
                     default="small", choices=["tiny", "base", "small", "medium", "large", "turbo"])
 parser.add_argument("--language", help="source file language (default: Auto-Detect)",
                     default="Auto-Detect", choices=["Auto-Detect", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani", "Bashkir", "Basque", "Belarusian", "Bengali", "Bosnian", "Breton", "Bulgarian", "Burmese", "Castilian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Faroese", "Finnish", "Flemish", "French", "Galician", "Georgian", "German", "Greek", "Gujarati", "Haitian", "Haitian Creole", "Hausa", "Hawaiian", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Italian", "Japanese", "Javanese", "Kannada", "Kazakh", "Khmer", "Korean", "Lao", "Latin", "Latvian", "Letzeburgesch", "Lingala", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Maori", "Marathi", "Moldavian", "Moldovan", "Mongolian", "Myanmar", "Nepali", "Norwegian", "Nynorsk", "Occitan", "Panjabi", "Pashto", "Persian", "Polish", "Portuguese", "Punjabi", "Pushto", "Romanian", "Russian", "Sanskrit", "Serbian", "Shona", "Sindhi", "Sinhala", "Sinhalese", "Slovak", "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili", "Swedish", "Tagalog", "Tajik", "Tamil", "Tatar", "Telugu", "Thai", "Tibetan", "Turkish", "Turkmen", "Ukrainian", "Urdu", "Uzbek", "Valencian", "Vietnamese", "Welsh", "Yiddish", "Yoruba"])
-parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://platform.openai.com/docs/guides/speech-to-text/prompting")
+parser.add_argument("--prompt", help="provide context about the audio or encourage a specific writing style, see https://developers.openai.com/api/docs/guides/speech-to-text#prompting")
 parser.add_argument("--coherence_preference", help="True (default): More coherence, but may repeat text. False: Less repetitions, but may have less coherence",
                     default='True', choices=[True, False], type=lambda b: b.lower() != 'false')
 parser.add_argument("--split_audio", help="split audio in chunks of at most this duration in minutes when using an open-source model, cutting on silences, to reduce memory usage with long audios (default: 30, set 0 to disable audio splitting)",
                     default=30, type=int)
-parser.add_argument("--api_key", help="if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://openai.com/pricing#audio-models. API model is large-v2 (ignores --model)")
+parser.add_argument("--api_key", help="if set with your OpenAI API Key (https://platform.openai.com/account/api-keys), the OpenAI API is used, which can improve the inference speed substantially, but it has an associated cost, see API pricing: https://developers.openai.com/api/docs/pricing for Whisper Transcription model. API model is large (whisper-1, ignores --model)")
 parser.add_argument("--output_formats", "--output_format", help="desired result formats (default: txt,vtt,srt,tsv,json)",
                     default="txt,vtt,srt,tsv,json")
 parser.add_argument("--output_dir", help="folder to save results (default: audio_transcription)",
@@ -94,11 +94,11 @@ You may try to choose the _Transcribe_ task and set your desired --language, but
 
   Setting the --language to the language of source audio file may provide better results than Auto-Detect.
 
-  You can add an optional initial --prompt to provide context about the audio or encourage a specific writing style, see the [prompting guide](https://platform.openai.com/docs/guides/speech-to-text/prompting).
+  You can add an optional initial --prompt to provide context about the audio or encourage a specific writing style, see the [prompting guide](https://developers.openai.com/api/docs/guides/speech-to-text#prompting).
 
   If the execution takes too long to complete you can choose a smaller model in --model, with an accuracy tradeoff, or use the OpenAI API.
 
-  By default the open-source models are used, but you can also use the OpenAI API if the --api_key parameter is set with your [OpenAI API Key](https://platform.openai.com/account/api-keys), which can improve the inference speed substantially, but it has an associated cost, see [API pricing](https://openai.com/pricing#audio-models).
+  By default the open-source models are used, but you can also use the OpenAI API if the --api_key parameter is set with your [OpenAI API Key](https://platform.openai.com/account/api-keys), which can improve the inference speed substantially, but it has an associated cost, see [API pricing](https://developers.openai.com/api/docs/pricing) for _Whisper_ Transcription model..
   
   When using API some options are fixed: --model is ignored (uses large) and --coherence_preference is ignored (uses More coherence).
   
