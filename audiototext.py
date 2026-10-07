@@ -50,6 +50,10 @@ args = parser.parse_args()
 import os, subprocess, sys
 
 from sys import platform as sys_platform
+from platform import machine
+
+# Apple Silicon (M1 and later): run Whisper on its GPU with MLX (https://github.com/ml-explore/mlx-examples/tree/main/whisper)
+APPLE_SILICON = sys_platform == 'darwin' and machine() == 'arm64'
 
 status, ffmpeg_version = subprocess.getstatusoutput("ffmpeg -version")
 
@@ -67,9 +71,10 @@ elif not args.skip_install:
 if not args.skip_install:
   PIP = f'"{sys.executable}" -m pip' # the pip of this python
   PIP_USER = '' if sys.prefix != sys.base_prefix else ' --user' # not in a virtual environment
+  MLX_WHISPER = ' mlx-whisper~=0.4.3' if APPLE_SILICON else ''
 
   os.system(f"{PIP} install --no-warn-script-location{PIP_USER} --upgrade pip")
-  os.system(f"{PIP} install --root-user-action=ignore git+https://github.com/openai/whisper.git@v20250625 openai~=2.43.0 numpy~=2.0.2 scipy~=1.16.3 deepl~=1.30.0 pydub~=0.25.1 cohere~=7.0.4 ffmpeg-python~=0.2.0 torch~=2.11.0 tensorflow-probability~=0.25.0 typing-extensions~=4.15.0 requests~=2.32.4")
+  os.system(f"{PIP} install --root-user-action=ignore git+https://github.com/openai/whisper.git@v20250625 openai~=2.43.0 numpy~=2.0.2 scipy~=1.16.3 deepl~=1.30.0 pydub~=0.25.1 cohere~=7.0.4 ffmpeg-python~=0.2.0 torch~=2.11.0 tensorflow-probability~=0.25.0 typing-extensions~=4.15.0 requests~=2.32.4{MLX_WHISPER}")
   print()
 
 """## [Step 2] 📁 Upload your audio files to this folder
@@ -100,6 +105,8 @@ You may try to choose the _Transcribe_ task and set your desired --language, but
   You can add an optional initial --prompt to provide context about the audio or encourage a specific writing style, see the [prompting guide](https://developers.openai.com/api/docs/guides/speech-to-text#prompting).
 
   If the execution takes too long to complete you can choose a smaller model in --model, with an accuracy tradeoff, or use the OpenAI API.
+
+  On a Mac with Apple Silicon (M1 and later) the open-source models run on its GPU with [MLX](https://github.com/ml-explore/mlx-examples/tree/main/whisper), much faster than on the CPU.
 
   By default the open-source models are used, but you can also use the OpenAI API if the --api_key parameter is set with your [OpenAI API Key](https://platform.openai.com/account/api-keys), which can improve the inference speed substantially, but it has an associated cost, see [API pricing](https://developers.openai.com/api/docs/pricing) for _Whisper_ Transcription model..
   
@@ -143,8 +150,25 @@ split_audio = args.split_audio
 
 # detect device
 
+USE_MLX = APPLE_SILICON and not args.api_key
+
+if USE_MLX:
+  try:
+    import mlx.core as mx
+    import mlx_whisper
+    from mlx.utils import tree_flatten
+    from mlx_whisper.transcribe import ModelHolder
+  except ImportError:
+    USE_MLX = False
+    print("Install mlx-whisper to use the Apple Silicon GPU: pip install mlx-whisper\n")
+
 if args.api_key:
   print("Using API")
+elif USE_MLX:
+  DEVICE = "mlx"
+
+  print("Using GPU (Apple Silicon, MLX)")
+  os.system("sysctl -n machdep.cpu.brand_string")
 else:
   DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -191,13 +215,28 @@ else:
     print("\nWarning: turbo model is not trained for the translate task, using the large model instead")
     use_model = "large"
 
-  print(f"\nLoading {use_model} model... {os.path.expanduser(f'~/.cache/whisper/{use_model}.pt')}")
+  if USE_MLX:
+    # the same models converted to MLX (https://huggingface.co/mlx-community)
+    MLX_MODELS = {
+      'large': 'whisper-large-v3-mlx',
+      'turbo': 'whisper-large-v3-turbo',
+    }
 
-  model = whisper.load_model(use_model, device=DEVICE)
+    mlx_model = f"mlx-community/{MLX_MODELS.get(use_model, f'whisper-{use_model}-mlx')}"
+
+    print(f"\nLoading {use_model} model... {mlx_model}")
+
+    model = ModelHolder.get_model(mlx_model, mx.float16)
+    model_parameters = sum(p.size for _, p in tree_flatten(model.parameters()))
+  else:
+    print(f"\nLoading {use_model} model... {os.path.expanduser(f'~/.cache/whisper/{use_model}.pt')}")
+
+    model = whisper.load_model(use_model, device=DEVICE)
+    model_parameters = sum(np.prod(p.shape) for p in model.parameters())
 
   print(
       f"Model {use_model} is {'multilingual' if model.is_multilingual else 'English-only'} "
-      f"and has {sum(np.prod(p.shape) for p in model.parameters()):,d} parameters.\n"
+      f"and has {model_parameters:,d} parameters.\n"
   )
 
 # set options
@@ -244,9 +283,35 @@ if args.api_key:
     api_options['temperature'] = api_temperature
   else:
     raise ValueError("Invalid temperature type, it must be a float or a tuple of floats")
+elif DEVICE == 'mlx':
+  # beam search is not implemented in mlx-whisper: greedy decoding (best_of is still used with temperature fallback)
+  options['beam_size'] = None
+  options['patience'] = None
 elif DEVICE == 'cpu':
   options['fp16'] = False
   torch.set_num_threads(os.cpu_count())
+
+def transcribe_audio(audio_path, **options):
+  if USE_MLX:
+    return mlx_whisper.transcribe(audio_path, path_or_hf_repo=mlx_model, **options)
+  return whisper.transcribe(model, audio_path, **options)
+
+def detect_audio_language(audio_path):
+  # load audio and pad/trim it to fit 30 seconds
+  audio = whisper.load_audio(audio_path)
+  audio = whisper.pad_or_trim(audio)
+
+  if USE_MLX:
+    # make log-Mel spectrogram (frames, mels)
+    mel = mlx_whisper.audio.log_mel_spectrogram(audio, n_mels=model.dims.n_mels).astype(mx.float16)
+  else:
+    # make log-Mel spectrogram and move to the same device as the model
+    mel = whisper.log_mel_spectrogram(audio, n_mels=model.dims.n_mels).to(model.device)
+
+  # detect the spoken language
+  _, probs = model.detect_language(mel)
+
+  return max(probs, key=probs.get)
 
 # audio splitting
 # split audio in chunks, cutting on silences, to overcome the API file size limit
@@ -340,17 +405,7 @@ for audio_path in audio_files:
     options['language'] = language
     source_language_code = whisper.tokenizer.TO_LANGUAGE_CODE.get(language.lower())
   elif not args.api_key:
-    # load audio and pad/trim it to fit 30 seconds
-    audio = whisper.load_audio(audio_path)
-    audio = whisper.pad_or_trim(audio)
-
-    # make log-Mel spectrogram and move to the same device as the model
-    mel = whisper.log_mel_spectrogram(audio, n_mels=model.dims.n_mels).to(model.device)
-
-    # detect the spoken language
-    _, probs = model.detect_language(mel)
-
-    source_language_code = max(probs, key=probs.get)
+    source_language_code = detect_audio_language(audio_path)
     options['language'] = whisper.tokenizer.LANGUAGES[source_language_code].title()
     
     print(f"Detected language: {options['language']}\n")
@@ -451,7 +506,7 @@ for audio_path in audio_files:
       chunk_options = dict(options, verbose=None) # display segments with aggregated timestamps instead of the whisper output
 
       for audio_chunk_path, chunk_duration_milliseconds in audio_chunks:
-        chunk_result = whisper.transcribe(model, audio_chunk_path, **chunk_options)
+        chunk_result = transcribe_audio(audio_chunk_path, **chunk_options)
 
         ## update timestamps
         for segment in chunk_result['segments']:
@@ -474,7 +529,7 @@ for audio_path in audio_files:
       for segment_id, segment in enumerate(result['segments']):
         segment['id'] = segment_id
     else:
-      result = whisper.transcribe(model, audio_path, **options)
+      result = transcribe_audio(audio_path, **options)
 
   # fix results formatting
   for segment in result['segments']:

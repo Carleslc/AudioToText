@@ -311,6 +311,9 @@ You can also use them locally without a powerful GPU using [API](https://platfor
 CPU execution is also available, but it is much slower and the [Colab](<(https://colab.research.google.com/github/Carleslc/AudioToText/blob/master/AudioToText.ipynb)>) version or API is recommended if you do not have a decent GPU.
 You might, however, try to use the smaller models (`tiny`, `base`, `small`) on your CPU.
 
+On a Mac with Apple Silicon (M1 and later) the open-source models run on its GPU with [MLX](https://github.com/ml-explore/mlx-examples/tree/main/whisper) ([mlx-whisper](https://pypi.org/project/mlx-whisper/), installed with the other dependencies), several times faster than on the CPU: a 2.5 minutes audio with the `turbo` model takes 18 seconds instead of 81 on an M4 Pro.
+Beam search is not available with MLX, so it uses greedy decoding (with the same temperature fallback).
+
 ### Using AudioToText CLI
 
 A plain [_python script_](audiototext.py) is available to use in your system without Jupyter.
