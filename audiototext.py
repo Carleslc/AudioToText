@@ -47,7 +47,7 @@ args = parser.parse_args()
 ## [Step 1] ⚙️ Install the required libraries
 """
 
-import os, subprocess
+import os, subprocess, sys
 
 from sys import platform as sys_platform
 
@@ -65,8 +65,11 @@ elif not args.skip_install:
   print(ffmpeg_version.split('\n')[0])
 
 if not args.skip_install:
-  os.system("pip install --user --upgrade pip")
-  os.system("!pip install --root-user-action=ignore git+https://github.com/openai/whisper.git@v20250625 openai~=2.43.0 numpy~=2.0.2 scipy~=1.16.3 deepl~=1.30.0 pydub~=0.25.1 cohere~=7.0.4 ffmpeg-python~=0.2.0 torch~=2.11.0 tensorflow-probability~=0.25.0 typing-extensions~=4.15.0")
+  PIP = f'"{sys.executable}" -m pip' # the pip of this python
+  PIP_USER = '' if sys.prefix != sys.base_prefix else ' --user' # not in a virtual environment
+
+  os.system(f"{PIP} install --no-warn-script-location{PIP_USER} --upgrade pip")
+  os.system(f"{PIP} install --root-user-action=ignore git+https://github.com/openai/whisper.git@v20250625 openai~=2.43.0 numpy~=2.0.2 scipy~=1.16.3 deepl~=1.30.0 pydub~=0.25.1 cohere~=7.0.4 ffmpeg-python~=0.2.0 torch~=2.11.0 tensorflow-probability~=0.25.0 typing-extensions~=4.15.0 requests~=2.32.4")
   print()
 
 """## [Step 2] 📁 Upload your audio files to this folder
